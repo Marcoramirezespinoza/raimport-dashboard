@@ -48,7 +48,23 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f2f1ec; m
 .margen { font-size:18px; font-weight:700; margin:0 0 5px; letter-spacing:-.3px; }
 .badge { font-size:10.5px; padding:4px 11px; border-radius:20px; font-weight:600; letter-spacing:.2px; white-space:nowrap; }
 .footer { text-align:center; padding:1.75rem; font-size:11px; color:#a8a49a; border-top:1px solid #e5e3dc; margin-top:1rem; }
-@media (max-width:760px) { .top-grid { grid-template-columns:1fr; } .stats { grid-template-columns:repeat(2,1fr); } .body { flex-direction:column; align-items:flex-start; gap:10px; } .right { text-align:left; padding-left:0; } }
+.searchbar { margin-bottom:1rem; }
+.searchbar input { width:100%; padding:11px 16px; border:1.5px solid #e5e3dc; border-radius:12px; font-family:inherit; font-size:13.5px; color:#3a3936; outline:none; background:#fff; }
+.searchbar input:focus { border-color:#D4A634; box-shadow:0 0 0 3px rgba(212,166,52,.12); }
+.info { cursor:pointer; }
+.title .ver { font-size:10.5px; color:#D4A634; font-weight:600; margin-left:6px; white-space:nowrap; }
+.cod { font-family:monospace; color:#a8a49a; }
+.detalle { display:none; font-size:12px; color:#5f5e58; margin-top:8px; padding-top:8px; border-top:1px dashed #e5e3dc; line-height:1.55; }
+.card.abierta .detalle { display:block; }
+.acciones { display:flex; gap:6px; margin-top:8px; justify-content:flex-end; }
+.act { width:30px; height:30px; border-radius:8px; border:1.5px solid #e5e3dc; background:#fff; cursor:pointer; font-size:14px; line-height:1; display:flex; align-items:center; justify-content:center; transition:all .15s; color:#8a887f; }
+.act:hover { border-color:#D4A634; }
+.act-si.on { background:#D4A634; border-color:#D4A634; color:#0F1F3D; }
+.act-no.on { background:#c14b40; border-color:#c14b40; color:#fff; }
+.card.descartada { opacity:.45; }
+.card.interesa { box-shadow:0 0 0 2px #D4A634, 0 1px 8px rgba(15,31,61,.06); }
+.card.hidden, .card.hidden-search { display:none; }
+@media (max-width:760px) { .top-grid { grid-template-columns:1fr; } .stats { grid-template-columns:repeat(2,1fr); } .body { flex-direction:column; align-items:flex-start; gap:10px; } .right { text-align:left; padding-left:0; } .acciones { justify-content:flex-start; } }
 </style></head>
 <body>
 <div class="header">
@@ -59,7 +75,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f2f1ec; m
       <p>RA Import · Capacidad global, calidad local</p>
     </div>
   </div>
-  <div class="updated">Última actualización<b>14-07-2026 · 15:08</b></div>
+  <div class="updated">Última actualización<b>14-07-2026 · 15:44</b></div>
 </div>
 <div class="wrap">
 
@@ -80,11 +96,16 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f2f1ec; m
   </div>
 </div>
 
+<div class="searchbar">
+  <input id="buscador" type="text" placeholder="🔍 Buscar por nombre, organismo o comuna..." oninput="buscar(this.value)">
+</div>
+
 <div class="controls">
   <div class="filters">
     <button class="filter-btn active" data-filter="Todas" onclick="filtrar(this)">Todas</button>
     <button class="filter-btn" data-filter="Coquimbo" onclick="filtrar(this)">Coquimbo</button>
     <button class="filter-btn" data-filter="Arica" onclick="filtrar(this)">Arica</button>
+    <button class="filter-btn" data-filter="interesa" onclick="filtrar(this)">★ Me interesan</button>
   </div>
   <div class="sorters">
     <button class="filter-btn active" data-sort="prioridad" onclick="ordenar(this)">Prioridad</button>
@@ -96,115 +117,155 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f2f1ec; m
 <p class="section-label">Licitaciones activas</p>
 <div id="cardlist">
 
-    <div class="card" data-region="Coquimbo" data-semaforo="REVISAR" data-dias="6" data-margen="15">
+    <div class="card" data-codigo="996-21-LE26" data-region="Coquimbo" data-semaforo="REVISAR" data-dias="6" data-margen="15" data-texto="servicio de aseo dependencias vialidad provincia de limarí mop - dirección de vialidad iv región la serena">
       <div class="stripe" style="background:#c98a1a"></div>
       <div class="body">
-        <div class="info">
-          <p class="title">Servicio de Aseo Dependencias Vialidad Provincia de Limarí</p>
+        <div class="info" onclick="toggleDetalle(this)">
+          <p class="title">Servicio de Aseo Dependencias Vialidad Provincia de Limarí <span class="ver">ver detalle ▾</span></p>
           <p class="sub"><span class="org">MOP - Dirección de Vialidad IV Región</span> · La Serena (Coquimbo) · cierra 20-07-2026 15:30 <span class="dias">(6d)</span></p>
-          <p class="sub2">Monto no informado · Presupuesto de la entidad no cubre costo real; se requiere ofertar ~20% sobre referencia para margen positivo; visita técnica pendiente el 14-07-2026.</p>
+          <p class="sub2">Monto no informado · <span class="cod">996-21-LE26</span></p>
+          <div class="detalle">Presupuesto de la entidad no cubre costo real; se requiere ofertar ~20% sobre referencia para margen positivo; visita técnica pendiente el 14-07-2026.</div>
         </div>
         <div class="right">
           <p class="margen" style="color:#a06a0a">15%</p>
           <span class="badge" style="background:#fdf1d6;color:#a06a0a">Revisar</span>
+          <div class="acciones">
+            <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'996-21-LE26','interesa')">★</button>
+            <button class="act act-no" title="Descartar" onclick="marcar(event,'996-21-LE26','descarta')">✕</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card" data-region="Coquimbo" data-semaforo="REVISAR" data-dias="13" data-margen="-1">
+    <div class="card" data-codigo="996-22-LE26" data-region="Coquimbo" data-semaforo="REVISAR" data-dias="13" data-margen="-1" data-texto="servicio de aseo dependencias vialidad provincia de choapa mop - direccion de vialidad iv region la serena">
       <div class="stripe" style="background:#c98a1a"></div>
       <div class="body">
-        <div class="info">
-          <p class="title">Servicio de Aseo Dependencias Vialidad Provincia de Choapa</p>
+        <div class="info" onclick="toggleDetalle(this)">
+          <p class="title">Servicio de Aseo Dependencias Vialidad Provincia de Choapa <span class="ver">ver detalle ▾</span></p>
           <p class="sub"><span class="org">MOP - Direccion de Vialidad IV Region</span> · La Serena (Coquimbo) · cierra 27-07-2026 15:00 <span class="dias">(13d)</span></p>
-          <p class="sub2">Monto no informado · Sin bases tecnicas/administrativas descargadas para costear con firmeza; monto estimado no informado por el organismo. Precedente de la hermana 996-21-LE26 (Provincia de Limari, mismo organismo): presupuesto de la entidad no cubrio el costo real (margen 15%, oferta ~20% sobre referencia). Visita tecnica no confirmada en ficha API. Accion sugerida: descargar bases cuanto antes (cierre 27-07-2026).</p>
+          <p class="sub2">Monto no informado · <span class="cod">996-22-LE26</span></p>
+          <div class="detalle">Sin bases tecnicas/administrativas descargadas para costear con firmeza; monto estimado no informado por el organismo. Precedente de la hermana 996-21-LE26 (Provincia de Limari, mismo organismo): presupuesto de la entidad no cubrio el costo real (margen 15%, oferta ~20% sobre referencia). Visita tecnica no confirmada en ficha API. Accion sugerida: descargar bases cuanto antes (cierre 27-07-2026).</div>
         </div>
         <div class="right">
           <p class="margen" style="color:#a06a0a">—</p>
           <span class="badge" style="background:#fdf1d6;color:#a06a0a">Revisar</span>
+          <div class="acciones">
+            <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'996-22-LE26','interesa')">★</button>
+            <button class="act act-no" title="Descartar" onclick="marcar(event,'996-22-LE26','descarta')">✕</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card" data-region="Arica" data-semaforo="NO" data-dias="3" data-margen="-1">
+    <div class="card" data-codigo="1696-9-LR26" data-region="Arica" data-semaforo="NO" data-dias="3" data-margen="-1" data-texto="servicio de aseo e insumos jurisdicción arica corporación administrativa del poder judicial - arica arica">
       <div class="stripe" style="background:#c14b40"></div>
       <div class="body">
-        <div class="info">
-          <p class="title">SERVICIO DE ASEO E INSUMOS JURISDICCIÓN ARICA</p>
+        <div class="info" onclick="toggleDetalle(this)">
+          <p class="title">SERVICIO DE ASEO E INSUMOS JURISDICCIÓN ARICA <span class="ver">ver detalle ▾</span></p>
           <p class="sub"><span class="org">Corporación Administrativa del Poder Judicial - Arica</span> · Arica (Arica) · cierra 17-07-2026 16:00 <span class="dias">(3d)</span></p>
-          <p class="sub2">Monto no informado · Visita técnica obligatoria venció (~27-06-2026) sin evidencia de asistencia; oferta sería inadmisible según bases.</p>
+          <p class="sub2">Monto no informado · <span class="cod">1696-9-LR26</span></p>
+          <div class="detalle">Visita técnica obligatoria venció (~27-06-2026) sin evidencia de asistencia; oferta sería inadmisible según bases.</div>
         </div>
         <div class="right">
           <p class="margen" style="color:#a3352f">—</p>
           <span class="badge" style="background:#fce4e2;color:#a3352f">No postular</span>
+          <div class="acciones">
+            <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'1696-9-LR26','interesa')">★</button>
+            <button class="act act-no" title="Descartar" onclick="marcar(event,'1696-9-LR26','descarta')">✕</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card" data-region="Arica" data-semaforo="NO" data-dias="4" data-margen="-1">
+    <div class="card" data-codigo="1084148-11-LE26" data-region="Arica" data-semaforo="NO" data-dias="4" data-margen="-1" data-texto=" adquisición de servicios de limpieza y aseo por dos años de la oficina de administración central y bodega del slep chinchorro de arica . servicio local de educación de chinchorro (slep chinchorro) arica">
       <div class="stripe" style="background:#c14b40"></div>
       <div class="body">
-        <div class="info">
-          <p class="title">"ADQUISICIÓN DE SERVICIOS DE LIMPIEZA Y ASEO POR DOS AÑOS DE LA OFICINA DE ADMINISTRACIÓN CENTRAL Y BODEGA DEL SLEP CHINCHORRO DE ARICA".</p>
+        <div class="info" onclick="toggleDetalle(this)">
+          <p class="title">"ADQUISICIÓN DE SERVICIOS DE LIMPIEZA Y ASEO POR DOS AÑOS DE LA OFICINA DE ADMINISTRACIÓN CENTRAL Y BODEGA DEL SLEP CHINCHORRO DE ARICA". <span class="ver">ver detalle ▾</span></p>
           <p class="sub"><span class="org">Servicio Local de Educación de Chinchorro (SLEP Chinchorro)</span> · Arica (Arica) · cierra 20-07-2026 15:00 <span class="dias">(4d)</span></p>
-          <p class="sub2">$55.200.000 · Acta de visita del 10-07-2026 no registra asistencia de RA Import; requisito bloqueante incumplido. Verificar manualmente si hay comprobante alternativo.</p>
+          <p class="sub2">$55.200.000 · <span class="cod">1084148-11-LE26</span></p>
+          <div class="detalle">Acta de visita del 10-07-2026 no registra asistencia de RA Import; requisito bloqueante incumplido. Verificar manualmente si hay comprobante alternativo.</div>
         </div>
         <div class="right">
           <p class="margen" style="color:#a3352f">—</p>
           <span class="badge" style="background:#fce4e2;color:#a3352f">No postular</span>
+          <div class="acciones">
+            <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'1084148-11-LE26','interesa')">★</button>
+            <button class="act act-no" title="Descartar" onclick="marcar(event,'1084148-11-LE26','descarta')">✕</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card" data-region="Coquimbo" data-semaforo="NO" data-dias="6" data-margen="-1">
+    <div class="card" data-codigo="4619-2-LP26" data-region="Coquimbo" data-semaforo="NO" data-dias="6" data-margen="-1" data-texto="servicio aseo oficinas de la drt coquimbo dirección del trabajo la serena">
       <div class="stripe" style="background:#c14b40"></div>
       <div class="body">
-        <div class="info">
-          <p class="title">Servicio Aseo Oficinas de la DRT Coquimbo</p>
+        <div class="info" onclick="toggleDetalle(this)">
+          <p class="title">Servicio Aseo Oficinas de la DRT Coquimbo <span class="ver">ver detalle ▾</span></p>
           <p class="sub"><span class="org">Dirección del Trabajo</span> · La Serena (Coquimbo) · cierra 20-07-2026 15:00 <span class="dias">(6d)</span></p>
-          <p class="sub2">$160.000.000 · RA Import no asistió a la visita técnica obligatoria en ninguna de las 8 dependencias; oferta sería inadmisible.</p>
+          <p class="sub2">$160.000.000 · <span class="cod">4619-2-LP26</span></p>
+          <div class="detalle">RA Import no asistió a la visita técnica obligatoria en ninguna de las 8 dependencias; oferta sería inadmisible.</div>
         </div>
         <div class="right">
           <p class="margen" style="color:#a3352f">—</p>
           <span class="badge" style="background:#fce4e2;color:#a3352f">No postular</span>
+          <div class="acciones">
+            <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'4619-2-LP26','interesa')">★</button>
+            <button class="act act-no" title="Descartar" onclick="marcar(event,'4619-2-LP26','descarta')">✕</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card" data-region="Coquimbo" data-semaforo="" data-dias="1" data-margen="-1">
+    <div class="card" data-codigo="2446-180-LE26" data-region="Coquimbo" data-semaforo="" data-dias="1" data-margen="-1" data-texto="servicio limpieza tensomembrana estadio fsr i. municipalidad de coquimbo coquimbo">
       <div class="stripe" style="background:#8a887f"></div>
       <div class="body">
-        <div class="info">
-          <p class="title">Servicio Limpieza Tensomembrana Estadio FSR</p>
+        <div class="info" onclick="toggleDetalle(this)">
+          <p class="title">Servicio Limpieza Tensomembrana Estadio FSR <span class="ver">ver detalle ▾</span></p>
           <p class="sub"><span class="org">I. Municipalidad de Coquimbo</span> · Coquimbo (Coquimbo) · cierra 15-07-2026 15:00 <span class="dias">(1d)</span></p>
-          <p class="sub2">$25.000.000 · Fuera de alcance - otra comuna</p>
+          <p class="sub2">$25.000.000 · <span class="cod">2446-180-LE26</span></p>
+          <div class="detalle">Fuera de alcance - otra comuna</div>
         </div>
         <div class="right">
           <p class="margen" style="color:#6b6a63">—</p>
           <span class="badge" style="background:#f0efe9;color:#6b6a63">Fuera de alcance</span>
+          <div class="acciones">
+            <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'2446-180-LE26','interesa')">★</button>
+            <button class="act act-no" title="Descartar" onclick="marcar(event,'2446-180-LE26','descarta')">✕</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card" data-region="Coquimbo" data-semaforo="" data-dias="3" data-margen="-1">
+    <div class="card" data-codigo="837-69-LE26" data-region="Coquimbo" data-semaforo="" data-dias="3" data-margen="-1" data-texto="sc 365 cdp 427 servicio aseo sml ovalle por 24 meses servicio médico legal ovalle">
       <div class="stripe" style="background:#8a887f"></div>
       <div class="body">
-        <div class="info">
-          <p class="title">SC 365 CDP 427 Servicio Aseo SML Ovalle por 24 meses</p>
+        <div class="info" onclick="toggleDetalle(this)">
+          <p class="title">SC 365 CDP 427 Servicio Aseo SML Ovalle por 24 meses <span class="ver">ver detalle ▾</span></p>
           <p class="sub"><span class="org">Servicio Médico Legal</span> · Ovalle (Coquimbo) · cierra 17-07-2026 15:30 <span class="dias">(3d)</span></p>
-          <p class="sub2">$30.000.000 · Fuera de alcance - otra comuna</p>
+          <p class="sub2">$30.000.000 · <span class="cod">837-69-LE26</span></p>
+          <div class="detalle">Fuera de alcance - otra comuna</div>
         </div>
         <div class="right">
           <p class="margen" style="color:#6b6a63">—</p>
           <span class="badge" style="background:#f0efe9;color:#6b6a63">Fuera de alcance</span>
+          <div class="acciones">
+            <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'837-69-LE26','interesa')">★</button>
+            <button class="act act-no" title="Descartar" onclick="marcar(event,'837-69-LE26','descarta')">✕</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card" data-region="Coquimbo" data-semaforo="" data-dias="15" data-margen="-1">
+    <div class="card" data-codigo="909863-1-LE26" data-region="Coquimbo" data-semaforo="" data-dias="15" data-margen="-1" data-texto="e9 servicios de aseo tp de illapel tesorería general de la república (tesorería provincial de illapel) illapel">
       <div class="stripe" style="background:#8a887f"></div>
       <div class="body">
-        <div class="info">
-          <p class="title">E9 Servicios de Aseo TP de Illapel</p>
+        <div class="info" onclick="toggleDetalle(this)">
+          <p class="title">E9 Servicios de Aseo TP de Illapel <span class="ver">ver detalle ▾</span></p>
           <p class="sub"><span class="org">Tesorería General de la República (Tesorería Provincial de Illapel)</span> · Illapel (Coquimbo) · cierra 29-07-2026 13:00 <span class="dias">(15d)</span></p>
-          <p class="sub2">$45.564.948 · Fuera de alcance - otra comuna</p>
+          <p class="sub2">$45.564.948 · <span class="cod">909863-1-LE26</span></p>
+          <div class="detalle">Fuera de alcance - otra comuna</div>
         </div>
         <div class="right">
           <p class="margen" style="color:#6b6a63">—</p>
           <span class="badge" style="background:#f0efe9;color:#6b6a63">Fuera de alcance</span>
+          <div class="acciones">
+            <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'909863-1-LE26','interesa')">★</button>
+            <button class="act act-no" title="Descartar" onclick="marcar(event,'909863-1-LE26','descarta')">✕</button>
+          </div>
         </div>
       </div>
     </div>
@@ -237,9 +298,42 @@ function filtrar(btn) {
   btn.classList.add('active');
   const f = btn.dataset.filter;
   document.querySelectorAll('.card').forEach(c => {
-    c.classList.toggle('hidden', f !== 'Todas' && c.dataset.region !== f);
+    let show = true;
+    if (f === 'interesa') show = c.classList.contains('interesa');
+    else if (f !== 'Todas') show = c.dataset.region === f;
+    c.classList.toggle('hidden', !show);
   });
 }
+
+// --- Seguimiento por licitacion (se guarda en el navegador) ---
+const LSKEY = 'raimport_estados';
+function getEstados() { try { return JSON.parse(localStorage.getItem(LSKEY) || '{}'); } catch(e) { return {}; } }
+function setEstado(cod, val) { const e = getEstados(); if (val) e[cod] = val; else delete e[cod]; localStorage.setItem(LSKEY, JSON.stringify(e)); }
+function aplicarEstados() {
+  const e = getEstados();
+  document.querySelectorAll('.card').forEach(c => {
+    const st = e[c.dataset.codigo];
+    c.classList.toggle('interesa', st === 'interesa');
+    c.classList.toggle('descartada', st === 'descarta');
+    const si = c.querySelector('.act-si'), no = c.querySelector('.act-no');
+    if (si) si.classList.toggle('on', st === 'interesa');
+    if (no) no.classList.toggle('on', st === 'descarta');
+  });
+}
+function marcar(ev, cod, tipo) {
+  ev.stopPropagation();
+  const e = getEstados();
+  setEstado(cod, e[cod] === tipo ? null : tipo);
+  aplicarEstados();
+}
+function toggleDetalle(infoEl) { infoEl.closest('.card').classList.toggle('abierta'); }
+function buscar(txt) {
+  txt = txt.toLowerCase().trim();
+  document.querySelectorAll('.card').forEach(c => {
+    c.classList.toggle('hidden-search', txt && !(c.dataset.texto || '').includes(txt));
+  });
+}
+aplicarEstados();
 
 function ordenar(btn) {
   document.querySelectorAll('.sorters .filter-btn').forEach(b => b.classList.remove('active'));
