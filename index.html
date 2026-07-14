@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html lang="es"><head><meta charset="UTF-8">
 <title>RA Import — Ecosistema Mercado Público</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 * { box-sizing:border-box; }
-body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f2f1ec; margin:0; padding:0; color:#1a1a18; -webkit-font-smoothing:antialiased; }
-.header { background:linear-gradient(135deg,#0F1F3D,#16294f); padding:2rem 2.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
-.brand { display:flex; align-items:center; gap:16px; }
-.logo { width:48px; height:48px; border-radius:10px; background:#D4A634; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:19px; color:#0F1F3D; letter-spacing:-.5px; }
-.brand h1 { color:#fff; font-size:20px; font-weight:600; margin:0; letter-spacing:-.2px; }
-.brand p { color:#D4A634; font-size:11px; margin:3px 0 0; letter-spacing:1px; font-weight:600; text-transform:uppercase; }
-.updated { color:#9aa4c0; font-size:12px; text-align:right; line-height:1.5; }
-.updated b { color:#fff; display:block; font-size:13px; font-weight:500; }
+body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; margin:0; padding:0; color:#1a1a18; -webkit-font-smoothing:antialiased; }
+.header { position:relative; overflow:hidden; background:radial-gradient(1200px 400px at 80% -20%, #16294f, #0F1F3D 60%); padding:3rem 2.5rem 2.6rem; }
+.header::after { content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle, rgba(212,166,52,.22), transparent 70%); pointer-events:none; }
+.hero { max-width:1040px; margin:0 auto; position:relative; z-index:1; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem; }
+.hero-main .eyebrow { color:#D4A634; font-size:11px; letter-spacing:2.5px; font-weight:600; text-transform:uppercase; margin:0 0 8px; }
+.hero-main h1 { font-family:'Instrument Serif',Georgia,serif; color:#fff; font-size:52px; font-weight:400; margin:0; line-height:1; letter-spacing:.3px; }
+.hero-main h1 em { font-style:italic; color:#D4A634; }
+.hero-main p { color:#aeb8d4; font-size:14px; margin:12px 0 0; max-width:520px; line-height:1.5; }
+.hero-side { text-align:right; }
+.hero-side .cliente { color:#8a94b4; font-size:10.5px; text-transform:uppercase; letter-spacing:1.2px; font-weight:600; margin:0; }
+.hero-side .cliente b { color:#fff; font-weight:600; }
+.hero-side .fecha { color:#D4A634; font-family:'Instrument Serif',Georgia,serif; font-size:20px; font-style:italic; margin:6px 0 0; }
 .wrap { max-width:1040px; margin:0 auto; padding:2rem 2.5rem 3rem; }
 .top-grid { display:grid; grid-template-columns:1.3fr 1fr; gap:16px; margin-bottom:1.5rem; }
 .stats { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
 .stat { background:#fff; border-radius:12px; padding:1.1rem 1.3rem; box-shadow:0 1px 2px rgba(15,31,61,.06), 0 1px 8px rgba(15,31,61,.04); }
 .stat p:first-child { font-size:10.5px; color:#8a887f; margin:0 0 6px; text-transform:uppercase; letter-spacing:.6px; font-weight:600; }
-.stat p:last-child { font-size:26px; font-weight:700; margin:0; letter-spacing:-.5px; }
+.stat p:last-child { font-family:'Instrument Serif',Georgia,serif; font-size:38px; font-weight:400; margin:0; letter-spacing:0; line-height:1; }
+.alerta { display:flex; align-items:center; gap:12px; background:linear-gradient(90deg,#fff6e6,#fdeecb); border:1.5px solid #f0d798; border-radius:12px; padding:.9rem 1.3rem; margin-bottom:1.2rem; }
+.alerta .ico { font-size:20px; flex-shrink:0; }
+.alerta .txt { font-size:13px; color:#7a5a12; line-height:1.4; }
+.alerta .txt b { color:#5f4410; }
+.alerta-ok { background:#eef6f0; border-color:#cfe6d5; }
+.alerta-ok .txt { color:#3a6b4c; }
 .chart-card { background:#fff; border-radius:12px; padding:1.1rem 1.3rem; box-shadow:0 1px 2px rgba(15,31,61,.06), 0 1px 8px rgba(15,31,61,.04); display:flex; align-items:center; gap:14px; }
 .chart-card .cv { width:90px; height:90px; flex-shrink:0; position:relative; }
 .chart-legend { font-size:11.5px; }
@@ -25,7 +37,9 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f2f1ec; m
 .chart-legend span.dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
 .value-banner { background:#0F1F3D; border-radius:12px; padding:1rem 1.4rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; }
 .value-banner p:first-child { color:#9aa4c0; font-size:11px; text-transform:uppercase; letter-spacing:.6px; font-weight:600; margin:0; }
-.value-banner p:last-child { color:#D4A634; font-size:22px; font-weight:700; margin:2px 0 0; }
+.value-banner p:last-child { color:#D4A634; font-family:'Instrument Serif',Georgia,serif; font-size:32px; font-weight:400; margin:2px 0 0; }
+.act-mp { text-decoration:none; color:#2a72bd; font-weight:700; }
+.act-mp:hover { background:#2a72bd; border-color:#2a72bd; color:#fff; }
 .controls { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:10px; }
 .filters, .sorters { display:flex; gap:8px; flex-wrap:wrap; }
 .filter-btn { background:#fff; border:1.5px solid #e5e3dc; color:#5f5e58; font-size:12.5px; font-weight:600; padding:7px 16px; border-radius:20px; cursor:pointer; font-family:inherit; transition:all .15s; }
@@ -68,16 +82,21 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f2f1ec; m
 </style></head>
 <body>
 <div class="header">
-  <div class="brand">
-    <div class="logo">RA</div>
-    <div>
-      <h1>Ecosistema Mercado Público</h1>
-      <p>RA Import · Capacidad global, calidad local</p>
+  <div class="hero">
+    <div class="hero-main">
+      <p class="eyebrow">Mercado Público · Chile</p>
+      <h1>Radar <em>de Licitaciones</em></h1>
+      <p>Oportunidades de aseo en Mercado Público, filtradas y evaluadas cada día</p>
+    </div>
+    <div class="hero-side">
+      <p class="cliente">Panel de <b>RA Import</b></p>
+      <p class="fecha">14-07-2026 · 16:13</p>
     </div>
   </div>
-  <div class="updated">Última actualización<b>14-07-2026 · 15:44</b></div>
 </div>
 <div class="wrap">
+
+<div class="alerta alerta-ok"><span class="ico">✓</span><span class="txt">Sin cierres urgentes en las próximas jornadas.</span></div>
 
 <div class="value-banner">
   <div><p>Monto total en licitaciones a postular (GO)</p><p>$0</p></div>
@@ -130,6 +149,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f2f1ec; m
           <p class="margen" style="color:#a06a0a">15%</p>
           <span class="badge" style="background:#fdf1d6;color:#a06a0a">Revisar</span>
           <div class="acciones">
+            <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=996-21-LE26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'996-21-LE26','interesa')">★</button>
             <button class="act act-no" title="Descartar" onclick="marcar(event,'996-21-LE26','descarta')">✕</button>
           </div>
@@ -149,6 +169,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f2f1ec; m
           <p class="margen" style="color:#a06a0a">—</p>
           <span class="badge" style="background:#fdf1d6;color:#a06a0a">Revisar</span>
           <div class="acciones">
+            <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=996-22-LE26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'996-22-LE26','interesa')">★</button>
             <button class="act act-no" title="Descartar" onclick="marcar(event,'996-22-LE26','descarta')">✕</button>
           </div>
@@ -168,6 +189,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f2f1ec; m
           <p class="margen" style="color:#a3352f">—</p>
           <span class="badge" style="background:#fce4e2;color:#a3352f">No postular</span>
           <div class="acciones">
+            <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=1696-9-LR26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'1696-9-LR26','interesa')">★</button>
             <button class="act act-no" title="Descartar" onclick="marcar(event,'1696-9-LR26','descarta')">✕</button>
           </div>
@@ -187,6 +209,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f2f1ec; m
           <p class="margen" style="color:#a3352f">—</p>
           <span class="badge" style="background:#fce4e2;color:#a3352f">No postular</span>
           <div class="acciones">
+            <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=1084148-11-LE26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'1084148-11-LE26','interesa')">★</button>
             <button class="act act-no" title="Descartar" onclick="marcar(event,'1084148-11-LE26','descarta')">✕</button>
           </div>
@@ -206,6 +229,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f2f1ec; m
           <p class="margen" style="color:#a3352f">—</p>
           <span class="badge" style="background:#fce4e2;color:#a3352f">No postular</span>
           <div class="acciones">
+            <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=4619-2-LP26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'4619-2-LP26','interesa')">★</button>
             <button class="act act-no" title="Descartar" onclick="marcar(event,'4619-2-LP26','descarta')">✕</button>
           </div>
@@ -225,6 +249,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f2f1ec; m
           <p class="margen" style="color:#6b6a63">—</p>
           <span class="badge" style="background:#f0efe9;color:#6b6a63">Fuera de alcance</span>
           <div class="acciones">
+            <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=2446-180-LE26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'2446-180-LE26','interesa')">★</button>
             <button class="act act-no" title="Descartar" onclick="marcar(event,'2446-180-LE26','descarta')">✕</button>
           </div>
@@ -244,6 +269,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f2f1ec; m
           <p class="margen" style="color:#6b6a63">—</p>
           <span class="badge" style="background:#f0efe9;color:#6b6a63">Fuera de alcance</span>
           <div class="acciones">
+            <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=837-69-LE26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'837-69-LE26','interesa')">★</button>
             <button class="act act-no" title="Descartar" onclick="marcar(event,'837-69-LE26','descarta')">✕</button>
           </div>
@@ -263,6 +289,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f2f1ec; m
           <p class="margen" style="color:#6b6a63">—</p>
           <span class="badge" style="background:#f0efe9;color:#6b6a63">Fuera de alcance</span>
           <div class="acciones">
+            <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=909863-1-LE26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'909863-1-LE26','interesa')">★</button>
             <button class="act act-no" title="Descartar" onclick="marcar(event,'909863-1-LE26','descarta')">✕</button>
           </div>
