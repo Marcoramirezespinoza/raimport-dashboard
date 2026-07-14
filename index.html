@@ -30,6 +30,9 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
 .alerta .txt b { color:#5f4410; }
 .alerta-ok { background:#eef6f0; border-color:#cfe6d5; }
 .alerta-ok .txt { color:#3a6b4c; }
+.stats-res { grid-template-columns:repeat(4,1fr); margin-bottom:.6rem; }
+.res-nota { font-size:12px; color:#8a887f; margin:0 0 1.8rem; padding-left:2px; font-style:italic; }
+@media (max-width:560px) { .stats-res { grid-template-columns:repeat(2,1fr); } }
 .chart-card { background:#fff; border-radius:12px; padding:1.1rem 1.3rem; box-shadow:0 1px 2px rgba(15,31,61,.06), 0 1px 8px rgba(15,31,61,.04); display:flex; align-items:center; gap:14px; }
 .chart-card .cv { width:90px; height:90px; flex-shrink:0; position:relative; }
 .chart-legend { font-size:11.5px; }
@@ -90,7 +93,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
     </div>
     <div class="hero-side">
       <p class="cliente">Panel de <b>RA Import</b></p>
-      <p class="fecha">14-07-2026 · 16:13</p>
+      <p class="fecha">14-07-2026 · 16:53</p>
     </div>
   </div>
 </div>
@@ -114,6 +117,8 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
     <div class="chart-legend" id="legend"></div>
   </div>
 </div>
+
+<p class="section-label">Resultados de postulaciones</p><div class="stats stats-res"><div class="stat"><p>Postuladas</p><p>1</p></div><div class="stat"><p>En evaluación</p><p style="color:#1c5ea0">1</p></div><div class="stat"><p>Ganadas</p><p style="color:#0f6e56">0</p></div><div class="stat"><p>Tasa de éxito</p><p style="color:#a06a0a">—</p></div></div><p class="res-nota">1 postulación(es) en evaluación. La tasa de éxito aparecerá cuando haya adjudicaciones resueltas.</p>
 
 <div class="searchbar">
   <input id="buscador" type="text" placeholder="🔍 Buscar por nombre, organismo o comuna..." oninput="buscar(this.value)">
