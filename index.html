@@ -3,116 +3,126 @@
 <title>RA Import — Ecosistema Mercado Público</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
 * { box-sizing:border-box; }
-body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; margin:0; padding:0; color:#1a1a18; -webkit-font-smoothing:antialiased; }
-.header { position:relative; overflow:hidden; background:radial-gradient(1200px 400px at 80% -20%, #16294f, #0F1F3D 60%); padding:3rem 2.5rem 2.6rem; }
-.header::after { content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle, rgba(212,166,52,.22), transparent 70%); pointer-events:none; }
-.hero { max-width:1040px; margin:0 auto; position:relative; z-index:1; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem; }
-.hero-main .eyebrow { color:#D4A634; font-size:11px; letter-spacing:2.5px; font-weight:600; text-transform:uppercase; margin:0 0 8px; }
-.hero-main h1 { font-family:'Instrument Serif',Georgia,serif; color:#fff; font-size:52px; font-weight:400; margin:0; line-height:1; letter-spacing:.3px; }
-.hero-main h1 em { font-style:italic; color:#D4A634; }
-.hero-main p { color:#aeb8d4; font-size:14px; margin:12px 0 0; max-width:520px; line-height:1.5; }
+body { font-family:'Space Grotesk',-apple-system,Arial,sans-serif; margin:0; padding:0; color:#d7f5ec; background:#060b0d; -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(1200px 600px at 70% -10%, rgba(0,255,157,.06), transparent), linear-gradient(rgba(0,255,157,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,157,.03) 1px, transparent 1px);
+  background-size:auto, 40px 40px, 40px 40px; }
+.header { position:relative; overflow:hidden; padding:2.6rem 2.5rem 2.2rem; border-bottom:1px solid rgba(0,255,157,.12); }
+.hero { max-width:1040px; margin:0 auto; position:relative; z-index:1; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem; }
+.hero-l { display:flex; align-items:center; gap:22px; }
+.radar { width:88px; height:88px; border-radius:50%; position:relative; flex-shrink:0; background:radial-gradient(circle, rgba(0,255,157,.09), transparent 70%); border:1.5px solid rgba(0,255,157,.35); box-shadow:0 0 30px rgba(0,255,157,.15); overflow:hidden; }
+.radar .sweep { position:absolute; inset:0; border-radius:50%; background:conic-gradient(from 0deg, transparent 0deg, rgba(0,255,157,.4) 60deg, transparent 62deg); animation:sw 3.2s linear infinite; }
+@keyframes sw { to { transform:rotate(360deg); } }
+.radar .dot { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:9px; height:9px; border-radius:50%; background:#00ff9d; box-shadow:0 0 12px #00ff9d; }
+.hero-main .eyebrow { color:#5c7a72; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:2px; font-weight:400; text-transform:uppercase; margin:0 0 8px; }
+.hero-main h1 { color:#fff; font-size:34px; font-weight:700; margin:0; line-height:1; letter-spacing:-.5px; }
+.hero-main h1 em { font-style:normal; color:#00ff9d; text-shadow:0 0 16px rgba(0,255,157,.5); }
+.hero-main p { color:#5c7a72; font-size:13px; margin:10px 0 0; max-width:460px; line-height:1.5; }
 .hero-side { text-align:right; }
-.hero-side .cliente { color:#8a94b4; font-size:10.5px; text-transform:uppercase; letter-spacing:1.2px; font-weight:600; margin:0; }
-.hero-side .cliente b { color:#fff; font-weight:600; }
-.hero-side .fecha { color:#D4A634; font-family:'Instrument Serif',Georgia,serif; font-size:20px; font-style:italic; margin:6px 0 0; }
+.hero-side .cliente { color:#5c7a72; font-family:'Space Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:1.2px; margin:0; }
+.hero-side .cliente b { color:#d7f5ec; }
+.hero-side .fecha { color:#00ff9d; font-family:'Space Mono',monospace; font-size:14px; margin:6px 0 0; }
 .wrap { max-width:1040px; margin:0 auto; padding:2rem 2.5rem 3rem; }
 .top-grid { display:grid; grid-template-columns:1.3fr 1fr; gap:16px; margin-bottom:1.5rem; }
 .stats { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
-.stat { background:#fff; border-radius:12px; padding:1.1rem 1.3rem; box-shadow:0 1px 2px rgba(15,31,61,.06), 0 1px 8px rgba(15,31,61,.04); }
-.stat p:first-child { font-size:10.5px; color:#8a887f; margin:0 0 6px; text-transform:uppercase; letter-spacing:.6px; font-weight:600; }
-.stat p:last-child { font-family:'Instrument Serif',Georgia,serif; font-size:38px; font-weight:400; margin:0; letter-spacing:0; line-height:1; }
-.alerta { display:flex; align-items:center; gap:12px; background:linear-gradient(90deg,#fff6e6,#fdeecb); border:1.5px solid #f0d798; border-radius:12px; padding:.9rem 1.3rem; margin-bottom:1.2rem; }
+.stat { background:#0c1518; border:1px solid rgba(0,255,157,.14); border-radius:12px; padding:1.1rem 1.3rem; }
+.stat p:first-child { font-family:'Space Mono',monospace; font-size:10px; color:#5c7a72; margin:0 0 8px; text-transform:uppercase; letter-spacing:1px; }
+.stat p:last-child { font-size:34px; font-weight:700; margin:0; line-height:1; color:#00ff9d; text-shadow:0 0 14px rgba(0,255,157,.3); }
+.alerta { display:flex; align-items:center; gap:12px; background:rgba(255,207,74,.08); border:1px solid rgba(255,207,74,.3); border-radius:12px; padding:.9rem 1.3rem; margin-bottom:1.2rem; }
 .alerta .ico { font-size:20px; flex-shrink:0; }
-.alerta .txt { font-size:13px; color:#7a5a12; line-height:1.4; }
-.alerta .txt b { color:#5f4410; }
-.alerta-ok { background:#eef6f0; border-color:#cfe6d5; }
-.alerta-ok .txt { color:#3a6b4c; }
-.ca-card { background:#fff; border-radius:12px; margin-bottom:8px; padding:.9rem 1.2rem; display:flex; align-items:center; gap:14px; box-shadow:0 1px 2px rgba(15,31,61,.06), 0 1px 8px rgba(15,31,61,.04); border-left:4px solid #cdd3df; }
-.ca-card.ca-hl { border-left-color:#D4A634; }
+.alerta .txt { font-size:13px; color:#e6c98a; line-height:1.4; }
+.alerta .txt b { color:#ffcf4a; }
+.alerta-ok { background:rgba(0,255,157,.06); border-color:rgba(0,255,157,.25); }
+.alerta-ok .txt { color:#7fd9b8; }
+.ca-card { background:#0c1518; border:1px solid rgba(0,255,157,.14); border-radius:12px; margin-bottom:8px; padding:.9rem 1.2rem; display:flex; align-items:center; gap:14px; border-left:3px solid #2b3b3f; }
+.ca-card.ca-hl { border-left-color:#00ff9d; }
 .ca-info { flex:1; min-width:0; }
-.ca-title { font-size:13.5px; font-weight:600; margin:0 0 3px; color:#0F1F3D; }
-.ca-sub { font-size:12px; color:#5f5e58; margin:0 0 2px; }
-.ca-sub2 { font-size:11.5px; color:#8a887f; margin:0; }
+.ca-title { font-size:13.5px; font-weight:600; margin:0 0 3px; color:#fff; }
+.ca-sub { font-size:12px; color:#5c7a72; margin:0 0 2px; }
+.ca-sub2 { font-size:11.5px; color:#5c7a72; margin:0; font-family:'Space Mono',monospace; }
 .ca-right { display:flex; flex-direction:column; align-items:flex-end; gap:6px; flex-shrink:0; }
-.ca-badge { font-size:9.5px; padding:3px 9px; border-radius:20px; font-weight:600; background:#eef1f6; color:#5f6b85; text-transform:uppercase; letter-spacing:.4px; }
-.ca-badge.ca-reg { background:#fdf1d6; color:#a06a0a; }
-.ca-btn { font-size:11.5px; font-weight:600; text-decoration:none; color:#2a72bd; border:1.5px solid #d3e0f0; border-radius:8px; padding:5px 12px; white-space:nowrap; }
-.ca-btn:hover { background:#2a72bd; color:#fff; border-color:#2a72bd; }
+.ca-badge { font-family:'Space Mono',monospace; font-size:9.5px; padding:3px 9px; border-radius:6px; font-weight:700; background:rgba(120,140,135,.15); color:#8fa8a0; text-transform:uppercase; letter-spacing:.4px; }
+.ca-badge.ca-reg { background:rgba(0,255,157,.12); color:#00ff9d; border:1px solid rgba(0,255,157,.3); }
+.ca-btn { font-size:11.5px; font-weight:600; text-decoration:none; color:#00ff9d; border:1px solid rgba(0,255,157,.3); border-radius:8px; padding:5px 12px; white-space:nowrap; }
+.ca-btn:hover { background:#00ff9d; color:#04120c; }
 @media (max-width:620px) { .ca-card { flex-direction:column; align-items:flex-start; } .ca-right { flex-direction:row; align-items:center; } }
 .stats-res { grid-template-columns:repeat(4,1fr); margin-bottom:.6rem; }
-.res-nota { font-size:12px; color:#8a887f; margin:0 0 1.8rem; padding-left:2px; font-style:italic; }
+.res-nota { font-size:12px; color:#5c7a72; margin:0 0 1.8rem; padding-left:2px; font-style:italic; }
 @media (max-width:560px) { .stats-res { grid-template-columns:repeat(2,1fr); } }
-.chart-card { background:#fff; border-radius:12px; padding:1.1rem 1.3rem; box-shadow:0 1px 2px rgba(15,31,61,.06), 0 1px 8px rgba(15,31,61,.04); display:flex; align-items:center; gap:14px; }
+.chart-card { background:#0c1518; border:1px solid rgba(0,255,157,.14); border-radius:12px; padding:1.1rem 1.3rem; display:flex; align-items:center; gap:14px; }
 .chart-card .cv { width:90px; height:90px; flex-shrink:0; position:relative; }
 .chart-legend { font-size:11.5px; }
-.chart-legend div { display:flex; align-items:center; gap:6px; margin-bottom:4px; color:#5f5e58; }
+.chart-legend div { display:flex; align-items:center; gap:6px; margin-bottom:4px; color:#5c7a72; }
 .chart-legend span.dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
-.value-banner { background:#0F1F3D; border-radius:12px; padding:1rem 1.4rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; }
-.value-banner p:first-child { color:#9aa4c0; font-size:11px; text-transform:uppercase; letter-spacing:.6px; font-weight:600; margin:0; }
-.value-banner p:last-child { color:#D4A634; font-family:'Instrument Serif',Georgia,serif; font-size:32px; font-weight:400; margin:2px 0 0; }
-.act-mp { text-decoration:none; color:#2a72bd; font-weight:700; }
-.act-mp:hover { background:#2a72bd; border-color:#2a72bd; color:#fff; }
+.value-banner { background:linear-gradient(100deg, rgba(0,255,157,.08), rgba(0,255,157,.02)); border:1px solid rgba(0,255,157,.25); border-radius:12px; padding:1rem 1.4rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; }
+.value-banner p:first-child { color:#5c7a72; font-family:'Space Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.6px; margin:0; }
+.value-banner p:last-child { color:#00ff9d; font-size:30px; font-weight:700; margin:2px 0 0; text-shadow:0 0 16px rgba(0,255,157,.4); }
+.act-mp { text-decoration:none; color:#00ff9d; font-weight:700; }
+.act-mp:hover { background:#00ff9d; border-color:#00ff9d; color:#04120c; }
 .controls { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:10px; }
 .filters, .sorters { display:flex; gap:8px; flex-wrap:wrap; }
-.filter-btn { background:#fff; border:1.5px solid #e5e3dc; color:#5f5e58; font-size:12.5px; font-weight:600; padding:7px 16px; border-radius:20px; cursor:pointer; font-family:inherit; transition:all .15s; }
-.filter-btn:hover { border-color:#D4A634; }
-.filter-btn.active { background:#0F1F3D; border-color:#0F1F3D; color:#fff; }
-.sorters .filter-btn.active { background:#D4A634; border-color:#D4A634; color:#0F1F3D; }
-.section-label { font-size:12px; color:#8a887f; text-transform:uppercase; letter-spacing:.6px; font-weight:600; margin:0 0 .9rem; padding-left:2px; }
-.card { background:#fff; border-radius:12px; margin-bottom:10px; display:flex; overflow:hidden; box-shadow:0 1px 2px rgba(15,31,61,.06), 0 1px 8px rgba(15,31,61,.04); transition:transform .12s; }
-.card:hover { transform:translateY(-1px); box-shadow:0 4px 14px rgba(15,31,61,.1); }
+.filter-btn { background:#0c1518; border:1px solid rgba(0,255,157,.2); color:#8fa8a0; font-size:12.5px; font-weight:600; padding:7px 16px; border-radius:8px; cursor:pointer; font-family:inherit; transition:all .15s; }
+.filter-btn:hover { border-color:rgba(0,255,157,.5); }
+.filter-btn.active { background:rgba(0,255,157,.15); border-color:#00ff9d; color:#00ff9d; }
+.sorters .filter-btn.active { background:rgba(0,255,157,.15); border-color:#00ff9d; color:#00ff9d; }
+.section-label { font-family:'Space Mono',monospace; font-size:11px; color:#5c7a72; text-transform:uppercase; letter-spacing:1.5px; margin:0 0 .9rem; padding-left:2px; }
+.card { background:#0c1518; border:1px solid rgba(0,255,157,.14); border-radius:12px; margin-bottom:10px; display:flex; overflow:hidden; transition:.15s; }
+.card:hover { border-color:rgba(0,255,157,.4); box-shadow:0 0 20px rgba(0,255,157,.1); }
 .card.hidden { display:none; }
 .stripe { width:4px; flex-shrink:0; }
 .body { flex:1; display:flex; align-items:center; gap:16px; padding:1.1rem 1.4rem; min-width:0; }
 .info { flex:1; min-width:0; }
-.title { font-size:14.5px; font-weight:600; margin:0 0 4px; color:#0F1F3D; }
-.sub { font-size:12.5px; color:#5f5e58; margin:0 0 2px; }
-.sub .org { color:#3a3936; font-weight:500; }
-.sub .dias { color:#8a887f; }
-.sub2 { font-size:12px; color:#8a887f; margin:0; }
+.title { font-size:14.5px; font-weight:600; margin:0 0 4px; color:#fff; }
+.sub { font-size:12.5px; color:#5c7a72; margin:0 0 2px; }
+.sub .org { color:#a8c4bb; font-weight:500; }
+.sub .dias { color:#5c7a72; }
+.sub2 { font-size:12px; color:#5c7a72; margin:0; font-family:'Space Mono',monospace; }
 .right { text-align:right; flex-shrink:0; padding-left:10px; }
 .margen { font-size:18px; font-weight:700; margin:0 0 5px; letter-spacing:-.3px; }
-.badge { font-size:10.5px; padding:4px 11px; border-radius:20px; font-weight:600; letter-spacing:.2px; white-space:nowrap; }
-.footer { text-align:center; padding:1.75rem; font-size:11px; color:#a8a49a; border-top:1px solid #e5e3dc; margin-top:1rem; }
-.tabs { display:flex; gap:6px; margin-bottom:1.3rem; border-bottom:2px solid #e5e3dc; }
-.tab { background:none; border:none; border-bottom:3px solid transparent; margin-bottom:-2px; color:#8a887f; font-size:14px; font-weight:600; padding:10px 18px; cursor:pointer; font-family:inherit; transition:all .15s; }
-.tab:hover { color:#0F1F3D; }
-.tab.active { color:#0F1F3D; border-bottom-color:#D4A634; }
-.ca-vacio { background:#fff; border-radius:12px; padding:2rem 1.5rem; text-align:center; color:#8a887f; font-size:13.5px; box-shadow:0 1px 8px rgba(15,31,61,.04); }
+.badge { font-family:'Space Mono',monospace; font-size:10px; padding:4px 11px; border-radius:6px; font-weight:700; letter-spacing:.4px; white-space:nowrap; text-transform:uppercase; }
+.footer { text-align:center; padding:1.75rem; font-family:'Space Mono',monospace; font-size:11px; color:#5c7a72; border-top:1px solid rgba(0,255,157,.12); margin-top:1rem; }
+.tabs { display:flex; gap:6px; margin-bottom:1.3rem; border-bottom:1px solid rgba(0,255,157,.14); }
+.tab { background:none; border:none; border-bottom:3px solid transparent; margin-bottom:-1px; color:#5c7a72; font-size:14px; font-weight:600; padding:10px 18px; cursor:pointer; font-family:inherit; transition:all .15s; }
+.tab:hover { color:#d7f5ec; }
+.tab.active { color:#00ff9d; border-bottom-color:#00ff9d; }
+.ca-vacio { background:#0c1518; border:1px solid rgba(0,255,157,.14); border-radius:12px; padding:2rem 1.5rem; text-align:center; color:#5c7a72; font-size:13.5px; }
 .searchbar { margin-bottom:1rem; }
-.searchbar input { width:100%; padding:11px 16px; border:1.5px solid #e5e3dc; border-radius:12px; font-family:inherit; font-size:13.5px; color:#3a3936; outline:none; background:#fff; }
-.searchbar input:focus { border-color:#D4A634; box-shadow:0 0 0 3px rgba(212,166,52,.12); }
+.searchbar input { width:100%; padding:11px 16px; border:1px solid rgba(0,255,157,.2); border-radius:10px; font-family:inherit; font-size:13.5px; color:#d7f5ec; outline:none; background:#0c1518; }
+.searchbar input::placeholder { color:#5c7a72; }
+.searchbar input:focus { border-color:#00ff9d; box-shadow:0 0 0 3px rgba(0,255,157,.1); }
 .info { cursor:pointer; }
-.title .ver { font-size:10.5px; color:#D4A634; font-weight:600; margin-left:6px; white-space:nowrap; }
-.cod { font-family:monospace; color:#a8a49a; }
-.detalle { display:none; font-size:12px; color:#5f5e58; margin-top:8px; padding-top:8px; border-top:1px dashed #e5e3dc; line-height:1.55; }
+.title .ver { font-family:'Space Mono',monospace; font-size:10px; color:#00ff9d; font-weight:400; margin-left:6px; white-space:nowrap; }
+.cod { font-family:'Space Mono',monospace; color:#5c7a72; }
+.detalle { display:none; font-size:12px; color:#a8c4bb; margin-top:8px; padding-top:8px; border-top:1px dashed rgba(0,255,157,.15); line-height:1.55; }
 .card.abierta .detalle { display:block; }
-.det-bases { display:inline-block; margin-top:8px; font-size:12px; font-weight:600; color:#2a72bd; text-decoration:none; border:1.5px solid #d3e0f0; border-radius:8px; padding:5px 12px; }
-.det-bases:hover { background:#2a72bd; color:#fff; border-color:#2a72bd; }
+.det-bases { display:inline-block; margin-top:8px; font-size:12px; font-weight:600; color:#00ff9d; text-decoration:none; border:1px solid rgba(0,255,157,.3); border-radius:8px; padding:5px 12px; }
+.det-bases:hover { background:#00ff9d; color:#04120c; }
 .acciones { display:flex; gap:6px; margin-top:8px; justify-content:flex-end; }
-.act { width:30px; height:30px; border-radius:8px; border:1.5px solid #e5e3dc; background:#fff; cursor:pointer; font-size:14px; line-height:1; display:flex; align-items:center; justify-content:center; transition:all .15s; color:#8a887f; }
-.act:hover { border-color:#D4A634; }
-.act-si.on { background:#D4A634; border-color:#D4A634; color:#0F1F3D; }
-.act-no.on { background:#c14b40; border-color:#c14b40; color:#fff; }
-.card.descartada { opacity:.45; }
-.card.interesa { box-shadow:0 0 0 2px #D4A634, 0 1px 8px rgba(15,31,61,.06); }
+.act { width:30px; height:30px; border-radius:8px; border:1px solid rgba(0,255,157,.2); background:#0c1518; cursor:pointer; font-size:14px; line-height:1; display:flex; align-items:center; justify-content:center; transition:all .15s; color:#8fa8a0; }
+.act:hover { border-color:#00ff9d; }
+.act-si.on { background:#00ff9d; border-color:#00ff9d; color:#04120c; }
+.act-no.on { background:#ff5d6c; border-color:#ff5d6c; color:#fff; }
+.card.descartada { opacity:.4; }
+.card.interesa { border-color:#00ff9d; box-shadow:0 0 16px rgba(0,255,157,.15); }
 .card.hidden, .card.hidden-search { display:none; }
 @media (max-width:760px) { .top-grid { grid-template-columns:1fr; } .stats { grid-template-columns:repeat(2,1fr); } .body { flex-direction:column; align-items:flex-start; gap:10px; } .right { text-align:left; padding-left:0; } .acciones { justify-content:flex-start; } }
 </style></head>
 <body>
 <div class="header">
   <div class="hero">
-    <div class="hero-main">
-      <p class="eyebrow">Mercado Público · Chile</p>
-      <h1>Radar <em>de Licitaciones</em></h1>
-      <p>Oportunidades de aseo en Mercado Público, filtradas y evaluadas cada día</p>
+    <div class="hero-l">
+      <div class="radar"><div class="sweep"></div><div class="dot"></div></div>
+      <div class="hero-main">
+        <p class="eyebrow">Mercado Público · Chile</p>
+        <h1>Radar <em>de Licitaciones</em></h1>
+        <p>Oportunidades de aseo en Mercado Público, filtradas y evaluadas cada día</p>
+      </div>
     </div>
     <div class="hero-side">
       <p class="cliente">Panel de <b>RA Import</b></p>
-      <p class="fecha">14-07-2026 · 20:24</p>
+      <p class="fecha">14-07-2026 · 22:16</p>
     </div>
   </div>
 </div>
@@ -132,10 +142,10 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
 
 <div class="top-grid">
   <div class="stats">
-    <div class="stat"><p>Postular</p><p style="color:#0f6e56">0</p></div>
-    <div class="stat"><p>Revisar</p><p style="color:#a06a0a">2</p></div>
-    <div class="stat"><p>Pendiente bases</p><p style="color:#1c5ea0">0</p></div>
-    <div class="stat"><p>No postular</p><p style="color:#a3352f">3</p></div>
+    <div class="stat"><p>Postular</p><p style="color:#00ff9d">0</p></div>
+    <div class="stat"><p>Revisar</p><p style="color:#ffcf4a">2</p></div>
+    <div class="stat"><p>Pendiente bases</p><p style="color:#6fb3ff">0</p></div>
+    <div class="stat"><p>No postular</p><p style="color:#ff5d6c">3</p></div>
   </div>
   <div class="chart-card">
     <div class="cv"><canvas id="donut"></canvas></div>
@@ -143,7 +153,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
   </div>
 </div>
 
-<p class="section-label">Resultados de postulaciones</p><div class="stats stats-res"><div class="stat"><p>Postuladas</p><p>1</p></div><div class="stat"><p>En evaluación</p><p style="color:#1c5ea0">1</p></div><div class="stat"><p>Ganadas</p><p style="color:#0f6e56">0</p></div><div class="stat"><p>Tasa de éxito</p><p style="color:#a06a0a">—</p></div></div><p class="res-nota">1 postulación(es) en evaluación. La tasa de éxito aparecerá cuando haya adjudicaciones resueltas.</p>
+<p class="section-label">Resultados de postulaciones</p><div class="stats stats-res"><div class="stat"><p>Postuladas</p><p>1</p></div><div class="stat"><p>En evaluación</p><p style="color:#6fb3ff">1</p></div><div class="stat"><p>Ganadas</p><p style="color:#00ff9d">0</p></div><div class="stat"><p>Tasa de éxito</p><p style="color:#ffcf4a">—</p></div></div><p class="res-nota">1 postulación(es) en evaluación. La tasa de éxito aparecerá cuando haya adjudicaciones resueltas.</p>
 
   <div class="searchbar">
     <input id="buscador" type="text" placeholder="🔍 Buscar por nombre, organismo o comuna..." oninput="buscar(this.value)">
@@ -164,7 +174,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
   <div id="cardlist">
   
     <div class="card" data-codigo="996-21-LE26" data-region="Coquimbo" data-semaforo="REVISAR" data-dias="6" data-margen="15" data-texto="servicio de aseo dependencias vialidad provincia de limarí mop - dirección de vialidad iv región la serena">
-      <div class="stripe" style="background:#c98a1a"></div>
+      <div class="stripe" style="background:#ffcf4a"></div>
       <div class="body">
         <div class="info" onclick="toggleDetalle(this)">
           <p class="title">Servicio de Aseo Dependencias Vialidad Provincia de Limarí <span class="ver">ver detalle ▾</span></p>
@@ -173,8 +183,8 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
           <div class="detalle">Presupuesto de la entidad no cubre costo real; se requiere ofertar ~20% sobre referencia para margen positivo; visita técnica pendiente el 14-07-2026.<br><a class="det-bases" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=996-21-LE26" target="_blank" rel="noopener" onclick="event.stopPropagation()">📄 Ver / descargar bases en Mercado Público ↗</a></div>
         </div>
         <div class="right">
-          <p class="margen" style="color:#a06a0a">15%</p>
-          <span class="badge" style="background:#fdf1d6;color:#a06a0a">Revisar</span>
+          <p class="margen" style="color:#ffcf4a">15%</p>
+          <span class="badge" style="background:rgba(255,207,74,.12);color:#ffcf4a">Revisar</span>
           <div class="acciones">
             <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=996-21-LE26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'996-21-LE26','interesa')">★</button>
@@ -184,7 +194,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
       </div>
     </div>
     <div class="card" data-codigo="996-22-LE26" data-region="Coquimbo" data-semaforo="REVISAR" data-dias="13" data-margen="-1" data-texto="servicio de aseo dependencias vialidad provincia de choapa mop - direccion de vialidad iv region la serena">
-      <div class="stripe" style="background:#c98a1a"></div>
+      <div class="stripe" style="background:#ffcf4a"></div>
       <div class="body">
         <div class="info" onclick="toggleDetalle(this)">
           <p class="title">Servicio de Aseo Dependencias Vialidad Provincia de Choapa <span class="ver">ver detalle ▾</span></p>
@@ -193,8 +203,8 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
           <div class="detalle">Sin bases tecnicas/administrativas descargadas para costear con firmeza; monto estimado no informado por el organismo. Precedente de la hermana 996-21-LE26 (Provincia de Limari, mismo organismo): presupuesto de la entidad no cubrio el costo real (margen 15%, oferta ~20% sobre referencia). Visita tecnica no confirmada en ficha API. Accion sugerida: descargar bases cuanto antes (cierre 27-07-2026).<br><a class="det-bases" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=996-22-LE26" target="_blank" rel="noopener" onclick="event.stopPropagation()">📄 Ver / descargar bases en Mercado Público ↗</a></div>
         </div>
         <div class="right">
-          <p class="margen" style="color:#a06a0a">—</p>
-          <span class="badge" style="background:#fdf1d6;color:#a06a0a">Revisar</span>
+          <p class="margen" style="color:#ffcf4a">—</p>
+          <span class="badge" style="background:rgba(255,207,74,.12);color:#ffcf4a">Revisar</span>
           <div class="acciones">
             <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=996-22-LE26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'996-22-LE26','interesa')">★</button>
@@ -204,7 +214,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
       </div>
     </div>
     <div class="card" data-codigo="1696-9-LR26" data-region="Arica" data-semaforo="NO" data-dias="3" data-margen="-1" data-texto="servicio de aseo e insumos jurisdicción arica corporación administrativa del poder judicial - arica arica">
-      <div class="stripe" style="background:#c14b40"></div>
+      <div class="stripe" style="background:#ff5d6c"></div>
       <div class="body">
         <div class="info" onclick="toggleDetalle(this)">
           <p class="title">SERVICIO DE ASEO E INSUMOS JURISDICCIÓN ARICA <span class="ver">ver detalle ▾</span></p>
@@ -213,8 +223,8 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
           <div class="detalle">Visita técnica obligatoria venció (~27-06-2026) sin evidencia de asistencia; oferta sería inadmisible según bases.<br><a class="det-bases" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=1696-9-LR26" target="_blank" rel="noopener" onclick="event.stopPropagation()">📄 Ver / descargar bases en Mercado Público ↗</a></div>
         </div>
         <div class="right">
-          <p class="margen" style="color:#a3352f">—</p>
-          <span class="badge" style="background:#fce4e2;color:#a3352f">No postular</span>
+          <p class="margen" style="color:#ff5d6c">—</p>
+          <span class="badge" style="background:rgba(255,93,108,.1);color:#ff5d6c">No postular</span>
           <div class="acciones">
             <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=1696-9-LR26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'1696-9-LR26','interesa')">★</button>
@@ -224,7 +234,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
       </div>
     </div>
     <div class="card" data-codigo="1084148-11-LE26" data-region="Arica" data-semaforo="NO" data-dias="4" data-margen="-1" data-texto=" adquisición de servicios de limpieza y aseo por dos años de la oficina de administración central y bodega del slep chinchorro de arica . servicio local de educación de chinchorro (slep chinchorro) arica">
-      <div class="stripe" style="background:#c14b40"></div>
+      <div class="stripe" style="background:#ff5d6c"></div>
       <div class="body">
         <div class="info" onclick="toggleDetalle(this)">
           <p class="title">"ADQUISICIÓN DE SERVICIOS DE LIMPIEZA Y ASEO POR DOS AÑOS DE LA OFICINA DE ADMINISTRACIÓN CENTRAL Y BODEGA DEL SLEP CHINCHORRO DE ARICA". <span class="ver">ver detalle ▾</span></p>
@@ -233,8 +243,8 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
           <div class="detalle">Acta de visita del 10-07-2026 no registra asistencia de RA Import; requisito bloqueante incumplido. Verificar manualmente si hay comprobante alternativo.<br><a class="det-bases" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=1084148-11-LE26" target="_blank" rel="noopener" onclick="event.stopPropagation()">📄 Ver / descargar bases en Mercado Público ↗</a></div>
         </div>
         <div class="right">
-          <p class="margen" style="color:#a3352f">—</p>
-          <span class="badge" style="background:#fce4e2;color:#a3352f">No postular</span>
+          <p class="margen" style="color:#ff5d6c">—</p>
+          <span class="badge" style="background:rgba(255,93,108,.1);color:#ff5d6c">No postular</span>
           <div class="acciones">
             <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=1084148-11-LE26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'1084148-11-LE26','interesa')">★</button>
@@ -244,7 +254,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
       </div>
     </div>
     <div class="card" data-codigo="4619-2-LP26" data-region="Coquimbo" data-semaforo="NO" data-dias="6" data-margen="-1" data-texto="servicio aseo oficinas de la drt coquimbo dirección del trabajo la serena">
-      <div class="stripe" style="background:#c14b40"></div>
+      <div class="stripe" style="background:#ff5d6c"></div>
       <div class="body">
         <div class="info" onclick="toggleDetalle(this)">
           <p class="title">Servicio Aseo Oficinas de la DRT Coquimbo <span class="ver">ver detalle ▾</span></p>
@@ -253,8 +263,8 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
           <div class="detalle">RA Import no asistió a la visita técnica obligatoria en ninguna de las 8 dependencias; oferta sería inadmisible.<br><a class="det-bases" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=4619-2-LP26" target="_blank" rel="noopener" onclick="event.stopPropagation()">📄 Ver / descargar bases en Mercado Público ↗</a></div>
         </div>
         <div class="right">
-          <p class="margen" style="color:#a3352f">—</p>
-          <span class="badge" style="background:#fce4e2;color:#a3352f">No postular</span>
+          <p class="margen" style="color:#ff5d6c">—</p>
+          <span class="badge" style="background:rgba(255,93,108,.1);color:#ff5d6c">No postular</span>
           <div class="acciones">
             <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=4619-2-LP26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'4619-2-LP26','interesa')">★</button>
@@ -264,7 +274,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
       </div>
     </div>
     <div class="card" data-codigo="2446-180-LE26" data-region="Coquimbo" data-semaforo="" data-dias="1" data-margen="-1" data-texto="servicio limpieza tensomembrana estadio fsr i. municipalidad de coquimbo coquimbo">
-      <div class="stripe" style="background:#8a887f"></div>
+      <div class="stripe" style="background:#8fa8a0"></div>
       <div class="body">
         <div class="info" onclick="toggleDetalle(this)">
           <p class="title">Servicio Limpieza Tensomembrana Estadio FSR <span class="ver">ver detalle ▾</span></p>
@@ -273,8 +283,8 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
           <div class="detalle">Fuera de alcance - otra comuna<br><a class="det-bases" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=2446-180-LE26" target="_blank" rel="noopener" onclick="event.stopPropagation()">📄 Ver / descargar bases en Mercado Público ↗</a></div>
         </div>
         <div class="right">
-          <p class="margen" style="color:#6b6a63">—</p>
-          <span class="badge" style="background:#f0efe9;color:#6b6a63">Fuera de alcance</span>
+          <p class="margen" style="color:#8fa8a0">—</p>
+          <span class="badge" style="background:rgba(143,168,160,.12);color:#8fa8a0">Fuera de alcance</span>
           <div class="acciones">
             <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=2446-180-LE26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'2446-180-LE26','interesa')">★</button>
@@ -284,7 +294,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
       </div>
     </div>
     <div class="card" data-codigo="837-69-LE26" data-region="Coquimbo" data-semaforo="" data-dias="3" data-margen="-1" data-texto="sc 365 cdp 427 servicio aseo sml ovalle por 24 meses servicio médico legal ovalle">
-      <div class="stripe" style="background:#8a887f"></div>
+      <div class="stripe" style="background:#8fa8a0"></div>
       <div class="body">
         <div class="info" onclick="toggleDetalle(this)">
           <p class="title">SC 365 CDP 427 Servicio Aseo SML Ovalle por 24 meses <span class="ver">ver detalle ▾</span></p>
@@ -293,8 +303,8 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
           <div class="detalle">Fuera de alcance - otra comuna<br><a class="det-bases" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=837-69-LE26" target="_blank" rel="noopener" onclick="event.stopPropagation()">📄 Ver / descargar bases en Mercado Público ↗</a></div>
         </div>
         <div class="right">
-          <p class="margen" style="color:#6b6a63">—</p>
-          <span class="badge" style="background:#f0efe9;color:#6b6a63">Fuera de alcance</span>
+          <p class="margen" style="color:#8fa8a0">—</p>
+          <span class="badge" style="background:rgba(143,168,160,.12);color:#8fa8a0">Fuera de alcance</span>
           <div class="acciones">
             <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=837-69-LE26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'837-69-LE26','interesa')">★</button>
@@ -304,7 +314,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
       </div>
     </div>
     <div class="card" data-codigo="909863-1-LE26" data-region="Coquimbo" data-semaforo="" data-dias="15" data-margen="-1" data-texto="e9 servicios de aseo tp de illapel tesorería general de la república (tesorería provincial de illapel) illapel">
-      <div class="stripe" style="background:#8a887f"></div>
+      <div class="stripe" style="background:#8fa8a0"></div>
       <div class="body">
         <div class="info" onclick="toggleDetalle(this)">
           <p class="title">E9 Servicios de Aseo TP de Illapel <span class="ver">ver detalle ▾</span></p>
@@ -313,8 +323,8 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
           <div class="detalle">Fuera de alcance - otra comuna<br><a class="det-bases" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=909863-1-LE26" target="_blank" rel="noopener" onclick="event.stopPropagation()">📄 Ver / descargar bases en Mercado Público ↗</a></div>
         </div>
         <div class="right">
-          <p class="margen" style="color:#6b6a63">—</p>
-          <span class="badge" style="background:#f0efe9;color:#6b6a63">Fuera de alcance</span>
+          <p class="margen" style="color:#8fa8a0">—</p>
+          <span class="badge" style="background:rgba(143,168,160,.12);color:#8fa8a0">Fuera de alcance</span>
           <div class="acciones">
             <a class="act act-mp" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=909863-1-LE26" target="_blank" rel="noopener" title="Ver ficha en Mercado Público" onclick="event.stopPropagation()">↗</a>
             <button class="act act-si" title="Me interesa / seguir" onclick="marcar(event,'909863-1-LE26','interesa')">★</button>
@@ -327,7 +337,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
 </div>
 
 <div id="sec-ca" style="display:none">
-<div class="value-banner"><div><p>Monto total en compras ágiles de tu región</p><p>$450.000</p></div></div><div class="stats stats-res" style="margin-bottom:1.5rem"><div class="stat"><p>En tu región</p><p style="color:#a06a0a">1</p></div><div class="stat"><p>Monto total</p><p style="font-size:24px">$450.000</p></div><div class="stat"><p>Próximo cierre</p><p style="font-size:22px">2026-07-17</p></div><div class="stat"><p>Modalidad</p><p style="font-size:18px">Cotización</p></div></div>
+<div class="value-banner"><div><p>Monto total en compras ágiles de tu región</p><p>$450.000</p></div></div><div class="stats stats-res" style="margin-bottom:1.5rem"><div class="stat"><p>En tu región</p><p style="color:#ffcf4a">1</p></div><div class="stat"><p>Monto total</p><p style="font-size:24px">$450.000</p></div><div class="stat"><p>Próximo cierre</p><p style="font-size:22px">2026-07-17</p></div><div class="stat"><p>Modalidad</p><p style="font-size:18px">Cotización</p></div></div>
   <p class="section-label" style="margin-top:.5rem">Compras Ágiles en tu región</p>
   <div id="calist"><div class="ca-card ca-hl"><div class="ca-info"><p class="ca-title">SERVICIO DE LIMPIEZA Y SANITIZACIÓN PARA CUBREPISO DE SALÓN.</p><p class="ca-sub">SERVICIO AGRICOLA Y GANADERO · SAG - Coquimbo</p><p class="ca-sub2">cierra 2026-07-17 14:00 · $450.000 · <span class="cod">1159-62-COT26</span></p></div><div class="ca-right"><span class="ca-badge ca-reg">Tu región</span><a class="ca-btn" href="https://buscador.mercadopublico.cl/ficha?code=1159-62-COT26" target="_blank" rel="noopener">Ver ↗</a></div></div></div>
 </div>
@@ -338,11 +348,11 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
 <script>
 const chartLabels = ['Postular', 'Revisar', 'Pendiente', 'No postular', 'Fuera de alcance'];
 const chartData = [0, 2, 0, 3, 3];
-const chartColors = ['#0f6e56', '#c98a1a', '#2a72bd', '#c14b40', '#8a887f'];
+const chartColors = ['#00ff9d', '#ffcf4a', '#6fb3ff', '#ff5d6c', '#8fa8a0'];
 
 new Chart(document.getElementById('donut'), {
   type: 'doughnut',
-  data: { labels: chartLabels, datasets: [{ data: chartData, backgroundColor: chartColors, borderWidth: 2, borderColor: '#fff' }] },
+  data: { labels: chartLabels, datasets: [{ data: chartData, backgroundColor: chartColors, borderWidth: 2, borderColor: '#060b0d' }] },
   options: { responsive:true, maintainAspectRatio:false, cutout:'65%', plugins:{ legend:{ display:false }, tooltip:{ enabled:true } } }
 });
 
