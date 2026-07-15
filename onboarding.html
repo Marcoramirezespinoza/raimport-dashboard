@@ -1,80 +1,80 @@
 <!DOCTYPE html>
 <html lang="es"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Radar de Licitaciones — Personaliza tu radar</title>
+<title>Radar de Licitaciones — Personalice su radar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#060b0d;--panel:#0c1518;--neon:#00ff9d;--dim:#5c7a72;--txt:#d7f5ec;--amber:#ffcf4a;}
-*{box-sizing:border-box;}
-body{font-family:'Space Grotesk',-apple-system,Arial,sans-serif;background:var(--bg);margin:0;color:var(--txt);-webkit-font-smoothing:antialiased;
-  background-image:radial-gradient(1200px 600px at 70% -10%, rgba(0,255,157,.06), transparent), linear-gradient(rgba(0,255,157,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,157,.03) 1px, transparent 1px);
-  background-size:auto, 40px 40px, 40px 40px;}
-.top{text-align:center;padding:2.6rem 1.5rem 1.5rem;}
-.radar{width:84px;height:84px;border-radius:50%;margin:0 auto 1.1rem;position:relative;background:radial-gradient(circle,rgba(0,255,157,.09),transparent 70%);border:1.5px solid rgba(0,255,157,.35);box-shadow:0 0 30px rgba(0,255,157,.15);overflow:hidden;}
-.sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,rgba(0,255,157,.4) 60deg,transparent 62deg);animation:sw 3.2s linear infinite;}
-@keyframes sw{to{transform:rotate(360deg);}}
-.cdot{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:9px;height:9px;border-radius:50%;background:var(--neon);box-shadow:0 0 12px var(--neon);}
-.eyebrow{color:var(--dim);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;}
-.top h1{font-size:32px;font-weight:700;margin:0;color:#fff;}
-.top h1 span{color:var(--neon);text-shadow:0 0 16px rgba(0,255,157,.5);}
-.top p{color:var(--dim);font-size:13.5px;margin:12px 0 0;}
-.wrap{max-width:680px;margin:0 auto 3rem;padding:0 1.2rem;}
-.card{background:var(--panel);border:1px solid rgba(0,255,157,.14);border-radius:16px;padding:1.6rem;margin-bottom:1.1rem;}
-.step{display:flex;align-items:center;gap:10px;margin:0 0 1rem;}
-.num{width:26px;height:26px;border-radius:50%;background:rgba(0,255,157,.15);border:1px solid var(--neon);color:var(--neon);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.step h2{font-size:15.5px;font-weight:600;margin:0;color:#fff;}
-.hint{font-size:12.5px;color:var(--dim);margin:-.4rem 0 1rem 36px;}
-.src{font-family:'Space Mono',monospace;font-size:10px;color:var(--dim);margin:-.6rem 0 1rem 36px;}
-.chips{display:flex;flex-wrap:wrap;gap:8px;}
-.chip{border:1px solid rgba(0,255,157,.2);background:#0a1214;border-radius:8px;padding:8px 14px;font-size:12.5px;font-weight:500;cursor:pointer;transition:all .15s;user-select:none;color:#a8c4bb;}
-.chip:hover{border-color:rgba(0,255,157,.5);}
-.chip.on{background:rgba(0,255,157,.15);border-color:var(--neon);color:var(--neon);}
-input[type=text]{width:100%;padding:11px 14px;border:1px solid rgba(0,255,157,.2);border-radius:10px;font-family:inherit;font-size:13.5px;margin-top:4px;outline:none;background:#0a1214;color:var(--txt);}
-input[type=text]::placeholder{color:var(--dim);}
-input[type=text]:focus{border-color:var(--neon);}
-.row{display:flex;gap:12px;flex-wrap:wrap;}
-.row>div{flex:1;min-width:180px;}
-label.mini{font-size:12px;color:var(--dim);font-weight:600;}
-.toggle-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.sw2{width:42px;height:24px;border-radius:14px;background:#22302d;position:relative;cursor:pointer;transition:.2s;flex-shrink:0;}
-.sw2.on{background:var(--neon);}
-.sw2::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s;}
-.sw2.on::after{left:21px;}
-.activar{width:100%;background:var(--neon);color:#04120c;border:none;border-radius:12px;padding:15px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 0 24px rgba(0,255,157,.3);}
-.ok{display:none;background:var(--panel);border:1px solid rgba(0,255,157,.25);border-radius:16px;padding:2.2rem 1.8rem;text-align:center;}
-.ok .big{font-size:30px;font-weight:700;color:#fff;margin:0 0 6px;}
-.ok .tick{width:56px;height:56px;border-radius:50%;background:rgba(0,255,157,.12);color:var(--neon);font-size:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;box-shadow:0 0 20px rgba(0,255,157,.2);}
-.resumen{background:#0a1214;border:1px solid rgba(0,255,157,.14);border-radius:12px;padding:1rem 1.2rem;text-align:left;font-size:13.5px;color:#a8c4bb;line-height:1.7;margin:1rem 0;}
-.resumen b{color:var(--neon);}
-.demo-tag{display:inline-block;background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.25);color:var(--neon);font-family:'Space Mono',monospace;font-size:10px;padding:5px 12px;border-radius:6px;letter-spacing:1px;text-transform:uppercase;margin-top:1rem;}
-.back{display:inline-block;margin:1rem 0;color:var(--neon);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;}
+:root {
+  --navy:#0F1F3D; --navy-2:#16294f; --bg:#f4f6f8; --surface:#ffffff; --border:#e2e7ee;
+  --text:#17233b; --muted:#5d6b82; --go:#0e7a4e;
+}
+* { box-sizing:border-box; }
+body { font-family:'Inter',-apple-system,Arial,sans-serif; background:var(--bg); margin:0; color:var(--text); -webkit-font-smoothing:antialiased; }
+.nav { display:flex; align-items:center; justify-content:space-between; padding:12px 2rem; background:var(--surface); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; flex-wrap:wrap; gap:8px; }
+.nav .brand { font-family:'Instrument Serif',serif; font-size:20px; color:var(--navy); text-decoration:none; }
+.nav .brand .pt { color:var(--go); }
+.nav .links { display:flex; gap:4px; flex-wrap:wrap; }
+.nav .links a { color:var(--muted); text-decoration:none; font-size:13.5px; font-weight:500; padding:7px 13px; border-radius:8px; }
+.nav .links a:hover { background:var(--bg); color:var(--text); }
+.nav .links a.on { background:var(--navy); color:#fff; }
+.top { text-align:center; padding:2.8rem 1.5rem 1.5rem; }
+.eyebrow { color:var(--go); font-size:11.5px; letter-spacing:2px; text-transform:uppercase; font-weight:700; margin:0 0 10px; }
+.top h1 { font-family:'Instrument Serif',serif; font-weight:400; font-size:34px; margin:0; color:var(--navy); }
+.top p { color:var(--muted); font-size:14px; margin:12px 0 0; }
+.wrap { max-width:680px; margin:0 auto 3rem; padding:0 1.2rem; }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:1.6rem; margin-bottom:1.1rem; }
+.step { display:flex; align-items:center; gap:10px; margin:0 0 1rem; }
+.num { width:26px; height:26px; border-radius:50%; background:var(--navy); color:#fff; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.step h2 { font-size:15.5px; font-weight:700; margin:0; color:var(--navy); }
+.hint { font-size:12.5px; color:var(--muted); margin:-.4rem 0 1rem 36px; }
+.src { font-size:11px; color:var(--muted); margin:-.6rem 0 1rem 36px; }
+.chips { display:flex; flex-wrap:wrap; gap:8px; }
+.chip { border:1px solid var(--border); background:var(--bg); border-radius:8px; padding:8px 14px; font-size:12.5px; font-weight:500; cursor:pointer; transition:all .15s; user-select:none; color:var(--text); }
+.chip:hover { border-color:var(--navy); }
+.chip.on { background:var(--navy); border-color:var(--navy); color:#fff; }
+input[type=text] { width:100%; padding:11px 14px; border:1px solid var(--border); border-radius:10px; font-family:inherit; font-size:13.5px; margin-top:4px; outline:none; background:var(--surface); color:var(--text); }
+input[type=text]:focus { border-color:var(--navy); box-shadow:0 0 0 3px rgba(15,31,61,.08); }
+.row { display:flex; gap:12px; flex-wrap:wrap; }
+.row>div { flex:1; min-width:180px; }
+label.mini { font-size:12px; color:var(--muted); font-weight:600; }
+.toggle-row { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.sw2 { width:42px; height:24px; border-radius:14px; background:#cfd6df; position:relative; cursor:pointer; transition:.2s; flex-shrink:0; }
+.sw2.on { background:var(--go); }
+.sw2::after { content:""; position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:#fff; transition:.2s; }
+.sw2.on::after { left:21px; }
+.activar { width:100%; background:var(--navy); color:#fff; border:none; border-radius:12px; padding:15px; font-family:inherit; font-size:15px; font-weight:700; cursor:pointer; transition:.15s; }
+.activar:hover { background:var(--navy-2); }
+.ok { display:none; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:2.2rem 1.8rem; text-align:center; }
+.ok .big { font-family:'Instrument Serif',serif; font-weight:400; font-size:30px; color:var(--navy); margin:0 0 6px; }
+.ok .tick { width:56px; height:56px; border-radius:50%; background:#e7f5ee; color:var(--go); font-size:28px; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem; }
+.resumen { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:1rem 1.2rem; text-align:left; font-size:13.5px; color:var(--text); line-height:1.7; margin:1rem 0; }
+.resumen b { color:var(--navy); }
+.demo-tag { display:inline-block; background:#e9f0fb; color:#2d5fa8; font-size:10.5px; font-weight:700; padding:5px 12px; border-radius:6px; letter-spacing:1px; text-transform:uppercase; margin-top:1rem; }
 </style></head>
 <body>
-<nav style="display:flex;align-items:center;justify-content:space-between;padding:11px 1.6rem;border-bottom:1px solid rgba(0,255,157,.12);background:rgba(6,11,13,.85);position:sticky;top:0;z-index:100;backdrop-filter:blur(8px);flex-wrap:wrap;gap:8px;">
-  <a href="./plataforma.html" style="color:#00ff9d;font-weight:700;text-decoration:none;font-size:15px;letter-spacing:.5px;">◉ RADAR</a>
-  <div style="display:flex;gap:2px;flex-wrap:wrap;">
-    <a href="./index.html" style="color:#8fa8a0;text-decoration:none;font-size:13px;padding:6px 12px;border-radius:8px;">Tablero</a>
-    <a href="./onboarding.html" style="color:#00ff9d;text-decoration:none;font-size:13px;padding:6px 12px;border-radius:8px;background:rgba(0,255,157,.08);">Personalizar</a>
-    <a href="./planes.html" style="color:#8fa8a0;text-decoration:none;font-size:13px;padding:6px 12px;border-radius:8px;">Planes</a>
-    <a href="./radar-concept.html" style="color:#8fa8a0;text-decoration:none;font-size:13px;padding:6px 12px;border-radius:8px;">Concepto</a>
+<nav class="nav">
+  <a class="brand" href="./index.html">◉ Radar <span class="pt">de Licitaciones</span></a>
+  <div class="links">
+    <a href="./index.html">Portada</a>
+    <a href="./tablero.html">Tablero</a>
+    <a href="./onboarding.html" class="on">Personalizar</a>
+    <a href="./planes.html">Planes</a>
   </div>
 </nav>
 <div class="top">
-  <div class="radar"><div class="sweep"></div><div class="cdot"></div></div>
   <p class="eyebrow">Mercado Público · Chile</p>
-  <h1>Personaliza tu <span>Radar</span></h1>
-  <p>Elige tu rubro y tu región. En base a eso, el sistema busca solo para ti.</p>
+  <h1>Personalice su radar</h1>
+  <p>Elija su rubro y su región. En base a eso, el sistema busca solo para usted.</p>
 </div>
 
 <div class="wrap">
-  <a class="back" href="./plataforma.html">← volver</a>
   <div id="form">
     <div class="card">
-      <div class="step"><span class="num">1</span><h2>¿Cuál es tu rubro?</h2></div>
-      <p class="hint">Elige uno o varios.</p>
-      <p class="src">// Rubros según la clasificación de Mercado Público</p>
+      <div class="step"><span class="num">1</span><h2>¿Cuál es su rubro?</h2></div>
+      <p class="hint">Elija uno o varios.</p>
+      <p class="src">Rubros según la clasificación de Mercado Público</p>
       <div class="chips" id="rubros">
         <span class="chip" onclick="tog(this)">Aseo, limpieza y sanitización</span>
         <span class="chip" onclick="tog(this)">Alimentos y catering</span>
@@ -92,8 +92,8 @@ label.mini{font-size:12px;color:var(--dim);font-weight:600;}
     </div>
 
     <div class="card">
-      <div class="step"><span class="num">2</span><h2>¿En qué regiones quieres buscar?</h2></div>
-      <p class="hint">Selecciona una o varias.</p>
+      <div class="step"><span class="num">2</span><h2>¿En qué regiones quiere buscar?</h2></div>
+      <p class="hint">Seleccione una o varias.</p>
       <div class="chips" id="regiones">
         <span class="chip" onclick="tog(this)">Arica y Parinacota</span>
         <span class="chip" onclick="tog(this)">Tarapacá</span>
@@ -112,29 +112,29 @@ label.mini{font-size:12px;color:var(--dim);font-weight:600;}
 
     <div class="card">
       <div class="step"><span class="num">3</span><h2>¿Qué comunas evaluar a fondo?</h2></div>
-      <p class="hint">Donde operas: ahí el sistema costea y decide GO/NO GO.</p>
+      <p class="hint">Donde usted opera: ahí el sistema costea y decide GO/NO GO.</p>
       <input type="text" id="comunas" placeholder="Ej: La Serena, Arica, Coquimbo...">
     </div>
 
     <div class="card">
-      <div class="step"><span class="num">4</span><h2>¿Cómo quieres que te avise?</h2></div>
-      <div class="toggle-row"><div class="sw2 on" onclick="this.classList.toggle('on')"></div><span style="font-size:13.5px">Alertas por WhatsApp</span></div>
+      <div class="step"><span class="num">4</span><h2>¿Cómo quiere que le avisemos?</h2></div>
+      <div class="toggle-row"><div class="sw2 on" onclick="this.classList.toggle('on')"></div><span style="font-size:13.5px">Alertas por correo con el análisis adjunto</span></div>
       <div class="row">
-        <div><label class="mini">Tu WhatsApp</label><input type="text" placeholder="+56 9 ...."></div>
-        <div><label class="mini">Tu correo</label><input type="text" placeholder="tucorreo@empresa.cl"></div>
+        <div><label class="mini">Su correo</label><input type="text" placeholder="sucorreo@empresa.cl"></div>
+        <div><label class="mini">Su WhatsApp (opcional)</label><input type="text" placeholder="+56 9 ...."></div>
       </div>
     </div>
 
     <button class="activar" onclick="activar()">Activar mi radar →</button>
-    <p style="text-align:center"><span class="demo-tag">Demostración — así se vería para el cliente</span></p>
+    <p style="text-align:center"><span class="demo-tag">Demostración — así se ve para el cliente</span></p>
   </div>
 
   <div class="ok" id="ok">
     <div class="tick">✓</div>
-    <p class="big">Tu radar está activo</p>
-    <p style="color:var(--dim);font-size:14px;margin:0">Desde mañana recibirás solo las oportunidades que elegiste.</p>
+    <p class="big">Su radar está activo</p>
+    <p style="color:var(--muted);font-size:14px;margin:0">Desde mañana recibirá solo las oportunidades que eligió.</p>
     <div class="resumen" id="resumen"></div>
-    <p style="font-size:12.5px;color:var(--dim);margin:0">El sistema escaneará Mercado Público y Compra Ágil cada día, evaluará por ti, y te avisará. Tú solo revisas.</p>
+    <p style="font-size:12.5px;color:var(--muted);margin:0">El sistema escaneará Mercado Público y Compra Ágil cada día, evaluará por usted, y le avisará. Usted solo revisa.</p>
   </div>
 </div>
 
@@ -144,9 +144,9 @@ function sel(id){return [...document.querySelectorAll('#'+id+' .chip.on')].map(c
 function activar(){
   const rubros = sel('rubros'), regiones = sel('regiones');
   const comunas = document.getElementById('comunas').value || '(no especificadas)';
-  if(!rubros.length || !regiones.length){ alert('Elige al menos un rubro y una región.'); return; }
+  if(!rubros.length || !regiones.length){ alert('Elija al menos un rubro y una región.'); return; }
   document.getElementById('resumen').innerHTML =
-    'Tu radar buscará:<br>• Rubro: <b>'+rubros.join(', ')+'</b>'+
+    'Su radar buscará:<br>• Rubro: <b>'+rubros.join(', ')+'</b>'+
     '<br>• Regiones: <b>'+regiones.join(', ')+'</b>'+
     '<br>• Comunas a evaluar: <b>'+comunas+'</b>';
   document.getElementById('form').style.display='none';

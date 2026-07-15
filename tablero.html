@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar de Licitaciones — Tablero de RA Import</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0F1F3D; --navy-2:#16294f; --bg:#f4f6f8; --surface:#ffffff; --border:#e2e7ee;
+  --text:#17233b; --muted:#5d6b82; --go:#0e7a4e; --rev:#996c0f; --no:#b3362d; --pen:#2d5fa8;
+}
+* { box-sizing:border-box; }
+body { font-family:'Inter',-apple-system,Arial,sans-serif; margin:0; color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased; }
+a { color:var(--navy); }
+.nav { display:flex; align-items:center; justify-content:space-between; padding:12px 2rem; background:var(--surface); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; flex-wrap:wrap; gap:8px; }
+.nav .brand { font-family:'Instrument Serif',serif; font-size:20px; color:var(--navy); text-decoration:none; letter-spacing:.2px; }
+.nav .brand .pt { color:var(--go); }
+.nav .links { display:flex; gap:4px; flex-wrap:wrap; }
+.nav .links a { color:var(--muted); text-decoration:none; font-size:13.5px; font-weight:500; padding:7px 13px; border-radius:8px; }
+.nav .links a:hover { background:var(--bg); color:var(--text); }
+.nav .links a.on { background:var(--navy); color:#fff; }
+.header { background:var(--surface); border-bottom:1px solid var(--border); padding:2.2rem 2rem; }
+.hero { max-width:1060px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.2rem; }
+.hero-l { display:flex; align-items:center; gap:20px; }
+.radar { width:64px; height:64px; border-radius:50%; position:relative; flex-shrink:0; border:1.5px solid var(--border); background:radial-gradient(circle, #eef2f7, #fff 70%); overflow:hidden; }
+.radar .sweep { position:absolute; inset:0; border-radius:50%; background:conic-gradient(from 0deg, transparent 0deg, rgba(15,31,61,.18) 55deg, transparent 58deg); animation:sw 4s linear infinite; }
+@keyframes sw { to { transform:rotate(360deg); } }
+.radar .dot { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:7px; height:7px; border-radius:50%; background:var(--navy); }
+.hero h1 { font-family:'Instrument Serif',serif; font-weight:400; color:var(--navy); font-size:34px; margin:0; line-height:1.05; }
+.hero .sub { color:var(--muted); font-size:13.5px; margin:8px 0 0; max-width:480px; line-height:1.5; }
+.hero-side { text-align:right; }
+.hero-side .cliente { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:1px; margin:0; }
+.hero-side .cliente b { color:var(--text); }
+.hero-side .fecha { color:var(--navy); font-family:'Space Mono',monospace; font-size:13px; margin:6px 0 0; }
+.wrap { max-width:1060px; margin:0 auto; padding:1.8rem 2rem 3rem; }
+
+/* --- Nivel 1: acción del día + KPIs + cola --- */
+.accion { display:flex; align-items:center; justify-content:space-between; gap:16px; background:var(--navy); color:#fff; border-radius:14px; padding:1.3rem 1.6rem; margin-bottom:1.1rem; flex-wrap:wrap; }
+.accion-ok { background:var(--surface); border:1px solid var(--border); color:var(--text); }
+.a-lbl { font-size:11px; text-transform:uppercase; letter-spacing:1.4px; opacity:.7; margin:0 0 6px; font-weight:600; }
+.a-tit { font-size:17px; font-weight:700; margin:0 0 4px; line-height:1.3; }
+.a-det { font-size:13px; opacity:.85; margin:0; }
+.accion-ok .a-det { color:var(--muted); }
+.btn { display:inline-block; font-size:13px; font-weight:600; text-decoration:none; border-radius:9px; padding:9px 16px; cursor:pointer; border:1px solid var(--border); background:var(--surface); color:var(--text); font-family:inherit; transition:all .15s; white-space:nowrap; }
+.btn:hover { border-color:var(--navy); }
+.btn-pri { background:#fff; color:var(--navy); border:none; font-weight:700; }
+.btn-sec { font-size:12.5px; padding:7px 13px; }
+.kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:1.4rem; }
+.kpi { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.2rem; }
+.kpi p:first-child { font-size:11px; color:var(--muted); margin:0 0 6px; text-transform:uppercase; letter-spacing:.8px; font-weight:600; }
+.kpi p:nth-child(2) { font-size:30px; font-weight:800; margin:0; line-height:1; color:var(--navy); }
+.kpi .k-accent { color:var(--go); }
+.kpi .k-warn { color:var(--rev); }
+.kpi .k-sub { font-size:11px; color:var(--muted); margin:6px 0 0; }
+.cola { display:flex; gap:10px; overflow-x:auto; padding-bottom:6px; margin-bottom:1.6rem; }
+.cola-item { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:.8rem 1rem; min-width:230px; max-width:270px; cursor:pointer; flex-shrink:0; transition:border-color .15s; }
+.cola-item:hover { border-color:var(--navy); }
+.ci-tit { font-size:12.5px; font-weight:600; margin:7px 0 3px; line-height:1.35; }
+.ci-det { font-size:11.5px; color:var(--muted); margin:0; }
+
+/* --- Tabs, buscador, filtros --- */
+.tabs { display:flex; gap:4px; margin-bottom:1.2rem; border-bottom:2px solid var(--border); }
+.tab { background:none; border:none; border-bottom:3px solid transparent; margin-bottom:-2px; color:var(--muted); font-size:14px; font-weight:600; padding:10px 16px; cursor:pointer; font-family:inherit; }
+.tab:hover { color:var(--text); }
+.tab.active { color:var(--navy); border-bottom-color:var(--navy); }
+.searchbar input { width:100%; padding:11px 16px; border:1px solid var(--border); border-radius:10px; font-family:inherit; font-size:13.5px; color:var(--text); outline:none; background:var(--surface); margin-bottom:.9rem; }
+.searchbar input:focus { border-color:var(--navy); box-shadow:0 0 0 3px rgba(15,31,61,.08); }
+.controls { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem; flex-wrap:wrap; gap:10px; }
+.filters, .sorters { display:flex; gap:7px; flex-wrap:wrap; }
+.filter-btn { background:var(--surface); border:1px solid var(--border); color:var(--muted); font-size:12.5px; font-weight:600; padding:7px 14px; border-radius:8px; cursor:pointer; font-family:inherit; transition:all .15s; }
+.filter-btn:hover { border-color:var(--navy); color:var(--text); }
+.filter-btn.active { background:var(--navy); border-color:var(--navy); color:#fff; }
+.section-label { font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:1.3px; margin:0 0 .8rem; font-weight:700; }
+
+/* --- Cards --- */
+.card { background:var(--surface); border:1px solid var(--border); border-radius:12px; margin-bottom:12px; display:flex; overflow:hidden; transition:box-shadow .15s; }
+.card:hover { box-shadow:0 2px 12px rgba(23,35,59,.08); }
+.card.hidden, .card.hidden-search { display:none; }
+.stripe { width:4px; flex-shrink:0; }
+.body { flex:1; min-width:0; padding:1.1rem 1.4rem; }
+.c-head { display:flex; gap:18px; cursor:pointer; align-items:flex-start; }
+.c-tit { flex:1; min-width:0; }
+.title { font-size:14.5px; font-weight:700; margin:0 0 6px; line-height:1.35; }
+.why { font-size:12.5px; color:var(--muted); margin:0 0 6px; line-height:1.5; }
+.meta { font-size:12px; color:var(--muted); margin:0; }
+.badge { font-size:10.5px; padding:3px 9px; border-radius:6px; font-weight:700; white-space:nowrap; text-transform:uppercase; letter-spacing:.4px; margin-right:6px; }
+.cod { font-family:'Space Mono',monospace; font-size:11px; }
+.c-datos { display:flex; gap:10px; flex-shrink:0; }
+.dato { text-align:right; min-width:82px; background:var(--bg); border-radius:9px; padding:8px 11px; }
+.dato p:first-child { font-size:9.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.6px; margin:0 0 3px; font-weight:600; }
+.dato p:last-child { font-size:13.5px; font-weight:700; margin:0; }
+.dato.urgente { background:#fdf3dd; }
+.dato.urgente p:last-child { color:var(--rev); }
+.c-foot { display:flex; justify-content:space-between; align-items:center; margin-top:12px; flex-wrap:wrap; gap:10px; }
+.avance { display:flex; align-items:center; gap:5px; }
+.av-lbl { font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.7px; font-weight:600; margin-right:4px; }
+.paso { width:22px; height:6px; border-radius:3px; background:var(--border); }
+.paso.p-done { background:var(--go); }
+.c-acts { display:flex; gap:8px; }
+.detalle { display:none; margin-top:14px; padding-top:14px; border-top:1px solid var(--border); }
+.card.abierta .detalle { display:block; }
+.d-lbl { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1.2px; font-weight:700; margin:0 0 10px; }
+.d-lbl .d-hint { text-transform:none; letter-spacing:0; font-weight:500; }
+.timeline { margin-bottom:16px; }
+.tl-row { display:flex; gap:11px; padding:8px 0; border-bottom:1px dashed var(--border); }
+.tl-row:last-child { border-bottom:none; }
+.tl-ico { flex-shrink:0; font-size:15px; }
+.tl-tit { font-size:12.5px; font-weight:700; margin:0 0 2px; }
+.tl-det { font-size:12px; color:var(--muted); margin:0; line-height:1.5; }
+.dec-btns { display:flex; gap:8px; flex-wrap:wrap; }
+.dec { font-size:13px; font-weight:700; padding:9px 18px; border-radius:9px; cursor:pointer; font-family:inherit; border:1.5px solid var(--border); background:var(--surface); color:var(--muted); transition:all .15s; }
+.dec-go.on { background:var(--go); border-color:var(--go); color:#fff; }
+.dec-est.on { background:var(--pen); border-color:var(--pen); color:#fff; }
+.dec-no.on { background:var(--no); border-color:var(--no); color:#fff; }
+.dec:hover { border-color:var(--navy); color:var(--text); }
+.card.decidida-descartar { opacity:.55; }
+
+/* --- Compra Ágil --- */
+.ca-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; margin-bottom:10px; padding:1rem 1.3rem; display:flex; align-items:center; gap:14px; }
+.ca-info { flex:1; min-width:0; }
+.ca-title { font-size:13.5px; font-weight:700; margin:0 0 4px; }
+.ca-sub { font-size:12px; color:var(--muted); margin:0 0 2px; }
+.ca-sub2 { font-size:11.5px; color:var(--muted); margin:0; }
+.ca-dec { font-size:12.5px; margin:7px 0 0; }
+.ca-motivo { font-size:11.5px; color:var(--muted); margin:4px 0 0; }
+.ca-right { display:flex; flex-direction:column; align-items:flex-end; gap:7px; flex-shrink:0; }
+.ca-reg { font-size:10px; padding:3px 9px; border-radius:6px; font-weight:700; background:#e7f5ee; color:var(--go); text-transform:uppercase; letter-spacing:.4px; }
+.vacio { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:2rem 1.5rem; text-align:center; color:var(--muted); font-size:13.5px; }
+
+/* --- Resultados --- */
+.stats-res { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:.7rem; }
+.res-nota { font-size:12.5px; color:var(--muted); margin:0; }
+
+.footer { text-align:center; padding:1.8rem 1rem; font-size:11.5px; color:var(--muted); border-top:1px solid var(--border); margin-top:2rem; line-height:1.7; }
+
+/* --- WhatsApp flotante --- */
+.wsp { position:fixed; right:22px; bottom:22px; z-index:200; width:54px; height:54px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(0,0,0,.22); text-decoration:none; transition:transform .15s; }
+.wsp:hover { transform:scale(1.07); }
+.wsp svg { width:29px; height:29px; fill:#fff; }
+
+@media (max-width:820px) {
+  .kpis { grid-template-columns:repeat(2,1fr); }
+  .c-head { flex-direction:column; }
+  .c-datos { width:100%; } .dato { flex:1; text-align:left; }
+  .stats-res { grid-template-columns:repeat(2,1fr); }
+  .ca-card { flex-direction:column; align-items:flex-start; }
+  .ca-right { flex-direction:row; align-items:center; }
+}
+</style></head>
+<body>
+<nav class="nav">
+  <a class="brand" href="./index.html">◉ Radar <span class="pt">de Licitaciones</span></a>
+  <div class="links">
+    <a href="./index.html">Portada</a>
+    <a href="./tablero.html" class="on">Tablero</a>
+    <a href="./onboarding.html">Personalizar</a>
+    <a href="./planes.html">Planes</a>
+  </div>
+</nav>
+<div class="header">
+  <div class="hero">
+    <div class="hero-l">
+      <div class="radar"><div class="sweep"></div><div class="dot"></div></div>
+      <div>
+        <h1>Radar de Licitaciones</h1>
+        <p class="sub">Oportunidades de aseo en Mercado Público, filtradas y evaluadas cada día</p>
+      </div>
+    </div>
+    <div class="hero-side">
+      <p class="cliente">Panel de <b>RA Import</b></p>
+      <p class="fecha">Actualizado 15-07-2026 · 14:40</p>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+
+<div class="accion"><div class="a-txt"><p class="a-lbl">Acción del día</p><p class="a-tit">Servicio de Aseo Dependencias Vialidad Provincia de Limarí</p><p class="a-det"><b style="color:#996c0f">Revisar</b> · cierra en 5 días · MOP - Dirección de Vialidad IV Región</p></div><a class="btn btn-pri" href="#lic-996-21-LE26" onclick="abrirCard('996-21-LE26')">Revisar y decidir</a></div>
+<div class="kpis"><div class="kpi"><p>Oportunidades activas</p><p>8</p><p class="k-sub">8 licitaciones · 0 compras ágiles</p></div><div class="kpi"><p>Esperan tu decisión</p><p class="k-accent" id="kpi-decision">2</p><p class="k-sub">GO y REVISAR sin decidir</p></div><div class="kpi"><p>Cierran en ≤5 días</p><p class="k-warn">1</p><p class="k-sub">de las que esperan decisión</p></div><div class="kpi"><p>Tasa de adjudicación</p><p>—</p><p class="k-sub">0 ganadas de 0 resueltas</p></div></div>
+<p class="section-label">Cola de decisión (2)</p><div class="cola"><div class="cola-item" onclick="abrirCard('996-21-LE26')"><span class="badge" style="background:#fdf3dd;color:#996c0f">Revisar</span><p class="ci-tit">Servicio de Aseo Dependencias Vialidad Provincia de Lim…</p><p class="ci-det">cierra 5d · La Serena</p></div><div class="cola-item" onclick="abrirCard('996-22-LE26')"><span class="badge" style="background:#fdf3dd;color:#996c0f">Revisar</span><p class="ci-tit">Servicio de Aseo Dependencias Vialidad Provincia de Cho…</p><p class="ci-det">cierra 12d · La Serena</p></div></div>
+
+<div class="tabs">
+  <button class="tab active" data-tab="lic" onclick="verTab(this)">Licitaciones (8)</button>
+  <button class="tab" data-tab="ca" onclick="verTab(this)">Compras Ágiles (0)</button>
+  <button class="tab" data-tab="res" onclick="verTab(this)">Resultados</button>
+</div>
+
+<div id="sec-lic">
+  <div class="searchbar">
+    <input id="buscador" type="text" placeholder="Buscar por nombre, organismo o comuna…" oninput="buscar(this.value)">
+  </div>
+  <div class="controls">
+    <div class="filters">
+      <button class="filter-btn active" data-filter="Todas" onclick="filtrar(this)">Todas</button>
+      <button class="filter-btn" data-filter="__decidir" onclick="filtrar(this)">Esperan decisión</button>
+      <button class="filter-btn" data-filter="Coquimbo" onclick="filtrar(this)">Coquimbo</button>
+      <button class="filter-btn" data-filter="Arica" onclick="filtrar(this)">Arica</button>
+    </div>
+    <div class="sorters">
+      <button class="filter-btn active" data-sort="prioridad" onclick="ordenar(this)">Prioridad</button>
+      <button class="filter-btn" data-sort="dias" onclick="ordenar(this)">Cierra antes</button>
+      <button class="filter-btn" data-sort="margen" onclick="ordenar(this)">Mayor margen</button>
+    </div>
+  </div>
+  <div id="cardlist">
+  
+    <div class="card" id="lic-996-21-LE26" data-codigo="996-21-LE26" data-region="Coquimbo" data-semaforo="REVISAR" data-dias="5" data-margen="15" data-texto="servicio de aseo dependencias vialidad provincia de limarí mop - dirección de vialidad iv región la serena">
+      <div class="stripe" style="background:#996c0f"></div>
+      <div class="body">
+        <div class="c-head" onclick="toggleDetalle(this)">
+          <div class="c-tit">
+            <p class="title">Servicio de Aseo Dependencias Vialidad Provincia de Limarí</p>
+            <p class="why"><span class="badge" style="background:#fdf3dd;color:#996c0f">Revisar</span> Presupuesto de la entidad no cubre costo real; se requiere ofertar ~20% sobre referencia para margen positivo; visita técnica pendiente el 14-07-2026.</p>
+            <p class="meta">MOP - Dirección de Vialidad IV Región · La Serena (Coquimbo) · <span class="cod">996-21-LE26</span></p>
+          </div>
+          <div class="c-datos">
+            <div class="dato"><p>Monto</p><p>No informado</p></div>
+            <div class="dato"><p>Margen</p><p style="color:#996c0f">15%</p></div>
+            <div class="dato urgente"><p>Cierra en</p><p>5 días</p></div>
+          </div>
+        </div>
+        <div class="c-foot">
+          <div class="avance" title="Avance del proceso: 4 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-done" title="Bases descargadas"></span><span class="paso p-done" title="Evaluada"></span><span class="paso p-done" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
+          <div class="c-acts">
+            <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
+            <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=996-21-LE26" target="_blank" rel="noopener">Ficha oficial ↗</a>
+          </div>
+        </div>
+        <div class="detalle">
+          <p class="d-lbl">Expediente trazable</p>
+          <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Coquimbo.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Bases descargadas automáticamente</p><p class="tl-det">El robot descargó la ficha y adjuntos del proceso. No necesitas buscarlas.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Evaluada: Revisar</p><p class="tl-det">Presupuesto de la entidad no cubre costo real; se requiere ofertar ~20% sobre referencia para margen positivo; visita técnica pendiente el 14-07-2026. Margen estimado: 15%.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Precio de mercado verificado</p><p class="tl-det">El Estado ya pagó $1.600.000/mes por "Aseo y limpieza de edificios/oficinas" (Servicio Agrícola y Ganadero (SAG) - Dirección Regional Puerto Montt). Fuente: adjudicación 1161-5-LE26 de Mercado Público.</p></div></div><div class="tl-row tl-user" data-cod="996-21-LE26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
+          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
+          <div class="dec-btns" data-cod="996-21-LE26">
+            <button class="dec dec-go" onclick="decidir(event,'996-21-LE26','postular')">Postular</button>
+            <button class="dec dec-est" onclick="decidir(event,'996-21-LE26','estudio')">En estudio</button>
+            <button class="dec dec-no" onclick="decidir(event,'996-21-LE26','descartar')">No postular</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="lic-996-22-LE26" data-codigo="996-22-LE26" data-region="Coquimbo" data-semaforo="REVISAR" data-dias="12" data-margen="-1" data-texto="servicio de aseo dependencias vialidad provincia de choapa mop - direccion de vialidad iv region la serena">
+      <div class="stripe" style="background:#996c0f"></div>
+      <div class="body">
+        <div class="c-head" onclick="toggleDetalle(this)">
+          <div class="c-tit">
+            <p class="title">Servicio de Aseo Dependencias Vialidad Provincia de Choapa</p>
+            <p class="why"><span class="badge" style="background:#fdf3dd;color:#996c0f">Revisar</span> Sin bases tecnicas/administrativas descargadas para costear con firmeza; monto estimado no informado por el organismo. Precedente de la hermana 996-21…</p>
+            <p class="meta">MOP - Direccion de Vialidad IV Region · La Serena (Coquimbo) · <span class="cod">996-22-LE26</span></p>
+          </div>
+          <div class="c-datos">
+            <div class="dato"><p>Monto</p><p>No informado</p></div>
+            <div class="dato"><p>Margen</p><p style="color:#996c0f">—</p></div>
+            <div class="dato"><p>Cierra en</p><p>12 días</p></div>
+          </div>
+        </div>
+        <div class="c-foot">
+          <div class="avance" title="Avance del proceso: 4 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-done" title="Bases descargadas"></span><span class="paso p-done" title="Evaluada"></span><span class="paso p-done" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
+          <div class="c-acts">
+            <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
+            <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=996-22-LE26" target="_blank" rel="noopener">Ficha oficial ↗</a>
+          </div>
+        </div>
+        <div class="detalle">
+          <p class="d-lbl">Expediente trazable</p>
+          <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Coquimbo.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Bases descargadas automáticamente</p><p class="tl-det">El robot descargó la ficha y adjuntos del proceso. No necesitas buscarlas.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Evaluada: Revisar</p><p class="tl-det">Sin bases tecnicas/administrativas descargadas para costear con firmeza; monto estimado no informado por el organismo. Precedente de la hermana 996-21-LE26 (Provincia de Limari, mismo organismo): presupuesto de la entidad no cubrio el costo real (margen 15%, oferta ~20% sobre referencia). Visita tecnica no confirmada en ficha API. Accion sugerida: descargar bases cuanto antes (cierre 27-07-2026).</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Precio de mercado verificado</p><p class="tl-det">El Estado ya pagó $1.600.000/mes por "Aseo y limpieza de edificios/oficinas" (Servicio Agrícola y Ganadero (SAG) - Dirección Regional Puerto Montt). Fuente: adjudicación 1161-5-LE26 de Mercado Público.</p></div></div><div class="tl-row tl-user" data-cod="996-22-LE26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
+          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
+          <div class="dec-btns" data-cod="996-22-LE26">
+            <button class="dec dec-go" onclick="decidir(event,'996-22-LE26','postular')">Postular</button>
+            <button class="dec dec-est" onclick="decidir(event,'996-22-LE26','estudio')">En estudio</button>
+            <button class="dec dec-no" onclick="decidir(event,'996-22-LE26','descartar')">No postular</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="lic-1696-9-LR26" data-codigo="1696-9-LR26" data-region="Arica" data-semaforo="NO" data-dias="2" data-margen="-1" data-texto="servicio de aseo e insumos jurisdicción arica corporación administrativa del poder judicial - arica arica">
+      <div class="stripe" style="background:#b3362d"></div>
+      <div class="body">
+        <div class="c-head" onclick="toggleDetalle(this)">
+          <div class="c-tit">
+            <p class="title">SERVICIO DE ASEO E INSUMOS JURISDICCIÓN ARICA</p>
+            <p class="why"><span class="badge" style="background:#fdecea;color:#b3362d">No postular</span> Visita técnica obligatoria venció (~27-06-2026) sin evidencia de asistencia; oferta sería inadmisible según bases.</p>
+            <p class="meta">Corporación Administrativa del Poder Judicial - Arica · Arica (Arica) · <span class="cod">1696-9-LR26</span></p>
+          </div>
+          <div class="c-datos">
+            <div class="dato"><p>Monto</p><p>No informado</p></div>
+            <div class="dato"><p>Margen</p><p style="color:#b3362d">—</p></div>
+            <div class="dato"><p>Cierra en</p><p>2 días</p></div>
+          </div>
+        </div>
+        <div class="c-foot">
+          <div class="avance" title="Avance del proceso: 3 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-done" title="Bases descargadas"></span><span class="paso p-done" title="Evaluada"></span><span class="paso p-todo" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
+          <div class="c-acts">
+            <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
+            <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=1696-9-LR26" target="_blank" rel="noopener">Ficha oficial ↗</a>
+          </div>
+        </div>
+        <div class="detalle">
+          <p class="d-lbl">Expediente trazable</p>
+          <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Arica.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Bases descargadas automáticamente</p><p class="tl-det">El robot descargó la ficha y adjuntos del proceso. No necesitas buscarlas.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Evaluada: No postular</p><p class="tl-det">Visita técnica obligatoria venció (~27-06-2026) sin evidencia de asistencia; oferta sería inadmisible según bases.</p></div></div><div class="tl-row tl-user" data-cod="1696-9-LR26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
+          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
+          <div class="dec-btns" data-cod="1696-9-LR26">
+            <button class="dec dec-go" onclick="decidir(event,'1696-9-LR26','postular')">Postular</button>
+            <button class="dec dec-est" onclick="decidir(event,'1696-9-LR26','estudio')">En estudio</button>
+            <button class="dec dec-no" onclick="decidir(event,'1696-9-LR26','descartar')">No postular</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="lic-1084148-11-LE26" data-codigo="1084148-11-LE26" data-region="Arica" data-semaforo="NO" data-dias="3" data-margen="-1" data-texto=" adquisición de servicios de limpieza y aseo por dos años de la oficina de administración central y bodega del slep chinchorro de arica . servicio local de educación de chinchorro (slep chinchorro) arica">
+      <div class="stripe" style="background:#b3362d"></div>
+      <div class="body">
+        <div class="c-head" onclick="toggleDetalle(this)">
+          <div class="c-tit">
+            <p class="title">"ADQUISICIÓN DE SERVICIOS DE LIMPIEZA Y ASEO POR DOS AÑOS DE LA OFICINA DE ADMINISTRACIÓN CENTRAL Y BODEGA DEL SLEP CHINCHORRO DE ARICA".</p>
+            <p class="why"><span class="badge" style="background:#fdecea;color:#b3362d">No postular</span> Acta de visita del 10-07-2026 no registra asistencia de RA Import; requisito bloqueante incumplido. Verificar manualmente si hay comprobante alternati…</p>
+            <p class="meta">Servicio Local de Educación de Chinchorro (SLEP Chinchorro) · Arica (Arica) · <span class="cod">1084148-11-LE26</span></p>
+          </div>
+          <div class="c-datos">
+            <div class="dato"><p>Monto</p><p>$55.200.000</p></div>
+            <div class="dato"><p>Margen</p><p style="color:#b3362d">—</p></div>
+            <div class="dato"><p>Cierra en</p><p>3 días</p></div>
+          </div>
+        </div>
+        <div class="c-foot">
+          <div class="avance" title="Avance del proceso: 3 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-done" title="Bases descargadas"></span><span class="paso p-done" title="Evaluada"></span><span class="paso p-todo" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
+          <div class="c-acts">
+            <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
+            <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=1084148-11-LE26" target="_blank" rel="noopener">Ficha oficial ↗</a>
+          </div>
+        </div>
+        <div class="detalle">
+          <p class="d-lbl">Expediente trazable</p>
+          <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Arica.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Bases descargadas automáticamente</p><p class="tl-det">El robot descargó la ficha y adjuntos del proceso. No necesitas buscarlas.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Evaluada: No postular</p><p class="tl-det">Acta de visita del 10-07-2026 no registra asistencia de RA Import; requisito bloqueante incumplido. Verificar manualmente si hay comprobante alternativo.</p></div></div><div class="tl-row tl-user" data-cod="1084148-11-LE26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
+          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
+          <div class="dec-btns" data-cod="1084148-11-LE26">
+            <button class="dec dec-go" onclick="decidir(event,'1084148-11-LE26','postular')">Postular</button>
+            <button class="dec dec-est" onclick="decidir(event,'1084148-11-LE26','estudio')">En estudio</button>
+            <button class="dec dec-no" onclick="decidir(event,'1084148-11-LE26','descartar')">No postular</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="lic-4619-2-LP26" data-codigo="4619-2-LP26" data-region="Coquimbo" data-semaforo="NO" data-dias="5" data-margen="-1" data-texto="servicio aseo oficinas de la drt coquimbo dirección del trabajo la serena">
+      <div class="stripe" style="background:#b3362d"></div>
+      <div class="body">
+        <div class="c-head" onclick="toggleDetalle(this)">
+          <div class="c-tit">
+            <p class="title">Servicio Aseo Oficinas de la DRT Coquimbo</p>
+            <p class="why"><span class="badge" style="background:#fdecea;color:#b3362d">No postular</span> RA Import no asistió a la visita técnica obligatoria en ninguna de las 8 dependencias; oferta sería inadmisible.</p>
+            <p class="meta">Dirección del Trabajo · La Serena (Coquimbo) · <span class="cod">4619-2-LP26</span></p>
+          </div>
+          <div class="c-datos">
+            <div class="dato"><p>Monto</p><p>$160.000.000</p></div>
+            <div class="dato"><p>Margen</p><p style="color:#b3362d">—</p></div>
+            <div class="dato"><p>Cierra en</p><p>5 días</p></div>
+          </div>
+        </div>
+        <div class="c-foot">
+          <div class="avance" title="Avance del proceso: 3 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-done" title="Bases descargadas"></span><span class="paso p-done" title="Evaluada"></span><span class="paso p-todo" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
+          <div class="c-acts">
+            <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
+            <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=4619-2-LP26" target="_blank" rel="noopener">Ficha oficial ↗</a>
+          </div>
+        </div>
+        <div class="detalle">
+          <p class="d-lbl">Expediente trazable</p>
+          <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Coquimbo.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Bases descargadas automáticamente</p><p class="tl-det">El robot descargó la ficha y adjuntos del proceso. No necesitas buscarlas.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Evaluada: No postular</p><p class="tl-det">RA Import no asistió a la visita técnica obligatoria en ninguna de las 8 dependencias; oferta sería inadmisible.</p></div></div><div class="tl-row tl-user" data-cod="4619-2-LP26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
+          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
+          <div class="dec-btns" data-cod="4619-2-LP26">
+            <button class="dec dec-go" onclick="decidir(event,'4619-2-LP26','postular')">Postular</button>
+            <button class="dec dec-est" onclick="decidir(event,'4619-2-LP26','estudio')">En estudio</button>
+            <button class="dec dec-no" onclick="decidir(event,'4619-2-LP26','descartar')">No postular</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="lic-2446-180-LE26" data-codigo="2446-180-LE26" data-region="Coquimbo" data-semaforo="" data-dias="0" data-margen="-1" data-texto="servicio limpieza tensomembrana estadio fsr i. municipalidad de coquimbo coquimbo">
+      <div class="stripe" style="background:#6b7280"></div>
+      <div class="body">
+        <div class="c-head" onclick="toggleDetalle(this)">
+          <div class="c-tit">
+            <p class="title">Servicio Limpieza Tensomembrana Estadio FSR</p>
+            <p class="why"><span class="badge" style="background:#f1f3f5;color:#6b7280">Fuera de alcance</span> Fuera de alcance - otra comuna</p>
+            <p class="meta">I. Municipalidad de Coquimbo · Coquimbo (Coquimbo) · <span class="cod">2446-180-LE26</span></p>
+          </div>
+          <div class="c-datos">
+            <div class="dato"><p>Monto</p><p>$25.000.000</p></div>
+            <div class="dato"><p>Margen</p><p style="color:#6b7280">—</p></div>
+            <div class="dato"><p>Cierra en</p><p>hoy</p></div>
+          </div>
+        </div>
+        <div class="c-foot">
+          <div class="avance" title="Avance del proceso: 1 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-todo" title="Bases descargadas"></span><span class="paso p-todo" title="Evaluada"></span><span class="paso p-todo" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
+          <div class="c-acts">
+            <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
+            <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=2446-180-LE26" target="_blank" rel="noopener">Ficha oficial ↗</a>
+          </div>
+        </div>
+        <div class="detalle">
+          <p class="d-lbl">Expediente trazable</p>
+          <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Coquimbo.</p></div></div><div class="tl-row"><span class="tl-ico">⏳</span><div><p class="tl-tit">Bases en cola de descarga</p><p class="tl-det">El robot las descargará en la próxima corrida.</p></div></div><div class="tl-row"><span class="tl-ico">⏳</span><div><p class="tl-tit">En evaluación</p><p class="tl-det">El evaluador emitirá GO / REVISAR / NO con costeo real.</p></div></div><div class="tl-row tl-user" data-cod="2446-180-LE26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
+          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
+          <div class="dec-btns" data-cod="2446-180-LE26">
+            <button class="dec dec-go" onclick="decidir(event,'2446-180-LE26','postular')">Postular</button>
+            <button class="dec dec-est" onclick="decidir(event,'2446-180-LE26','estudio')">En estudio</button>
+            <button class="dec dec-no" onclick="decidir(event,'2446-180-LE26','descartar')">No postular</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="lic-837-69-LE26" data-codigo="837-69-LE26" data-region="Región Metropolitana de Santiago" data-semaforo="" data-dias="2" data-margen="-1" data-texto="sc 365 cdp 427 servicio aseo sml ovalle por 24 meses servicio médico legal san felipe">
+      <div class="stripe" style="background:#6b7280"></div>
+      <div class="body">
+        <div class="c-head" onclick="toggleDetalle(this)">
+          <div class="c-tit">
+            <p class="title">SC 365 CDP 427 Servicio Aseo SML Ovalle por 24 meses</p>
+            <p class="why"><span class="badge" style="background:#f1f3f5;color:#6b7280">Fuera de alcance</span> CORREGIDO 15-07-2026: ficha oficial indica Comprador.RegionUnidad=Región Metropolitana de Santiago y ComunaUnidad=San Felipe (sede central del Servici…</p>
+            <p class="meta">Servicio Médico Legal · San Felipe (Región Metropolitana de Santiago) · <span class="cod">837-69-LE26</span></p>
+          </div>
+          <div class="c-datos">
+            <div class="dato"><p>Monto</p><p>$30.000.000</p></div>
+            <div class="dato"><p>Margen</p><p style="color:#6b7280">—</p></div>
+            <div class="dato"><p>Cierra en</p><p>2 días</p></div>
+          </div>
+        </div>
+        <div class="c-foot">
+          <div class="avance" title="Avance del proceso: 1 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-todo" title="Bases descargadas"></span><span class="paso p-todo" title="Evaluada"></span><span class="paso p-todo" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
+          <div class="c-acts">
+            <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
+            <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=837-69-LE26" target="_blank" rel="noopener">Ficha oficial ↗</a>
+          </div>
+        </div>
+        <div class="detalle">
+          <p class="d-lbl">Expediente trazable</p>
+          <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Región Metropolitana de Santiago.</p></div></div><div class="tl-row"><span class="tl-ico">⏳</span><div><p class="tl-tit">Bases en cola de descarga</p><p class="tl-det">El robot las descargará en la próxima corrida.</p></div></div><div class="tl-row"><span class="tl-ico">⏳</span><div><p class="tl-tit">En evaluación</p><p class="tl-det">El evaluador emitirá GO / REVISAR / NO con costeo real.</p></div></div><div class="tl-row tl-user" data-cod="837-69-LE26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
+          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
+          <div class="dec-btns" data-cod="837-69-LE26">
+            <button class="dec dec-go" onclick="decidir(event,'837-69-LE26','postular')">Postular</button>
+            <button class="dec dec-est" onclick="decidir(event,'837-69-LE26','estudio')">En estudio</button>
+            <button class="dec dec-no" onclick="decidir(event,'837-69-LE26','descartar')">No postular</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="lic-909863-1-LE26" data-codigo="909863-1-LE26" data-region="Coquimbo" data-semaforo="" data-dias="14" data-margen="-1" data-texto="e9 servicios de aseo tp de illapel tesorería general de la república (tesorería provincial de illapel) illapel">
+      <div class="stripe" style="background:#6b7280"></div>
+      <div class="body">
+        <div class="c-head" onclick="toggleDetalle(this)">
+          <div class="c-tit">
+            <p class="title">E9 Servicios de Aseo TP de Illapel</p>
+            <p class="why"><span class="badge" style="background:#f1f3f5;color:#6b7280">Fuera de alcance</span> Fuera de alcance - otra comuna</p>
+            <p class="meta">Tesorería General de la República (Tesorería Provincial de Illapel) · Illapel (Coquimbo) · <span class="cod">909863-1-LE26</span></p>
+          </div>
+          <div class="c-datos">
+            <div class="dato"><p>Monto</p><p>$45.564.948</p></div>
+            <div class="dato"><p>Margen</p><p style="color:#6b7280">—</p></div>
+            <div class="dato"><p>Cierra en</p><p>14 días</p></div>
+          </div>
+        </div>
+        <div class="c-foot">
+          <div class="avance" title="Avance del proceso: 1 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-todo" title="Bases descargadas"></span><span class="paso p-todo" title="Evaluada"></span><span class="paso p-todo" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
+          <div class="c-acts">
+            <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
+            <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=909863-1-LE26" target="_blank" rel="noopener">Ficha oficial ↗</a>
+          </div>
+        </div>
+        <div class="detalle">
+          <p class="d-lbl">Expediente trazable</p>
+          <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Coquimbo.</p></div></div><div class="tl-row"><span class="tl-ico">⏳</span><div><p class="tl-tit">Bases en cola de descarga</p><p class="tl-det">El robot las descargará en la próxima corrida.</p></div></div><div class="tl-row"><span class="tl-ico">⏳</span><div><p class="tl-tit">En evaluación</p><p class="tl-det">El evaluador emitirá GO / REVISAR / NO con costeo real.</p></div></div><div class="tl-row tl-user" data-cod="909863-1-LE26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
+          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
+          <div class="dec-btns" data-cod="909863-1-LE26">
+            <button class="dec dec-go" onclick="decidir(event,'909863-1-LE26','postular')">Postular</button>
+            <button class="dec dec-est" onclick="decidir(event,'909863-1-LE26','estudio')">En estudio</button>
+            <button class="dec dec-no" onclick="decidir(event,'909863-1-LE26','descartar')">No postular</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="sec-ca" style="display:none">
+  <div class="kpis" style="grid-template-columns:repeat(3,1fr)">
+    <div class="kpi"><p>En tu región</p><p>0</p><p class="k-sub">compras ágiles del rubro</p></div>
+    <div class="kpi"><p>Monto total disponible</p><p>—</p><p class="k-sub">suma de topes</p></div>
+    <div class="kpi"><p>Modalidad</p><p style="font-size:20px;padding-top:6px">Cotización</p><p class="k-sub">adjudicación rápida</p></div>
+  </div>
+  <div class="vacio">Sin compras ágiles de tu rubro en tu región hoy. El robot revisa el portal varias veces al día y las mostrará aquí apenas aparezcan.</div>
+</div>
+
+<div id="sec-res" style="display:none">
+  <div class="stats-res">
+    <div class="kpi"><p>Postuladas</p><p>1</p></div>
+    <div class="kpi"><p>En evaluación</p><p style="color:var(--pen)">1</p></div>
+    <div class="kpi"><p>Ganadas</p><p style="color:var(--go)">0</p></div>
+    <div class="kpi"><p>Tasa de éxito</p><p style="color:var(--navy)">—</p></div>
+  </div>
+  <p class="res-nota">1 postulación(es) en evaluación. La tasa de éxito aparecerá cuando haya adjudicaciones resueltas.</p>
+</div>
+
+</div>
+<div class="footer">
+  RA Import · Sociedad Importadora, Exportadora y Distribuidora RA Ltda. · RUT 77.401.618-K<br>
+  Fuentes de datos: Dirección ChileCompra (Mercado Público) · Dirección del Trabajo (IMM oficial) · Adjudicaciones reales citadas por código.<br>
+  Las recomendaciones del sistema son referenciales y quedan registradas. La decisión final de postular es siempre del usuario.
+</div>
+
+<a class="wsp" href="https://wa.me/56950610004?text=Hola,%20uso%20Radar%20de%20Licitaciones%20y%20necesito%20ayuda." target="_blank" rel="noopener" title="¿Dudas? Escríbenos por WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 2.9C8.8 2.9 2.9 8.7 2.9 16c0 2.3.6 4.6 1.8 6.5L2.8 29l6.7-1.8c1.9 1 4.2 1.6 6.5 1.6 7.2 0 13.1-5.9 13.1-13.1S23.2 2.9 16 2.9zm0 23.7c-2 0-4-.5-5.7-1.5l-.4-.2-4 1.1 1.1-3.9-.3-.4a10.6 10.6 0 0 1-1.6-5.7C5.1 10 10 5.1 16 5.1S26.9 10 26.9 16 22 26.6 16 26.6zm6-8c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.1 1.3 3.4c.2.2 2.3 3.5 5.5 4.9.8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
+</a>
+
+<script>
+// ---------- Decisión final del usuario (persistida en el navegador) ----------
+const LSKEY = 'radar_decisiones_v2';
+function getDec() { try { return JSON.parse(localStorage.getItem(LSKEY) || '{}'); } catch(e) { return {}; } }
+function setDec(cod, val) {
+  const e = getDec();
+  if (val) e[cod] = { estado: val, ts: new Date().toLocaleString('es-CL') };
+  else delete e[cod];
+  localStorage.setItem(LSKEY, JSON.stringify(e));
+}
+// Migración desde la versión anterior (★/✕)
+(function migrar() {
+  try {
+    const old = JSON.parse(localStorage.getItem('raimport_estados') || '{}');
+    const nu = getDec();
+    for (const c in old) {
+      if (!nu[c]) nu[c] = { estado: old[c] === 'interesa' ? 'estudio' : 'descartar', ts: 'migrada' };
+    }
+    localStorage.setItem(LSKEY, JSON.stringify(nu));
+  } catch(e) {}
+})();
+
+const LBL = { postular: 'POSTULAR', estudio: 'EN ESTUDIO', descartar: 'NO POSTULAR' };
+function aplicarDecisiones() {
+  const e = getDec();
+  let pendientes = 0;
+  document.querySelectorAll('.card').forEach(c => {
+    const cod = c.dataset.codigo;
+    const d = e[cod];
+    c.classList.toggle('decidida-descartar', d && d.estado === 'descartar');
+    c.querySelectorAll('.dec').forEach(b => b.classList.remove('on'));
+    if (d) {
+      const map = { postular: '.dec-go', estudio: '.dec-est', descartar: '.dec-no' };
+      const btn = c.querySelector(map[d.estado]);
+      if (btn) btn.classList.add('on');
+    }
+    const txt = c.querySelector('.tl-dec-txt');
+    if (txt) txt.textContent = d ? `${LBL[d.estado]} — registrada el ${d.ts}. Puedes cambiarla cuando quieras.` : 'Pendiente — la decisión final es tuya.';
+    // Paso 5 del avance
+    const pasos = c.querySelectorAll('.paso');
+    if (pasos[4]) pasos[4].classList.toggle('p-done', !!d);
+    if (['GO','REVISAR'].includes(c.dataset.semaforo) && !d) pendientes++;
+  });
+  const k = document.getElementById('kpi-decision');
+  if (k) k.textContent = pendientes;
+}
+function decidir(ev, cod, tipo) {
+  ev.stopPropagation();
+  const e = getDec();
+  setDec(cod, e[cod] && e[cod].estado === tipo ? null : tipo);
+  aplicarDecisiones();
+}
+
+function toggleDetalle(el) { el.closest('.card').classList.toggle('abierta'); }
+function toggleDetalleBtn(el) { el.closest('.card').classList.toggle('abierta'); }
+function abrirCard(cod) {
+  document.querySelector('[data-tab="lic"]').click();
+  const c = document.getElementById('lic-' + cod);
+  if (c) { c.classList.add('abierta'); c.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+}
+function verTab(btn) {
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const t = btn.dataset.tab;
+  document.getElementById('sec-lic').style.display = (t === 'lic') ? '' : 'none';
+  document.getElementById('sec-ca').style.display  = (t === 'ca')  ? '' : 'none';
+  document.getElementById('sec-res').style.display = (t === 'res') ? '' : 'none';
+}
+function filtrar(btn) {
+  document.querySelectorAll('.filters .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const f = btn.dataset.filter;
+  const e = getDec();
+  document.querySelectorAll('.card').forEach(c => {
+    let show = true;
+    if (f === '__decidir') show = ['GO','REVISAR'].includes(c.dataset.semaforo) && !e[c.dataset.codigo];
+    else if (f !== 'Todas') show = c.dataset.region === f;
+    c.classList.toggle('hidden', !show);
+  });
+}
+function buscar(txt) {
+  txt = txt.toLowerCase().trim();
+  document.querySelectorAll('.card').forEach(c => {
+    c.classList.toggle('hidden-search', txt && !(c.dataset.texto || '').includes(txt));
+  });
+}
+function ordenar(btn) {
+  document.querySelectorAll('.sorters .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const s = btn.dataset.sort;
+  const list = document.getElementById('cardlist');
+  const cards = Array.from(list.children);
+  cards.sort((a,b) => {
+    if (s === 'dias') return parseFloat(a.dataset.dias) - parseFloat(b.dataset.dias);
+    if (s === 'margen') return parseFloat(b.dataset.margen) - parseFloat(a.dataset.margen);
+    return 0;
+  });
+  cards.forEach(c => list.appendChild(c));
+}
+aplicarDecisiones();
+</script>
+</body></html>
