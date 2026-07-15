@@ -4,99 +4,112 @@
 <title>Radar de Licitaciones — Personaliza tu radar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0F1F3D;--navy2:#16294f;--gold:#D4A634;}
+:root{--bg:#060b0d;--panel:#0c1518;--neon:#00ff9d;--dim:#5c7a72;--txt:#d7f5ec;--amber:#ffcf4a;}
 *{box-sizing:border-box;}
-body{font-family:'Inter',-apple-system,Arial,sans-serif;background:#f4f2ec;margin:0;color:#1a1a18;-webkit-font-smoothing:antialiased;}
-.top{background:radial-gradient(1000px 340px at 80% -30%,var(--navy2),var(--navy) 60%);padding:2.6rem 1.5rem 2.2rem;text-align:center;position:relative;overflow:hidden;}
-.top::after{content:"";position:absolute;right:-50px;top:-50px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(212,166,52,.22),transparent 70%);}
-.eyebrow{color:var(--gold);font-size:11px;letter-spacing:2.5px;font-weight:600;text-transform:uppercase;margin:0 0 8px;}
-.top h1{font-family:'Instrument Serif',Georgia,serif;color:#fff;font-size:40px;font-weight:400;margin:0;line-height:1.05;}
-.top h1 em{font-style:italic;color:var(--gold);}
-.top p{color:#aeb8d4;font-size:14px;margin:12px 0 0;}
-.wrap{max-width:680px;margin:-1.2rem auto 3rem;padding:0 1.2rem;position:relative;z-index:1;}
-.card{background:#fff;border-radius:16px;padding:1.8rem;box-shadow:0 4px 24px rgba(15,31,61,.10);margin-bottom:1.1rem;}
+body{font-family:'Space Grotesk',-apple-system,Arial,sans-serif;background:var(--bg);margin:0;color:var(--txt);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(1200px 600px at 70% -10%, rgba(0,255,157,.06), transparent), linear-gradient(rgba(0,255,157,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,157,.03) 1px, transparent 1px);
+  background-size:auto, 40px 40px, 40px 40px;}
+.top{text-align:center;padding:2.6rem 1.5rem 1.5rem;}
+.radar{width:84px;height:84px;border-radius:50%;margin:0 auto 1.1rem;position:relative;background:radial-gradient(circle,rgba(0,255,157,.09),transparent 70%);border:1.5px solid rgba(0,255,157,.35);box-shadow:0 0 30px rgba(0,255,157,.15);overflow:hidden;}
+.sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,rgba(0,255,157,.4) 60deg,transparent 62deg);animation:sw 3.2s linear infinite;}
+@keyframes sw{to{transform:rotate(360deg);}}
+.cdot{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:9px;height:9px;border-radius:50%;background:var(--neon);box-shadow:0 0 12px var(--neon);}
+.eyebrow{color:var(--dim);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;}
+.top h1{font-size:32px;font-weight:700;margin:0;color:#fff;}
+.top h1 span{color:var(--neon);text-shadow:0 0 16px rgba(0,255,157,.5);}
+.top p{color:var(--dim);font-size:13.5px;margin:12px 0 0;}
+.wrap{max-width:680px;margin:0 auto 3rem;padding:0 1.2rem;}
+.card{background:var(--panel);border:1px solid rgba(0,255,157,.14);border-radius:16px;padding:1.6rem;margin-bottom:1.1rem;}
 .step{display:flex;align-items:center;gap:10px;margin:0 0 1rem;}
-.num{width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.step h2{font-size:15.5px;font-weight:600;margin:0;color:var(--navy);}
-.hint{font-size:12.5px;color:#8a887f;margin:-.4rem 0 1rem 36px;}
+.num{width:26px;height:26px;border-radius:50%;background:rgba(0,255,157,.15);border:1px solid var(--neon);color:var(--neon);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step h2{font-size:15.5px;font-weight:600;margin:0;color:#fff;}
+.hint{font-size:12.5px;color:var(--dim);margin:-.4rem 0 1rem 36px;}
+.src{font-family:'Space Mono',monospace;font-size:10px;color:var(--dim);margin:-.6rem 0 1rem 36px;}
 .chips{display:flex;flex-wrap:wrap;gap:8px;}
-.chip{border:1.5px solid #e5e3dc;background:#fbfaf7;border-radius:22px;padding:8px 15px;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;user-select:none;}
-.chip:hover{border-color:var(--gold);}
-.chip.on{background:var(--navy);border-color:var(--navy);color:#fff;}
-.chip.on.reg{background:var(--gold);border-color:var(--gold);color:var(--navy);}
-input[type=text]{width:100%;padding:11px 14px;border:1.5px solid #e5e3dc;border-radius:10px;font-family:inherit;font-size:13.5px;margin-top:4px;outline:none;}
-input[type=text]:focus{border-color:var(--gold);}
+.chip{border:1px solid rgba(0,255,157,.2);background:#0a1214;border-radius:8px;padding:8px 14px;font-size:12.5px;font-weight:500;cursor:pointer;transition:all .15s;user-select:none;color:#a8c4bb;}
+.chip:hover{border-color:rgba(0,255,157,.5);}
+.chip.on{background:rgba(0,255,157,.15);border-color:var(--neon);color:var(--neon);}
+input[type=text]{width:100%;padding:11px 14px;border:1px solid rgba(0,255,157,.2);border-radius:10px;font-family:inherit;font-size:13.5px;margin-top:4px;outline:none;background:#0a1214;color:var(--txt);}
+input[type=text]::placeholder{color:var(--dim);}
+input[type=text]:focus{border-color:var(--neon);}
 .row{display:flex;gap:12px;flex-wrap:wrap;}
 .row>div{flex:1;min-width:180px;}
-label.mini{font-size:12px;color:#5f5e58;font-weight:600;}
+label.mini{font-size:12px;color:var(--dim);font-weight:600;}
 .toggle-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.sw{width:42px;height:24px;border-radius:14px;background:#d8d5cc;position:relative;cursor:pointer;transition:.2s;flex-shrink:0;}
-.sw.on{background:var(--gold);}
-.sw::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s;}
-.sw.on::after{left:21px;}
-.activar{width:100%;background:var(--navy);color:#fff;border:none;border-radius:12px;padding:15px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;transition:.15s;}
-.activar:hover{background:var(--navy2);}
-.ok{display:none;background:#fff;border-radius:16px;padding:2.2rem 1.8rem;text-align:center;box-shadow:0 4px 24px rgba(15,31,61,.10);}
-.ok .big{font-family:'Instrument Serif',Georgia,serif;font-size:34px;color:var(--navy);margin:0 0 6px;}
-.ok .tick{width:56px;height:56px;border-radius:50%;background:#e3f3ea;color:#0f6e56;font-size:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
-.resumen{background:#f7f5ef;border-radius:12px;padding:1rem 1.2rem;text-align:left;font-size:13.5px;color:#3a3936;line-height:1.7;margin:1rem 0;}
-.resumen b{color:var(--navy);}
-.demo-tag{display:inline-block;background:#fdf1d6;color:#a06a0a;font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:.4px;text-transform:uppercase;margin-top:1rem;}
+.sw2{width:42px;height:24px;border-radius:14px;background:#22302d;position:relative;cursor:pointer;transition:.2s;flex-shrink:0;}
+.sw2.on{background:var(--neon);}
+.sw2::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s;}
+.sw2.on::after{left:21px;}
+.activar{width:100%;background:var(--neon);color:#04120c;border:none;border-radius:12px;padding:15px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 0 24px rgba(0,255,157,.3);}
+.ok{display:none;background:var(--panel);border:1px solid rgba(0,255,157,.25);border-radius:16px;padding:2.2rem 1.8rem;text-align:center;}
+.ok .big{font-size:30px;font-weight:700;color:#fff;margin:0 0 6px;}
+.ok .tick{width:56px;height:56px;border-radius:50%;background:rgba(0,255,157,.12);color:var(--neon);font-size:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;box-shadow:0 0 20px rgba(0,255,157,.2);}
+.resumen{background:#0a1214;border:1px solid rgba(0,255,157,.14);border-radius:12px;padding:1rem 1.2rem;text-align:left;font-size:13.5px;color:#a8c4bb;line-height:1.7;margin:1rem 0;}
+.resumen b{color:var(--neon);}
+.demo-tag{display:inline-block;background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.25);color:var(--neon);font-family:'Space Mono',monospace;font-size:10px;padding:5px 12px;border-radius:6px;letter-spacing:1px;text-transform:uppercase;margin-top:1rem;}
+.back{display:inline-block;margin:1rem 0;color:var(--neon);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;}
 </style></head>
 <body>
 <div class="top">
+  <div class="radar"><div class="sweep"></div><div class="cdot"></div></div>
   <p class="eyebrow">Mercado Público · Chile</p>
-  <h1>Personaliza tu <em>Radar</em></h1>
+  <h1>Personaliza tu <span>Radar</span></h1>
   <p>Elige tu rubro y tu región. En base a eso, el sistema busca solo para ti.</p>
 </div>
 
 <div class="wrap">
+  <a class="back" href="./plataforma.html">← volver</a>
   <div id="form">
     <div class="card">
       <div class="step"><span class="num">1</span><h2>¿Cuál es tu rubro?</h2></div>
-      <p class="hint">Elige uno o varios. El radar buscará oportunidades de estos rubros.</p>
+      <p class="hint">Elige uno o varios.</p>
+      <p class="src">// Rubros según la clasificación de Mercado Público</p>
       <div class="chips" id="rubros">
-        <span class="chip" onclick="tog(this)">Aseo y limpieza</span>
+        <span class="chip" onclick="tog(this)">Aseo, limpieza y sanitización</span>
+        <span class="chip" onclick="tog(this)">Alimentos y catering</span>
         <span class="chip" onclick="tog(this)">Construcción y obras</span>
-        <span class="chip" onclick="tog(this)">Alimentación y catering</span>
         <span class="chip" onclick="tog(this)">Seguridad y vigilancia</span>
         <span class="chip" onclick="tog(this)">Transporte y logística</span>
         <span class="chip" onclick="tog(this)">Jardinería y áreas verdes</span>
-        <span class="chip" onclick="tog(this)">Mantención</span>
-        <span class="chip" onclick="tog(this)">Insumos y suministros</span>
+        <span class="chip" onclick="tog(this)">Mantención y reparación</span>
+        <span class="chip" onclick="tog(this)">Insumos y suministros de oficina</span>
+        <span class="chip" onclick="tog(this)">Salud y laboratorio</span>
+        <span class="chip" onclick="tog(this)">Tecnología y software</span>
+        <span class="chip" onclick="tog(this)">Muebles y equipamiento</span>
+        <span class="chip" onclick="tog(this)">Vehículos</span>
       </div>
     </div>
 
     <div class="card">
       <div class="step"><span class="num">2</span><h2>¿En qué regiones quieres buscar?</h2></div>
-      <p class="hint">Selecciona una o varias regiones.</p>
+      <p class="hint">Selecciona una o varias.</p>
       <div class="chips" id="regiones">
-        <span class="chip reg" onclick="tog(this)">Arica y Parinacota</span>
-        <span class="chip reg" onclick="tog(this)">Tarapacá</span>
-        <span class="chip reg" onclick="tog(this)">Antofagasta</span>
-        <span class="chip reg" onclick="tog(this)">Atacama</span>
-        <span class="chip reg" onclick="tog(this)">Coquimbo</span>
-        <span class="chip reg" onclick="tog(this)">Valparaíso</span>
-        <span class="chip reg" onclick="tog(this)">Metropolitana</span>
-        <span class="chip reg" onclick="tog(this)">O'Higgins</span>
-        <span class="chip reg" onclick="tog(this)">Maule</span>
-        <span class="chip reg" onclick="tog(this)">Biobío</span>
-        <span class="chip reg" onclick="tog(this)">La Araucanía</span>
-        <span class="chip reg" onclick="tog(this)">Los Lagos</span>
+        <span class="chip" onclick="tog(this)">Arica y Parinacota</span>
+        <span class="chip" onclick="tog(this)">Tarapacá</span>
+        <span class="chip" onclick="tog(this)">Antofagasta</span>
+        <span class="chip" onclick="tog(this)">Atacama</span>
+        <span class="chip" onclick="tog(this)">Coquimbo</span>
+        <span class="chip" onclick="tog(this)">Valparaíso</span>
+        <span class="chip" onclick="tog(this)">Metropolitana</span>
+        <span class="chip" onclick="tog(this)">O'Higgins</span>
+        <span class="chip" onclick="tog(this)">Maule</span>
+        <span class="chip" onclick="tog(this)">Biobío</span>
+        <span class="chip" onclick="tog(this)">La Araucanía</span>
+        <span class="chip" onclick="tog(this)">Los Lagos</span>
       </div>
     </div>
 
     <div class="card">
       <div class="step"><span class="num">3</span><h2>¿Qué comunas evaluar a fondo?</h2></div>
-      <p class="hint">Donde operas: ahí el sistema hace el costeo y decide GO/NO GO.</p>
+      <p class="hint">Donde operas: ahí el sistema costea y decide GO/NO GO.</p>
       <input type="text" id="comunas" placeholder="Ej: La Serena, Arica, Coquimbo...">
     </div>
 
     <div class="card">
       <div class="step"><span class="num">4</span><h2>¿Cómo quieres que te avise?</h2></div>
-      <div class="toggle-row"><div class="sw on" onclick="this.classList.toggle('on')"></div><span style="font-size:13.5px">Alertas por WhatsApp</span></div>
+      <div class="toggle-row"><div class="sw2 on" onclick="this.classList.toggle('on')"></div><span style="font-size:13.5px">Alertas por WhatsApp</span></div>
       <div class="row">
         <div><label class="mini">Tu WhatsApp</label><input type="text" placeholder="+56 9 ...."></div>
         <div><label class="mini">Tu correo</label><input type="text" placeholder="tucorreo@empresa.cl"></div>
@@ -110,9 +123,9 @@ label.mini{font-size:12px;color:#5f5e58;font-weight:600;}
   <div class="ok" id="ok">
     <div class="tick">✓</div>
     <p class="big">Tu radar está activo</p>
-    <p style="color:#5f5e58;font-size:14px;margin:0">Desde mañana recibirás solo las oportunidades que elegiste.</p>
+    <p style="color:var(--dim);font-size:14px;margin:0">Desde mañana recibirás solo las oportunidades que elegiste.</p>
     <div class="resumen" id="resumen"></div>
-    <p style="font-size:12.5px;color:#8a887f;margin:0">El sistema escaneará Mercado Público y Compra Ágil cada día, evaluará por ti, y te avisará. Tú solo revisas.</p>
+    <p style="font-size:12.5px;color:var(--dim);margin:0">El sistema escaneará Mercado Público y Compra Ágil cada día, evaluará por ti, y te avisará. Tú solo revisas.</p>
   </div>
 </div>
 
