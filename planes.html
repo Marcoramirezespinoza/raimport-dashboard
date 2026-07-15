@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar de Licitaciones — Planes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060b0d;--panel:#0c1518;--neon:#00ff9d;--dim:#5c7a72;--txt:#d7f5ec;--amber:#ffcf4a;}
+*{box-sizing:border-box;}
+body{font-family:'Space Grotesk',-apple-system,Arial,sans-serif;background:var(--bg);margin:0;color:var(--txt);
+  background-image:radial-gradient(1200px 600px at 70% -10%, rgba(0,255,157,.06), transparent), linear-gradient(rgba(0,255,157,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,157,.03) 1px, transparent 1px);
+  background-size:auto, 40px 40px, 40px 40px;}
+.wrap{max-width:960px;margin:0 auto;padding:2.5rem 1.4rem 4rem;}
+.head{text-align:center;margin-bottom:2.4rem;}
+.radar{width:80px;height:80px;border-radius:50%;margin:0 auto 1.1rem;position:relative;background:radial-gradient(circle,rgba(0,255,157,.09),transparent 70%);border:1.5px solid rgba(0,255,157,.35);box-shadow:0 0 30px rgba(0,255,157,.15);overflow:hidden;}
+.sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,rgba(0,255,157,.4) 60deg,transparent 62deg);animation:sw 3.2s linear infinite;}
+@keyframes sw{to{transform:rotate(360deg);}}
+.dot{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:9px;height:9px;border-radius:50%;background:var(--neon);box-shadow:0 0 12px var(--neon);}
+h1{font-size:30px;font-weight:700;margin:0;color:#fff;}
+h1 span{color:var(--neon);text-shadow:0 0 16px rgba(0,255,157,.5);}
+.sub{font-family:'Space Mono',monospace;font-size:11.5px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin:10px 0 0;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.plan{background:var(--panel);border:1px solid rgba(0,255,157,.14);border-radius:16px;padding:1.6rem;display:flex;flex-direction:column;}
+.plan.hot{border-color:var(--neon);box-shadow:0 0 30px rgba(0,255,157,.12);position:relative;}
+.tag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--neon);color:#04120c;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;padding:4px 12px;border-radius:6px;letter-spacing:1px;text-transform:uppercase;}
+.pname{font-size:19px;font-weight:700;color:#fff;margin:0 0 4px;}
+.pdesc{font-size:12.5px;color:var(--dim);margin:0 0 1rem;min-height:34px;}
+.price{font-size:30px;font-weight:700;color:var(--neon);margin:0;text-shadow:0 0 14px rgba(0,255,157,.3);}
+.price small{font-size:13px;color:var(--dim);font-weight:400;}
+.feat{list-style:none;padding:1rem 0 0;margin:1rem 0 0;border-top:1px solid rgba(0,255,157,.1);flex:1;}
+.feat li{font-size:13px;padding:6px 0;display:flex;gap:9px;align-items:flex-start;color:var(--txt);}
+.feat li .y{color:var(--neon);font-weight:700;flex-shrink:0;}
+.feat li .n{color:#3a4a48;flex-shrink:0;}
+.feat li.off{color:#4a5a57;}
+.cta{margin-top:1.2rem;background:transparent;border:1px solid var(--neon);color:var(--neon);font-family:inherit;font-size:14px;font-weight:600;padding:11px;border-radius:10px;cursor:pointer;text-decoration:none;text-align:center;transition:.15s;}
+.cta:hover{background:var(--neon);color:#04120c;}
+.plan.hot .cta{background:var(--neon);color:#04120c;box-shadow:0 0 20px rgba(0,255,157,.3);}
+.nota{text-align:center;font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);margin-top:2rem;}
+.back{display:inline-block;margin-bottom:1.5rem;color:var(--neon);text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;}
+</style></head>
+<body>
+<div class="wrap">
+  <a class="back" href="./plataforma.html">← volver</a>
+  <div class="head">
+    <div class="radar"><div class="sweep"></div><div class="dot"></div></div>
+    <h1>Planes del <span>Radar</span></h1>
+    <p class="sub">Elige cuánto quieres que el radar trabaje por ti</p>
+  </div>
+
+  <div class="grid">
+    <div class="plan">
+      <p class="pname">Radar</p>
+      <p class="pdesc">Para descubrir oportunidades de tu rubro.</p>
+      <p class="price">Gratis</p>
+      <ul class="feat">
+        <li><span class="y">✓</span> Oportunidades de tu rubro y región</li>
+        <li><span class="y">✓</span> Tablero en la nube</li>
+        <li><span class="y">✓</span> 1 región</li>
+        <li class="off"><span class="n">✕</span> Evaluación GO/NO GO</li>
+        <li class="off"><span class="n">✕</span> Alertas WhatsApp</li>
+        <li class="off"><span class="n">✕</span> Descarga de bases</li>
+      </ul>
+      <a class="cta" href="./onboarding.html">Empezar gratis</a>
+    </div>
+
+    <div class="plan hot">
+      <span class="tag">Recomendado</span>
+      <p class="pname">Radar Pro</p>
+      <p class="pdesc">Para decidir rápido con números reales.</p>
+      <p class="price">$59.900<small>/mes</small></p>
+      <ul class="feat">
+        <li><span class="y">✓</span> Todo lo del plan Radar</li>
+        <li><span class="y">✓</span> <b>Evaluación GO/NO GO con cotizador real</b></li>
+        <li><span class="y">✓</span> Alertas por WhatsApp</li>
+        <li><span class="y">✓</span> Descarga automática de bases</li>
+        <li><span class="y">✓</span> Panel de resultados</li>
+        <li><span class="y">✓</span> Todas tus regiones</li>
+      </ul>
+      <a class="cta" href="./onboarding.html">Activar Radar Pro</a>
+    </div>
+
+    <div class="plan">
+      <p class="pname">Radar Full</p>
+      <p class="pdesc">Llave en mano: llega, revisa y sube.</p>
+      <p class="price">$119.900<small>/mes</small></p>
+      <ul class="feat">
+        <li><span class="y">✓</span> Todo lo del plan Pro</li>
+        <li><span class="y">✓</span> <b>Documentos listos para subir</b></li>
+        <li><span class="y">✓</span> Propuesta y anexos armados</li>
+        <li><span class="y">✓</span> Revisión humana final</li>
+        <li><span class="y">✓</span> Soporte prioritario</li>
+      </ul>
+      <a class="cta" href="./onboarding.html">Quiero todo listo</a>
+    </div>
+  </div>
+
+  <p class="nota">Valores referenciales, por definir · Fuente de datos: Dirección ChileCompra · Mercado Público</p>
+</div>
+</body></html>
