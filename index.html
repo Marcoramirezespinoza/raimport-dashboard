@@ -77,6 +77,11 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
 .margen { font-size:18px; font-weight:700; margin:0 0 5px; letter-spacing:-.3px; }
 .badge { font-size:10.5px; padding:4px 11px; border-radius:20px; font-weight:600; letter-spacing:.2px; white-space:nowrap; }
 .footer { text-align:center; padding:1.75rem; font-size:11px; color:#a8a49a; border-top:1px solid #e5e3dc; margin-top:1rem; }
+.tabs { display:flex; gap:6px; margin-bottom:1.3rem; border-bottom:2px solid #e5e3dc; }
+.tab { background:none; border:none; border-bottom:3px solid transparent; margin-bottom:-2px; color:#8a887f; font-size:14px; font-weight:600; padding:10px 18px; cursor:pointer; font-family:inherit; transition:all .15s; }
+.tab:hover { color:#0F1F3D; }
+.tab.active { color:#0F1F3D; border-bottom-color:#D4A634; }
+.ca-vacio { background:#fff; border-radius:12px; padding:2rem 1.5rem; text-align:center; color:#8a887f; font-size:13.5px; box-shadow:0 1px 8px rgba(15,31,61,.04); }
 .searchbar { margin-bottom:1rem; }
 .searchbar input { width:100%; padding:11px 16px; border:1.5px solid #e5e3dc; border-radius:12px; font-family:inherit; font-size:13.5px; color:#3a3936; outline:none; background:#fff; }
 .searchbar input:focus { border-color:#D4A634; box-shadow:0 0 0 3px rgba(212,166,52,.12); }
@@ -107,7 +112,7 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
     </div>
     <div class="hero-side">
       <p class="cliente">Panel de <b>RA Import</b></p>
-      <p class="fecha">14-07-2026 · 19:45</p>
+      <p class="fecha">14-07-2026 · 20:04</p>
     </div>
   </div>
 </div>
@@ -134,27 +139,30 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
 
 <p class="section-label">Resultados de postulaciones</p><div class="stats stats-res"><div class="stat"><p>Postuladas</p><p>1</p></div><div class="stat"><p>En evaluación</p><p style="color:#1c5ea0">1</p></div><div class="stat"><p>Ganadas</p><p style="color:#0f6e56">0</p></div><div class="stat"><p>Tasa de éxito</p><p style="color:#a06a0a">—</p></div></div><p class="res-nota">1 postulación(es) en evaluación. La tasa de éxito aparecerá cuando haya adjudicaciones resueltas.</p>
 
-<div class="searchbar">
-  <input id="buscador" type="text" placeholder="🔍 Buscar por nombre, organismo o comuna..." oninput="buscar(this.value)">
+<div class="tabs">
+  <button class="tab active" data-tab="lic" onclick="verTab(this)">Licitaciones (8)</button>
+  <button class="tab" data-tab="ca" onclick="verTab(this)">Compras Ágiles (1)</button>
 </div>
 
-<div class="controls">
-  <div class="filters">
-    <button class="filter-btn active" data-filter="Todas" onclick="filtrar(this)">Todas</button>
-    <button class="filter-btn" data-filter="Coquimbo" onclick="filtrar(this)">Coquimbo</button>
-    <button class="filter-btn" data-filter="Arica" onclick="filtrar(this)">Arica</button>
-    <button class="filter-btn" data-filter="interesa" onclick="filtrar(this)">★ Me interesan</button>
+<div id="sec-lic">
+  <div class="searchbar">
+    <input id="buscador" type="text" placeholder="🔍 Buscar por nombre, organismo o comuna..." oninput="buscar(this.value)">
   </div>
-  <div class="sorters">
-    <button class="filter-btn active" data-sort="prioridad" onclick="ordenar(this)">Prioridad</button>
-    <button class="filter-btn" data-sort="dias" onclick="ordenar(this)">Cierra antes</button>
-    <button class="filter-btn" data-sort="margen" onclick="ordenar(this)">Mayor margen</button>
+  <div class="controls">
+    <div class="filters">
+      <button class="filter-btn active" data-filter="Todas" onclick="filtrar(this)">Todas</button>
+      <button class="filter-btn" data-filter="Coquimbo" onclick="filtrar(this)">Coquimbo</button>
+      <button class="filter-btn" data-filter="Arica" onclick="filtrar(this)">Arica</button>
+      <button class="filter-btn" data-filter="interesa" onclick="filtrar(this)">★ Me interesan</button>
+    </div>
+    <div class="sorters">
+      <button class="filter-btn active" data-sort="prioridad" onclick="ordenar(this)">Prioridad</button>
+      <button class="filter-btn" data-sort="dias" onclick="ordenar(this)">Cierra antes</button>
+      <button class="filter-btn" data-sort="margen" onclick="ordenar(this)">Mayor margen</button>
+    </div>
   </div>
-</div>
-
-<p class="section-label">Licitaciones activas</p>
-<div id="cardlist">
-
+  <div id="cardlist">
+  
     <div class="card" data-codigo="996-21-LE26" data-region="Coquimbo" data-semaforo="REVISAR" data-dias="6" data-margen="15" data-texto="servicio de aseo dependencias vialidad provincia de limarí mop - dirección de vialidad iv región la serena">
       <div class="stripe" style="background:#c98a1a"></div>
       <div class="body">
@@ -315,9 +323,13 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:#f4f2ec; m
         </div>
       </div>
     </div>
+  </div>
 </div>
 
-<p class="section-label">Compra Ágil <span style="color:#8a887f;font-weight:400;text-transform:none;letter-spacing:0">(1 en tu región · 35 de aseo a nivel nacional)</span></p><div id="calist"><div class="ca-card ca-hl"><div class="ca-info"><p class="ca-title">SERVICIO DE LIMPIEZA Y SANITIZACIÓN PARA CUBREPISO DE SALÓN.</p><p class="ca-sub">SERVICIO AGRICOLA Y GANADERO · SAG - Coquimbo</p><p class="ca-sub2">cierra 2026-07-17 14:00 · $450.000 · <span class="cod">1159-62-COT26</span></p></div><div class="ca-right"><span class="ca-badge ca-reg">Tu región</span><a class="ca-btn" href="https://buscador.mercadopublico.cl/ficha?code=1159-62-COT26" target="_blank" rel="noopener">Ver ↗</a></div></div><div class="ca-card"><div class="ca-info"><p class="ca-title">DESRATIZACION. ADMINISTRADORA </p><p class="ca-sub">I MUNICIPALIDAD DE TIL TIL · Municipalidad </p><p class="ca-sub2">cierra 2026-07-15 09:00 · $200.000 · <span class="cod">3665-433-COT26</span></p></div><div class="ca-right"><span class="ca-badge">Nacional</span><a class="ca-btn" href="https://buscador.mercadopublico.cl/ficha?code=3665-433-COT26" target="_blank" rel="noopener">Ver ↗</a></div></div><div class="ca-card"><div class="ca-info"><p class="ca-title">Adquisición de útiles de Aseo / Programa Cuidado Domiciliarios</p><p class="ca-sub">I MUNICIPALIDAD DE PICA · Municipalidad de Pica</p><p class="ca-sub2">cierra 2026-07-15 12:45 · $1.000.000 · <span class="cod">3885-228-COT26</span></p></div><div class="ca-right"><span class="ca-badge">Nacional</span><a class="ca-btn" href="https://buscador.mercadopublico.cl/ficha?code=3885-228-COT26" target="_blank" rel="noopener">Ver ↗</a></div></div><div class="ca-card"><div class="ca-info"><p class="ca-title">FUMIGACION, DESRATIZACION, SANITIZACION Y DESINSECTACION SALA CUNA MIS PRIMEROS PASOS DE N</p><p class="ca-sub">Departamento de Educación · Municipalidad De Ninhue-Educac</p><p class="ca-sub2">cierra 2026-07-15 13:00 · $50.000 · <span class="cod">4120-64-COT26</span></p></div><div class="ca-right"><span class="ca-badge">Nacional</span><a class="ca-btn" href="https://buscador.mercadopublico.cl/ficha?code=4120-64-COT26" target="_blank" rel="noopener">Ver ↗</a></div></div><div class="ca-card"><div class="ca-info"><p class="ca-title">MATERIAL DE LIMPIEZA - DAEM</p><p class="ca-sub">I MUNICIPALIDAD DE PERALILLO · Departamento De Educacion</p><p class="ca-sub2">cierra 2026-07-15 15:00 · $250.000 · <span class="cod">3952-146-COT26</span></p></div><div class="ca-right"><span class="ca-badge">Nacional</span><a class="ca-btn" href="https://buscador.mercadopublico.cl/ficha?code=3952-146-COT26" target="_blank" rel="noopener">Ver ↗</a></div></div><div class="ca-card"><div class="ca-info"><p class="ca-title">CONTRATACION SERVICIO DE SANITIZACION Y REPARACION DE ESTANQUES CAMIONES ALJIBES. (OFICINA</p><p class="ca-sub">I MUNICIPALIDAD DE CONCON · I.MUNICIPALIDAD DE CONCON</p><p class="ca-sub2">cierra 2026-07-15 15:30 · $850.000 · <span class="cod">2594-533-COT26</span></p></div><div class="ca-right"><span class="ca-badge">Nacional</span><a class="ca-btn" href="https://buscador.mercadopublico.cl/ficha?code=2594-533-COT26" target="_blank" rel="noopener">Ver ↗</a></div></div><div class="ca-card"><div class="ca-info"><p class="ca-title">Adquisición compra de aseo, según documento adjunto</p><p class="ca-sub">SERVICIO DE SALUD SUR HOSPITAL SAN LUIS · Bienes y Servicios</p><p class="ca-sub2">cierra 2026-07-15 16:00 · $600.000 · <span class="cod">1057496-686-COT26</span></p></div><div class="ca-right"><span class="ca-badge">Nacional</span><a class="ca-btn" href="https://buscador.mercadopublico.cl/ficha?code=1057496-686-COT26" target="_blank" rel="noopener">Ver ↗</a></div></div><div class="ca-card"><div class="ca-info"><p class="ca-title">ADQUISICION DE ALTERNADOR PARA RETROEXCAVADORA JCB (P.542 DEPTO. ASEO)</p><p class="ca-sub">I MUNICIPALIDAD DE PENCO · Municipalidad</p><p class="ca-sub2">cierra 2026-07-15 16:20 · $1.300.000 · <span class="cod">4494-386-COT26</span></p></div><div class="ca-right"><span class="ca-badge">Nacional</span><a class="ca-btn" href="https://buscador.mercadopublico.cl/ficha?code=4494-386-COT26" target="_blank" rel="noopener">Ver ↗</a></div></div><div class="ca-card"><div class="ca-info"><p class="ca-title">CCP RIO BUENO, COMPRA DE UTILES DE ASEO PARA DISTINTAS DEPENDENCIAS</p><p class="ca-sub">DIRECCION REGIONAL DE GENDARMERIA DE CHILE, REGION · Región de los Ríos</p><p class="ca-sub2">cierra 2026-07-15 16:30 · $136.690 · <span class="cod">5740-124-COT26</span></p></div><div class="ca-right"><span class="ca-badge">Nacional</span><a class="ca-btn" href="https://buscador.mercadopublico.cl/ficha?code=5740-124-COT26" target="_blank" rel="noopener">Ver ↗</a></div></div><div class="ca-card"><div class="ca-info"><p class="ca-title">CONTRATACION SERVICIO DE SANITIZACION</p><p class="ca-sub">I MUNICIPALIDAD DE PINTO · Administración y Finanzas</p><p class="ca-sub2">cierra 2026-07-15 16:30 · $839.000 · <span class="cod">3881-183-COT26</span></p></div><div class="ca-right"><span class="ca-badge">Nacional</span><a class="ca-btn" href="https://buscador.mercadopublico.cl/ficha?code=3881-183-COT26" target="_blank" rel="noopener">Ver ↗</a></div></div><div class="ca-card"><div class="ca-info"><p class="ca-title">INSUMOS DENTALES </p><p class="ca-sub">I MUNICIPALIDAD DE RAUCO · Salud</p><p class="ca-sub2">cierra 2026-07-15 16:40 · $2.000.000 · <span class="cod">3874-182-COT26</span></p></div><div class="ca-right"><span class="ca-badge">Nacional</span><a class="ca-btn" href="https://buscador.mercadopublico.cl/ficha?code=3874-182-COT26" target="_blank" rel="noopener">Ver ↗</a></div></div><div class="ca-card"><div class="ca-info"><p class="ca-title">ADQUISICIÓN MATERIAL DE ASEO</p><p class="ca-sub">ILUSTRE MUNICIPALIDAD DE ALTO DEL CARMEN · Departamento de Salud - D.S.M.</p><p class="ca-sub2">cierra 2026-07-15 16:45 · $750.000 · <span class="cod">3332-58-COT26</span></p></div><div class="ca-right"><span class="ca-badge">Nacional</span><a class="ca-btn" href="https://buscador.mercadopublico.cl/ficha?code=3332-58-COT26" target="_blank" rel="noopener">Ver ↗</a></div></div></div>
+<div id="sec-ca" style="display:none">
+  <p class="section-label" style="margin-top:.5rem">Compras Ágiles en tu región</p>
+  <div id="calist"><div class="ca-card ca-hl"><div class="ca-info"><p class="ca-title">SERVICIO DE LIMPIEZA Y SANITIZACIÓN PARA CUBREPISO DE SALÓN.</p><p class="ca-sub">SERVICIO AGRICOLA Y GANADERO · SAG - Coquimbo</p><p class="ca-sub2">cierra 2026-07-17 14:00 · $450.000 · <span class="cod">1159-62-COT26</span></p></div><div class="ca-right"><span class="ca-badge ca-reg">Tu región</span><a class="ca-btn" href="https://buscador.mercadopublico.cl/ficha?code=1159-62-COT26" target="_blank" rel="noopener">Ver ↗</a></div></div></div>
+</div>
 </div>
 <div class="footer">RA Import · Sociedad Importadora, Exportadora y Distribuidora RA Ltda. · RUT 77.401.618-K</div>
 
@@ -375,6 +387,13 @@ function marcar(ev, cod, tipo) {
   aplicarEstados();
 }
 function toggleDetalle(infoEl) { infoEl.closest('.card').classList.toggle('abierta'); }
+function verTab(btn) {
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const t = btn.dataset.tab;
+  document.getElementById('sec-lic').style.display = (t === 'lic') ? '' : 'none';
+  document.getElementById('sec-ca').style.display  = (t === 'ca')  ? '' : 'none';
+}
 function buscar(txt) {
   txt = txt.toLowerCase().trim();
   document.querySelectorAll('.card').forEach(c => {
