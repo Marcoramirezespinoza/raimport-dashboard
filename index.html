@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="es"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Radar de Licitaciones — Venda más al Estado, sin leer bases todo el día</title>
+<title>Radar de Licitaciones Chile — Venda más al Estado, sin leer bases todo el día</title>
 <meta name="description" content="Detectamos, evaluamos y costeamos las licitaciones y compras ágiles de su rubro en Mercado Público. Usted solo revisa y decide.">
+<meta name="theme-color" content="#0F1F3D">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<link rel="icon" href="./icon-192.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Space+Mono&display=swap" rel="stylesheet">
@@ -42,9 +46,9 @@ h1 em { font-style:italic; color:var(--go); }
 .radar-big { width:230px; height:230px; border-radius:50%; position:relative; border:1.5px solid var(--border); background:radial-gradient(circle, #eef2f7, #fff 72%); overflow:hidden; box-shadow:0 10px 40px rgba(23,35,59,.09); }
 .radar-big .ring { position:absolute; border-radius:50%; border:1px solid #e8edf3; }
 .radar-big .r1 { inset:28%; } .radar-big .r2 { inset:14%; } .radar-big .r3 { inset:0; }
-.radar-big .sweep { position:absolute; inset:0; border-radius:50%; background:conic-gradient(from 0deg, transparent 0deg, rgba(15,31,61,.16) 55deg, transparent 58deg); animation:sw 4.5s linear infinite; }
+.radar-big .sweep { position:absolute; inset:0; border-radius:50%; background:conic-gradient(from 0deg, transparent 0deg, rgba(14,122,78,.28) 55deg, transparent 58deg); animation:sw 4.5s linear infinite; }
 @keyframes sw { to { transform:rotate(360deg); } }
-.radar-big .dot { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:9px; height:9px; border-radius:50%; background:var(--navy); }
+.radar-big .dot { position:absolute; top:50%; left:50%; transform:translate(-50%,-54%); line-height:0; }
 .blip { position:absolute; width:10px; height:10px; border-radius:50%; background:var(--go); animation:blip 3s ease-in-out infinite; }
 .b1 { top:26%; left:62%; } .b2 { top:58%; left:30%; animation-delay:1s; } .b3 { top:70%; left:65%; animation-delay:2s; }
 @keyframes blip { 0%,100% { opacity:.25; } 50% { opacity:1; } }
@@ -101,7 +105,7 @@ h2 { font-family:'Instrument Serif',serif; font-weight:400; font-size:32px; colo
 </style></head>
 <body>
 <nav class="nav">
-  <a class="brand" href="./index.html">◉ Radar <span class="pt">de Licitaciones</span></a>
+  <a class="brand" href="./index.html"><svg width="22" height="22" viewBox="0 0 24 24" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg> Radar <span class="pt">de Licitaciones</span></a>
   <div class="links">
     <a href="./index.html" class="on">Portada</a>
     <a href="./tablero.html">Tablero</a>
@@ -125,7 +129,7 @@ h2 { font-family:'Instrument Serif',serif; font-weight:400; font-size:32px; colo
     <div class="hero-visual">
       <div class="radar-big">
         <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
-        <div class="sweep"></div><div class="dot"></div>
+        <div class="sweep"></div><div class="dot"><svg width="44" height="44" viewBox="0 0 24 24"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg></div>
         <div class="blip b1"></div><div class="blip b2"></div><div class="blip b3"></div>
       </div>
     </div>
@@ -212,9 +216,10 @@ h2 { font-family:'Instrument Serif',serif; font-weight:400; font-size:32px; colo
 </div>
 
 <div class="footer">
-  Radar de Licitaciones · Un producto de RA Import — Sociedad Importadora, Exportadora y Distribuidora RA Ltda. · RUT 77.401.618-K<br>
+  <b>Radar de Licitaciones · Chile</b><br>
   Fuentes: Dirección ChileCompra (Mercado Público) · Dirección del Trabajo (IMM) · Adjudicaciones reales citadas por código.<br>
-  Las recomendaciones del sistema son referenciales; la decisión de postular es siempre del usuario.
+  Las recomendaciones del sistema son referenciales; la decisión de postular es siempre del usuario.<br>
+  <span style="font-size:10.5px;opacity:.75">Operado por Sociedad Importadora, Exportadora y Distribuidora RA Ltda. · RUT 77.401.618-K</span>
 </div>
 
 <a class="wsp" href="https://wa.me/56950610004?text=Hola,%20quiero%20saber%20más%20de%20Radar%20de%20Licitaciones" target="_blank" rel="noopener" title="Escríbenos por WhatsApp">

@@ -2,6 +2,10 @@
 <html lang="es"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Radar de Licitaciones — Tablero de RA Import</title>
+<meta name="theme-color" content="#0F1F3D">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<link rel="icon" href="./icon-192.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif&family=Space+Mono&display=swap" rel="stylesheet">
@@ -23,10 +27,10 @@ a { color:var(--navy); }
 .header { background:var(--surface); border-bottom:1px solid var(--border); padding:2.2rem 2rem; }
 .hero { max-width:1060px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.2rem; }
 .hero-l { display:flex; align-items:center; gap:20px; }
-.radar { width:64px; height:64px; border-radius:50%; position:relative; flex-shrink:0; border:1.5px solid var(--border); background:radial-gradient(circle, #eef2f7, #fff 70%); overflow:hidden; }
-.radar .sweep { position:absolute; inset:0; border-radius:50%; background:conic-gradient(from 0deg, transparent 0deg, rgba(15,31,61,.18) 55deg, transparent 58deg); animation:sw 4s linear infinite; }
+.radar { width:64px; height:64px; border-radius:50%; position:relative; flex-shrink:0; border:1.5px solid #cfe6d9; background:radial-gradient(circle, #f0f8f3, #fff 70%); overflow:hidden; }
+.radar .sweep { position:absolute; inset:0; border-radius:50%; background:conic-gradient(from 0deg, transparent 0deg, rgba(14,122,78,.30) 55deg, transparent 58deg); animation:sw 4s linear infinite; }
 @keyframes sw { to { transform:rotate(360deg); } }
-.radar .dot { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:7px; height:7px; border-radius:50%; background:var(--navy); }
+.radar .pin { position:absolute; top:50%; left:50%; transform:translate(-50%,-52%); line-height:0; }
 .hero h1 { font-family:'Instrument Serif',serif; font-weight:400; color:var(--navy); font-size:34px; margin:0; line-height:1.05; }
 .hero .sub { color:var(--muted); font-size:13.5px; margin:8px 0 0; max-width:480px; line-height:1.5; }
 .hero-side { text-align:right; }
@@ -132,6 +136,27 @@ a { color:var(--navy); }
 .stats-res { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:.7rem; }
 .res-nota { font-size:12.5px; color:var(--muted); margin:0; }
 
+/* --- Calendario de hitos --- */
+.hito { background:var(--surface); border:1px solid var(--border); border-radius:12px; margin-bottom:9px; padding:.85rem 1.2rem; display:flex; align-items:center; gap:14px; }
+.h-dias { flex-shrink:0; min-width:52px; text-align:center; font-weight:800; font-size:14px; padding:8px 6px; border-radius:9px; }
+.h-roja { background:#fdecea; color:var(--no); }
+.h-ambar { background:#fdf3dd; color:var(--rev); }
+.h-gris { background:var(--bg); color:var(--muted); }
+.h-info { flex:1; min-width:0; }
+.h-tit { font-size:13px; font-weight:700; margin:0 0 3px; line-height:1.35; }
+.h-det { font-size:11.5px; color:var(--muted); margin:0; }
+.cal-nota { font-size:12.5px; color:var(--muted); background:#e7f5ee; border:1px solid #cfe6d9; border-radius:10px; padding:.8rem 1.1rem; margin-bottom:1.1rem; }
+
+/* --- Asistente orientador --- */
+.ayuda-btn { position:fixed; left:22px; bottom:22px; z-index:200; width:54px; height:54px; border-radius:50%; background:var(--navy); color:#fff; border:none; font-size:22px; font-weight:700; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.22); transition:transform .15s; }
+.ayuda-btn:hover { transform:scale(1.07); }
+.ayuda-panel { display:none; position:fixed; left:22px; bottom:86px; z-index:201; width:290px; background:var(--surface); border:1px solid var(--border); border-radius:16px; box-shadow:0 10px 34px rgba(23,35,59,.18); padding:1.1rem 1.1rem 1rem; }
+.ayuda-panel.abierto { display:block; }
+.ayuda-panel h4 { font-size:13.5px; margin:0 0 10px; color:var(--navy); }
+.ayuda-acc { display:block; width:100%; text-align:left; background:var(--bg); border:1px solid var(--border); border-radius:9px; padding:9px 12px; font-size:12.5px; font-weight:600; color:var(--text); margin-bottom:7px; cursor:pointer; font-family:inherit; text-decoration:none; transition:border-color .15s; }
+.ayuda-acc:hover { border-color:var(--navy); }
+.ayuda-info { display:none; font-size:12px; color:var(--muted); background:#e7f5ee; border-radius:9px; padding:9px 11px; margin-top:4px; line-height:1.55; }
+
 .footer { text-align:center; padding:1.8rem 1rem; font-size:11.5px; color:var(--muted); border-top:1px solid var(--border); margin-top:2rem; line-height:1.7; }
 
 /* --- WhatsApp flotante --- */
@@ -150,7 +175,7 @@ a { color:var(--navy); }
 </style></head>
 <body>
 <nav class="nav">
-  <a class="brand" href="./index.html">◉ Radar <span class="pt">de Licitaciones</span></a>
+  <a class="brand" href="./index.html"><svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg> Radar <span class="pt">de Licitaciones</span></a>
   <div class="links">
     <a href="./index.html">Portada</a>
     <a href="./tablero.html" class="on">Tablero</a>
@@ -161,7 +186,7 @@ a { color:var(--navy); }
 <div class="header">
   <div class="hero">
     <div class="hero-l">
-      <div class="radar"><div class="sweep"></div><div class="dot"></div></div>
+      <div class="radar"><div class="sweep"></div><div class="pin"><svg width="26" height="26" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg></div></div>
       <div>
         <h1>Radar de Licitaciones</h1>
         <p class="sub">Oportunidades de aseo en Mercado Público, filtradas y evaluadas cada día</p>
@@ -169,7 +194,7 @@ a { color:var(--navy); }
     </div>
     <div class="hero-side">
       <p class="cliente">Panel de <b>RA Import</b></p>
-      <p class="fecha">Actualizado 15-07-2026 · 16:06</p>
+      <p class="fecha">Actualizado 15-07-2026 · 16:13</p>
     </div>
   </div>
 </div>
@@ -182,6 +207,7 @@ a { color:var(--navy); }
 <div class="tabs">
   <button class="tab active" data-tab="lic" onclick="verTab(this)">Licitaciones (8)</button>
   <button class="tab" data-tab="ca" onclick="verTab(this)">Compras Ágiles (2)</button>
+  <button class="tab" data-tab="cal" onclick="verTab(this)">Calendario (4)</button>
   <button class="tab" data-tab="res" onclick="verTab(this)">Resultados</button>
 </div>
 
@@ -488,6 +514,11 @@ a { color:var(--navy); }
   <div class="ca-card"><div class="ca-info"><p class="ca-title">Adquisición de materiales y útiles de aseo para la Oficina Regional de Arica y Parinacota</p><p class="ca-sub">CORP NACIONAL FORESTAL · XV Región - Oficina Regional Arica </p><p class="ca-sub2">cierra 2026-07-18 12:00 · tope $205.000 · <span class="cod">1087-119-COT26</span></p><p class="ca-dec"><span class="badge" style="background:#e7f5ee;color:#0e7a4e">GO</span> · oferta sugerida <b>$203.490</b></p><p class="ca-motivo">Costo total estimado con IVA $180.511 bajo tope $205.000; margen ajustado ~12.7% (bajo el recomendado 20% por restriccion de tope, sobre el </p></div><div class="ca-right"><span class="ca-reg">Tu región</span><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=1087-119-COT26" target="_blank" rel="noopener">Ver ficha ↗</a></div></div><div class="ca-card"><div class="ca-info"><p class="ca-title">Adquisición de resmas papel recicladas, pilas y paños Limpieza</p><p class="ca-sub">DIRECCION GENERAL DE AERONAUTICA CIVIL · UNIDAD DE COMPRA LA SERENA</p><p class="ca-sub2">cierra 2026-07-24 10:00 · tope $510.000 · <span class="cod">1471-41-COT26</span></p><p class="ca-dec"><span class="badge" style="background:#e7f5ee;color:#0e7a4e">GO</span> · oferta sugerida <b>$505.750</b></p><p class="ca-motivo">Costo total estimado con IVA $428.436 bajo tope $510.000 con holgura; margen recomendado ~18.1% (cercano al 20% de config, ajustado levement</p></div><div class="ca-right"><span class="ca-reg">Tu región</span><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=1471-41-COT26" target="_blank" rel="noopener">Ver ficha ↗</a></div></div>
 </div>
 
+<div id="sec-cal" style="display:none">
+  <div class="cal-nota">📬 Los recordatorios de estos hitos llegan solos a su correo: nueva oportunidad, cierre próximo y cambios de estado. No necesita anotar nada.</div>
+  <div class="hito"><span class="h-dias h-ambar">3d</span><div class="h-info"><p class="h-tit">Adquisición de materiales y útiles de aseo para la Oficina Regional de Aric…</p><p class="h-det">Cierre compra ágil · 2026-07-18 12:00 · <span class="cod">1087-119-COT26</span></p></div><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=1087-119-COT26" target="_blank" rel="noopener">Ver ↗</a></div><div class="hito"><span class="h-dias h-ambar">5d</span><div class="h-info"><p class="h-tit">Servicio de Aseo Dependencias Vialidad Provincia de Limarí</p><p class="h-det">Cierre licitación · 20-07-2026 15:30 · <span class="cod">996-21-LE26</span></p></div><button class="btn btn-sec" onclick="abrirCard('996-21-LE26')">Ver</button></div><div class="hito"><span class="h-dias h-gris">9d</span><div class="h-info"><p class="h-tit">Adquisición de resmas papel recicladas, pilas y paños Limpieza</p><p class="h-det">Cierre compra ágil · 2026-07-24 10:00 · <span class="cod">1471-41-COT26</span></p></div><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=1471-41-COT26" target="_blank" rel="noopener">Ver ↗</a></div><div class="hito"><span class="h-dias h-gris">12d</span><div class="h-info"><p class="h-tit">Servicio de Aseo Dependencias Vialidad Provincia de Choapa</p><p class="h-det">Cierre licitación · 27-07-2026 15:00 · <span class="cod">996-22-LE26</span></p></div><button class="btn btn-sec" onclick="abrirCard('996-22-LE26')">Ver</button></div>
+</div>
+
 <div id="sec-res" style="display:none">
   <div class="stats-res">
     <div class="kpi"><p>Postuladas</p><p>1</p></div>
@@ -503,6 +534,19 @@ a { color:var(--navy); }
   RA Import · Sociedad Importadora, Exportadora y Distribuidora RA Ltda. · RUT 77.401.618-K<br>
   Fuentes de datos: Dirección ChileCompra (Mercado Público) · Dirección del Trabajo (IMM oficial) · Adjudicaciones reales citadas por código.<br>
   Las recomendaciones del sistema son referenciales y quedan registradas. La decisión final de postular es siempre del usuario.
+</div>
+
+<!-- Asistente orientador -->
+<button class="ayuda-btn" onclick="toggleAyuda()" title="¿Necesita orientación?">?</button>
+<div class="ayuda-panel" id="ayuda">
+  <h4>¿Qué necesita hacer?</h4>
+  <button class="ayuda-acc" onclick="cerrarAyuda();document.querySelector('.accion').scrollIntoView({behavior:'smooth'})">▸ Ver qué hacer hoy</button>
+  <button class="ayuda-acc" onclick="irTab('cal')">▸ Ver cierres y fechas próximas</button>
+  <button class="ayuda-acc" onclick="cerrarAyuda();irTab('lic');document.querySelector('[data-filter=\'__decidir\']').click()">▸ Oportunidades que esperan mi decisión</button>
+  <button class="ayuda-acc" onclick="abrirPrimerExpediente()">▸ Ver la trazabilidad de una oportunidad</button>
+  <button class="ayuda-acc" onclick="toggleInfoPrecios()">▸ ¿De dónde salen los precios?</button>
+  <div class="ayuda-info" id="info-precios">Los precios se calculan con el sueldo mínimo oficial (Dirección del Trabajo) y se respaldan en <b>adjudicaciones reales de Mercado Público</b>, citadas por código en el expediente de cada oportunidad.</div>
+  <a class="ayuda-acc" href="https://wa.me/56950610004?text=Hola,%20uso%20Radar%20de%20Licitaciones%20y%20necesito%20ayuda." target="_blank" rel="noopener">▸ Hablar con soporte (WhatsApp)</a>
 </div>
 
 <a class="wsp" href="https://wa.me/56950610004?text=Hola,%20uso%20Radar%20de%20Licitaciones%20y%20necesito%20ayuda." target="_blank" rel="noopener" title="¿Dudas? Escríbenos por WhatsApp">
@@ -573,9 +617,14 @@ function verTab(btn) {
   document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   const t = btn.dataset.tab;
-  document.getElementById('sec-lic').style.display = (t === 'lic') ? '' : 'none';
-  document.getElementById('sec-ca').style.display  = (t === 'ca')  ? '' : 'none';
-  document.getElementById('sec-res').style.display = (t === 'res') ? '' : 'none';
+  ['lic','ca','cal','res'].forEach(s => {
+    document.getElementById('sec-' + s).style.display = (t === s) ? '' : 'none';
+  });
+}
+function irTab(nombre) {
+  const b = document.querySelector('[data-tab="' + nombre + '"]');
+  if (b) { b.click(); b.scrollIntoView({ behavior:'smooth', block:'center' }); }
+  cerrarAyuda();
 }
 function filtrar(btn) {
   document.querySelectorAll('.filters .filter-btn').forEach(b => b.classList.remove('active'));
@@ -607,6 +656,18 @@ function ordenar(btn) {
     return 0;
   });
   cards.forEach(c => list.appendChild(c));
+}
+// ---------- Asistente orientador ----------
+function toggleAyuda() { document.getElementById('ayuda').classList.toggle('abierto'); }
+function cerrarAyuda() { document.getElementById('ayuda').classList.remove('abierto'); }
+function toggleInfoPrecios() {
+  const el = document.getElementById('info-precios');
+  el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+}
+function abrirPrimerExpediente() {
+  cerrarAyuda();
+  const c = document.querySelector('.card[data-semaforo="GO"], .card[data-semaforo="REVISAR"], .card');
+  if (c) { irTab('lic'); c.classList.add('abierta'); c.scrollIntoView({ behavior:'smooth', block:'center' }); }
 }
 aplicarDecisiones();
 </script>
