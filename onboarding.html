@@ -59,7 +59,7 @@ label.mini { font-size:12px; color:var(--muted); font-weight:600; }
 <nav class="nav">
   <a class="brand" href="./index.html"><svg width="22" height="22" viewBox="0 0 24 24" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg> Radar <span class="pt">de Licitaciones</span></a>
   <div class="links">
-    <a href="./index.html">Portada</a>
+    <a href="./index.html">Inicio</a>
     <a href="./tablero.html">Tablero</a>
     <a href="./onboarding.html" class="on">Personalizar</a>
     <a href="./planes.html">Planes</a>
@@ -138,6 +138,9 @@ label.mini { font-size:12px; color:var(--muted); font-weight:600; }
         <span class="chip chip-color" data-color="#2b3440" onclick="elegirColor(this)"><span class="sw" style="background:#2b3440"></span>Grafito</span>
         <span class="chip chip-color" data-color="#4a3a75" onclick="elegirColor(this)"><span class="sw" style="background:#4a3a75"></span>Violeta corporativo</span>
       </div>
+      <p class="hint" style="margin:1.1rem 0 .5rem 0">¿Tiene logo? Súbalo y su tablero lo mostrará junto a su nombre (opcional).</p>
+      <input type="file" id="logo" accept="image/*" onchange="previewLogo(this)" style="font-size:12.5px">
+      <img id="logo-prev" alt="" style="display:none;max-height:46px;max-width:160px;margin-top:10px;border:1px solid var(--border);border-radius:8px;padding:6px;background:#fff">
     </div>
 
     <button class="activar" onclick="activar()">Activar mi radar →</button>
@@ -161,6 +164,13 @@ function elegirColor(el){
   el.classList.add('on');
   document.documentElement.style.setProperty('--navy', el.dataset.color);
   document.documentElement.style.setProperty('--navy-2', el.dataset.color);
+}
+function previewLogo(inp){
+  const f = inp.files && inp.files[0];
+  if(!f) return;
+  const r = new FileReader();
+  r.onload = e => { const img = document.getElementById('logo-prev'); img.src = e.target.result; img.style.display = 'inline-block'; };
+  r.readAsDataURL(f);
 }
 function activar(){
   const rubros = sel('rubros'), regiones = sel('regiones');
