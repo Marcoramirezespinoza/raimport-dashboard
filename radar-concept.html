@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar de Licitaciones — Concepto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060b0d;--panel:#0c1518;--neon:#00ff9d;--neon2:#12e08a;--dim:#5c7a72;--txt:#d7f5ec;--amber:#ffcf4a;--red:#ff5d6c;}
+*{box-sizing:border-box;}
+body{font-family:'Space Grotesk',-apple-system,Arial,sans-serif;background:var(--bg);margin:0;color:var(--txt);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(1200px 600px at 70% -10%, rgba(0,255,157,.06), transparent), linear-gradient(rgba(0,255,157,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,157,.03) 1px, transparent 1px);
+  background-size:auto, 40px 40px, 40px 40px;}
+.wrap{max-width:1000px;margin:0 auto;padding:2rem 1.4rem 4rem;}
+.top{display:flex;align-items:center;gap:26px;flex-wrap:wrap;padding:1.5rem 0 2rem;border-bottom:1px solid rgba(0,255,157,.12);margin-bottom:2rem;}
+/* ---- RADAR ---- */
+.radar{width:150px;height:150px;border-radius:50%;position:relative;flex-shrink:0;
+  background:radial-gradient(circle, rgba(0,255,157,.09), rgba(0,0,0,.2) 70%);
+  border:1.5px solid rgba(0,255,157,.35);box-shadow:0 0 30px rgba(0,255,157,.15), inset 0 0 30px rgba(0,255,157,.08);overflow:hidden;}
+.ring{position:absolute;border:1px solid rgba(0,255,157,.15);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);}
+.ring.r1{width:33%;height:33%;} .ring.r2{width:66%;height:66%;} .ring.r3{width:99%;height:99%;}
+.cross{position:absolute;background:rgba(0,255,157,.12);} .cross.h{top:50%;left:0;width:100%;height:1px;} .cross.v{left:50%;top:0;height:100%;width:1px;}
+.sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg, transparent 0deg, rgba(0,255,157,.05) 30deg, rgba(0,255,157,.45) 60deg, transparent 62deg);animation:sweep 3.2s linear infinite;}
+@keyframes sweep{to{transform:rotate(360deg);}}
+.blip{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--neon);box-shadow:0 0 8px var(--neon);animation:blip 3.2s ease-out infinite;}
+.blip.b1{top:32%;left:60%;animation-delay:.4s;} .blip.b2{top:64%;left:44%;animation-delay:1.6s;} .blip.b3{top:48%;left:72%;animation-delay:2.4s;}
+@keyframes blip{0%,70%{opacity:0;transform:scale(.6);}75%{opacity:1;transform:scale(1.3);}100%{opacity:0;transform:scale(1);}}
+.brand h1{font-size:34px;font-weight:700;margin:0;letter-spacing:-.5px;color:#fff;}
+.brand h1 span{color:var(--neon);text-shadow:0 0 16px rgba(0,255,157,.5);}
+.brand .st{font-family:'Space Mono',monospace;font-size:11.5px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin:8px 0 0;}
+.brand .live{display:inline-flex;align-items:center;gap:7px;margin-top:10px;font-family:'Space Mono',monospace;font-size:11px;color:var(--neon);}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--neon);box-shadow:0 0 8px var(--neon);animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+/* ---- KPIs ---- */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:2rem;}
+.kpi{background:var(--panel);border:1px solid rgba(0,255,157,.14);border-radius:12px;padding:1.1rem 1.2rem;}
+.kpi .l{font-family:'Space Mono',monospace;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin:0 0 8px;}
+.kpi .v{font-size:32px;font-weight:700;margin:0;color:var(--neon);text-shadow:0 0 14px rgba(0,255,157,.35);}
+.kpi.amber .v{color:var(--amber);text-shadow:0 0 14px rgba(255,207,74,.3);}
+.kpi.red .v{color:var(--red);text-shadow:0 0 14px rgba(255,93,108,.3);}
+/* ---- cards ---- */
+.lbl{font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin:0 0 1rem;}
+.card{background:var(--panel);border:1px solid rgba(0,255,157,.14);border-left:3px solid var(--neon);border-radius:10px;padding:1rem 1.3rem;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:.15s;}
+.card:hover{border-color:rgba(0,255,157,.4);box-shadow:0 0 20px rgba(0,255,157,.1);}
+.card.rev{border-left-color:var(--amber);} .card.no{border-left-color:var(--red);}
+.card .t{font-size:14px;font-weight:600;margin:0 0 4px;color:#fff;}
+.card .s{font-size:12px;color:var(--dim);margin:0;font-family:'Space Mono',monospace;}
+.tag{font-family:'Space Mono',monospace;font-size:10px;padding:5px 12px;border-radius:6px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
+.tag.go{background:rgba(0,255,157,.12);color:var(--neon);border:1px solid rgba(0,255,157,.3);}
+.tag.rev{background:rgba(255,207,74,.12);color:var(--amber);border:1px solid rgba(255,207,74,.3);}
+.tag.no{background:rgba(255,93,108,.1);color:var(--red);border:1px solid rgba(255,93,108,.3);}
+.foot{text-align:center;margin-top:2.5rem;font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);}
+.demo{display:inline-block;margin-top:1rem;background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.25);color:var(--neon);font-family:'Space Mono',monospace;font-size:10px;padding:5px 12px;border-radius:6px;letter-spacing:1px;text-transform:uppercase;}
+@media(max-width:640px){.kpis{grid-template-columns:repeat(2,1fr);}.brand h1{font-size:26px;}}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="radar">
+      <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+      <div class="cross h"></div><div class="cross v"></div>
+      <div class="sweep"></div>
+      <div class="blip b1"></div><div class="blip b2"></div><div class="blip b3"></div>
+    </div>
+    <div class="brand">
+      <h1>RADAR <span>de Licitaciones</span></h1>
+      <p class="st">Mercado Público · Chile · Rastreo automático</p>
+      <span class="live"><span class="dot"></span> ESCANEANDO EN VIVO · 8 objetivos detectados</span>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><p class="l">Postular</p><p class="v">0</p></div>
+    <div class="kpi amber"><p class="l">Revisar</p><p class="v">2</p></div>
+    <div class="kpi"><p class="l">Compra Ágil</p><p class="v">1</p></div>
+    <div class="kpi red"><p class="l">Descartadas</p><p class="v">3</p></div>
+  </div>
+
+  <p class="lbl">// Objetivos en rango</p>
+  <div class="card rev">
+    <div><p class="t">Servicio de Aseo · Vialidad Provincia de Limarí</p><p class="s">MOP · La Serena · cierra 20-07 · margen 15%</p></div>
+    <span class="tag rev">Revisar</span>
+  </div>
+  <div class="card rev">
+    <div><p class="t">Servicio de Aseo · Vialidad Provincia de Choapa</p><p class="s">MOP · La Serena · cierra 27-07 · sin bases</p></div>
+    <span class="tag rev">Revisar</span>
+  </div>
+  <div class="card">
+    <div><p class="t">Limpieza y Sanitización · SAG Coquimbo</p><p class="s">Compra Ágil · La Serena · cierra 17-07 · $450.000</p></div>
+    <span class="tag go">Compra Ágil</span>
+  </div>
+  <div class="card no">
+    <div><p class="t">Servicio Aseo Oficinas DRT Coquimbo</p><p class="s">Dir. del Trabajo · cierra 20-07 · visita no asistida</p></div>
+    <span class="tag no">No postular</span>
+  </div>
+
+  <div class="foot">
+    Concepto visual — tema "radar" para afinar antes de la versión final
+    <br><span class="demo">// Demo estática</span>
+  </div>
+</div>
+</body></html>
