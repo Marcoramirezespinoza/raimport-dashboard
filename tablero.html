@@ -250,7 +250,7 @@ html[data-theme="dark"] .btn-pri { background:#e8edf6; color:#0d131e; }
     <div class="hero-side">
       
       <p class="cliente">Panel de <b>demostración</b></p>
-      <p class="fecha">Actualizado 16-07-2026 · 18:27 (hora de Chile)</p>
+      <p class="fecha">Actualizado 16-07-2026 · 18:44 (hora de Chile)</p>
     </div>
   </div>
 </div>
@@ -557,8 +557,9 @@ html[data-theme="dark"] .btn-pri { background:#e8edf6; color:#0d131e; }
       <tr><td>Cierre de recepción</td><td id="cot-cierre"></td></tr>
       <tr><td>Validez de la oferta</td><td>60 días corridos desde la fecha de emisión</td></tr>
     </table>
+    <div id="cot-prop" style="font-size:12.5px;color:#3d4a60;line-height:1.65"></div>
     <div id="cot-det-bloque" style="display:none">
-      <p class="cot-sub" style="margin-bottom:8px">Especificaciones técnicas del servicio (según anexos oficiales)</p>
+      <p class="cot-sub" style="margin-bottom:8px">Antecedentes del requerimiento</p>
       <ul id="cot-detalle" style="font-size:12.5px;color:#3d4a60;line-height:1.7;margin:0 0 16px;padding-left:18px"></ul>
     </div>
     <div class="cot-precio">
@@ -830,7 +831,7 @@ function enviarFeedback() {
 }
 
 // ---------- Cotización visual ----------
-const COT = {"5750-3-LP26": {"tipo": "Licitación", "nombre": "Contrato Servicio de Aseo Comuna de Arica", "org": "MOP - Direccion de Vialidad XV Region - Direccion Regional (Comuna de Arica)", "cierre": "28-07-2026 10:00", "monto": "No informado", "margen": "20%", "precio": "", "resumen": "GO con margen 20% ($9.844.786/mes, 10 trabajadores, 5 dependencias en Arica). visita técnica el 20-07-2026 09:00 OBLIGATORIA (numeral 3.6).", "detalle": ["Entidad: Ministerio de Obras Públicas — Dirección de Vialidad, XV Región (Comuna de Arica)", "ID: 5750-3-LP26 — \"Contrato Servicio de Aseo Comuna de Arica\"", "Tipo: Licitación Pública LP (1.000-5.000 UTM), convocatoria abierta, 1 etapa", "Plazo de cierre: 28-07-2026 10:00:00 (12 días). Extensión automática de 2 días hábiles si a la fecha de cierre hay ≤2 propuestas recibidas.", "Duración: 19 meses, con posible renovación de 15 meses adicionales (a criterio del inspector fiscal)", "Lugares: 5 dependencias — Oficina Regional (ubicación por definir, reubicación en curso), Oficina Telemop/Arquitectura (Arturo Prat 305, piso 3), Oficina Provincial de Arica (Av. Alejandro Azolas N°2831), Campamento Quiane (Km 4,5 Ruta A…", "Monto de referencia: No informado por el organismo (Estimación en base a \"Precio Referencial\", fuente \"Subt. 22 normal-22 CAD\", sin monto numérico visible en la ficha ni bases técnicas revisadas)", "Garantía fiel cumplimiento: 5% del valor adjudicado, vigencia hasta 29-12-2028, beneficiario Director Regional de Vialidad. No permite subcontratación."]}, "909863-1-LE26": {"tipo": "Licitación", "nombre": "E9 Servicios de Aseo TP de Illapel", "org": "Tesorería General de la República (Tesorería Provincial de Illapel)", "cierre": "29-07-2026 13:00", "monto": "$45.564.948", "margen": "20%", "precio": "", "resumen": "Margen 20% NO verificado: depende de dotacion sin confirmar (falta anexo bases tecnicas; con 2+ trabajadores no alcanza). Revisar antes del 22-07-2026.", "detalle": ["Entidad: Tesorería Provincial de Illapel (Tesorería General de la República)", "ID: 909863-1-LE26 — \"E9 Servicios de Aseo TP de Illapel\"", "Tipo: Licitación Pública LE (100-1.000 UTM), convocatoria abierta, 1 etapa", "Plazo de cierre: 29-07-2026 13:00:00 (13 días)", "Duración: 36 meses, con renovación posible (carácter esencial del servicio, prórroga por una sola vez)", "Lugar: Buin 104, Illapel, Región de Coquimbo — fuera de las comunas base de RA Import (La Serena, Arica), ~230 km desde La Serena", "Monto Total Estimado: $45.564.948 (36 meses; el oferente ingresa precio neto sin IVA según observaciones de bases) → $1.265.693/mes neto", "Justificación de monto: \"La oferta total que sea superior al valor del presupuesto de esta licitación será rechazada de plano y no se procederá a su evaluación, siendo declarada inadmisible\""]}, "1159-62-COT26": {"tipo": "Compra Ágil", "nombre": "Limpieza y sanitización de cubrepiso salón Centro de Operaciones EMF La Serena (incluye movimiento de mobiliario)", "org": "Servicio Agrícola y Ganadero (SAG)", "cierre": "2026-07-17 14:00", "monto": "Tope $450.000", "margen": "", "precio": "$205.737", "resumen": "Costo real $171.447 (IVA incl.) muy por debajo del tope de $450.000; margen 20% holgado y precio competitivo.", "detalle": ["Servicio: Limpieza y sanitización del cubrepiso del salón del Centro de Operaciones EMF La Serena (SAG), incluye movimiento de mobiliario. El salón debe quedar listo para uso al día siguiente del término.", "Magnitud: 104 m².", "Organismo: Servicio Agrícola y Ganadero (SAG) — Región de Coquimbo.", "Dirección: Calle Las Higueras N° 995, La Serena.", "Tope disponible: $450.000 CLP, IVA incluido — la cotización debe cubrir insumos, impuestos, flete, movimiento de mobiliario y servicios extras. Ofertas sobre el tope son declaradas inadmisibles.", "Plazo de entrega: máximo 2 días hábiles desde la aceptación de la OC (aceptar OC dentro de 48 h de emitida).", "Horario de trabajo: lunes a viernes, 09:00–16:00 (fin de semana solo con coordinación previa).", "Pago: 30 días corridos desde recepción de la factura, previa Acta de Recepción Conforme firmada."]}};
+const COT = {"5750-3-LP26": {"tipo": "Licitación", "nombre": "Contrato Servicio de Aseo Comuna de Arica", "org": "MOP - Direccion de Vialidad XV Region - Direccion Regional (Comuna de Arica)", "cierre": "28-07-2026 10:00", "monto": "No informado", "margen": "20%", "precio": "", "resumen": "GO con margen 20% ($9.844.786/mes, 10 trabajadores, 5 dependencias en Arica). visita técnica el 20-07-2026 09:00 OBLIGATORIA (numeral 3.6).", "detalle": ["Entidad: Ministerio de Obras Públicas — Dirección de Vialidad, XV Región (Comuna de Arica)", "ID: 5750-3-LP26 — \"Contrato Servicio de Aseo Comuna de Arica\"", "Tipo: Licitación Pública LP (1.000-5.000 UTM), convocatoria abierta, 1 etapa", "Plazo de cierre: 28-07-2026 10:00:00 (12 días). Extensión automática de 2 días hábiles si a la fecha de cierre hay ≤2 propuestas recibidas.", "Duración: 19 meses, con posible renovación de 15 meses adicionales (a criterio del inspector fiscal)", "Lugares: 5 dependencias — Oficina Regional (ubicación por definir, reubicación en curso), Oficina Telemop/Arquitectura (Arturo Prat 305, piso 3), Oficina Provincial de Arica (Av. Alejandro Azolas N°2831), Campamento Quiane (Km 4,5 Ruta A…", "Monto de referencia: No informado por el organismo (Estimación en base a \"Precio Referencial\", fuente \"Subt. 22 normal-22 CAD\", sin monto numérico visible en la ficha ni bases técnicas revisadas)", "Garantía fiel cumplimiento: 5% del valor adjudicado, vigencia hasta 29-12-2028, beneficiario Director Regional de Vialidad. No permite subcontratación."], "prop": [{"t": "Presentación", "c": "<p>RA Import Ltda. (RUT 77.401.618-K) presenta su oferta técnica y económica para el &quot;Contrato Servicio de Aseo Comuna de Arica&quot;, licitación 5750-3-LP26, convocada por el Ministerio de Obras Públicas a través de la Dirección de Vialidad, XV Región.</p><p>RA Import es una empresa con operación consolidada en la comuna de Arica, especializada en servicios de aseo institucional para organismos públicos y privados. Nuestra propuesta se sustenta en tres atributos que la Dirección de Vialidad valorará durante la ejecución del contrato: presencia local permanente sin dependencia de traslados interregionales, dotación de personal ajustada exactamente a los requerimientos de cada una de las cinco dependencias, y cumplimiento laboral y previsional verificable durante los 19 meses de contrato.</p><p>Coordinador Logístico a cargo del proceso: Marco Ramírez Espinoza.</p>"}, {"t": "Objeto de la propuesta", "c": "<p>Prestación integral del servicio de aseo para las cinco dependencias de la Dirección de Vialidad XV Región indicadas en las bases técnicas, por un período de 19 meses, con opción de renovación de 15 meses adicionales a criterio del Inspector Fiscal:</p><p>| Dependencia | Ubicación | Frecuencia exigida | Dotación ofrecida |</p><p>|---|---|---|---|</p><p>| Oficina Regional (Edificio Regional) | <b><span style=\"background:#fdf3dd;border-radius:3px;padding:0 4px\">[COMPLETAR: dirección definitiva, reubicación en curso]</span></b> | Lunes a viernes | 2 personas, jornada completa |</p><p>| Telemop / Arquitectura | Arturo Prat 305, piso 3 | 3 veces/semana, jornada tarde | 1 persona, jornada parcial (~60%) |</p><p>| Oficina Provincial de Arica | Av. Alejandro Azolas N°2831 | Lunes a viernes | 5 personas, jornada completa |</p><p>| Campamento Quiane | Km 4,5 Ruta A-212 | 2 veces/semana, jornada mañana | 1 persona, jornada parcial (~40%) |</p><p>| Plaza de Pesaje Chacalluta | Ruta 5 Norte, Km 2.080 | Lunes a viernes | 1 persona, jornada completa |</p><p>Adicionalmente, servicio de jardinería una vez al mes en Oficina Provincial de Arica y en Plaza de Pesaje Chacalluta.</p><p>Dotación total ofrecida: 10 trabajadores (8 jornada completa + 2 jornadas parciales) más servicio externo de jardinería, todos con base de operación en la comuna de Arica.</p>"}, {"t": "Alcance y metodología", "c": "<p><b>Metodología de aseo.</b> RA Import ejecuta el servicio bajo un protocolo de limpieza diferenciado por tipo de recinto (oficinas administrativas, sectores de atención de público, instalaciones exteriores en Quiane y Chacalluta), que incluye:</p><ul><li>Aseo diario de superficies, mobiliario, pisos y sanitarios en las dependencias de frecuencia diaria (Oficina Regional, Oficina Provincial, Plaza de Pesaje Chacalluta).</li><li>Aseo programado según frecuencia exigida en Telemop/Arquitectura (3 veces/semana) y Campamento Quiane (2 veces/semana).</li><li>Uso de productos de limpieza biodegradables, dosificados según ficha técnica de cada superficie, minimizando impacto ambiental en zonas de camino público (Chacalluta, Quiane).</li><li>Equipamiento propio: aspiradoras, enceradoras e hidrolavadoras para pisos y sectores de mayor tránsito vehicular/peatonal.</li><li>Programa de control de plagas (insecticida) y dispensadores de higiene (jabón, papel, alcohol gel) en todas las dependencias.</li><li>Retiro y disposición de residuos mediante contenedor de 1.100 litros para Quiane y Chacalluta, con frecuencia lunes-miércoles-viernes, trasladados a vertedero municipal autorizado.</li><li>Servicio de jardinería mensual en Oficina Provincial de Arica y Plaza de Pesaje Chacalluta, con mantención de áreas verdes y control de crecimiento.</li></ul><p><b>Dotación de EPP y uniformes.</b> Todo el personal opera con uniforme corporativo identificado, EPP conforme al riesgo de cada recinto (guantes, calzado de seguridad, protección respiratoria en aplicación de productos químicos), reposición prorrateada según vida útil real de cada elemento.</p><p><b>Cumplimiento normativo.</b> Servicio prestado íntegramente con personal propio de RA Import, sin subcontratación (conforme exigencia de las bases), cumpliendo Código del Trabajo, pago de remuneraciones y cotizaciones previsionales al día, verificable mediante Certificado F-30 y Anexo N°1 de la licitación.</p>"}, {"t": "Equipo y plan de trabajo", "c": "<p><b>Estructura de equipo:</b></p><ul><li>10 trabajadores operativos distribuidos en las 5 dependencias según tabla de dotación.</li><li>1 jardinero externo para servicio mensual en 2 sitios.</li><li>1 supervisor de zona, con visitas de control cada 15 días a las 5 dependencias (radio de operación dentro de la comuna de Arica, sin sobrecosto de traslado interregional).</li><li>Coordinador Logístico Marco Ramírez Espinoza como contraparte única ante el Inspector Fiscal del contrato.</li></ul><p><b>Plan de inicio del servicio:</b></p><p>1. Asistencia a visita técnica obligatoria: <b>20-07-2026, 09:00 hrs</b> (numeral 3.6 de las bases administrativas). <b><span style=\"background:#fdf3dd;border-radius:3px;padding:0 4px\">[COMPLETAR: dirección exacta de punto de encuentro de la visita, a confirmar en el numeral referido]</span></b>.</p><p>2. Reclutamiento y verificación de antecedentes del personal asignado a cada dependencia (proceso interno, 5 días hábiles posteriores a la adjudicación).</p><p>3. Entrega de uniformes, EPP e insumos a cada trabajador antes del primer día de servicio.</p><p>4. Inducción de seguridad y protocolo específico por dependencia (incluye protocolos de acceso a Campamento Quiane y Plaza de Pesaje Chacalluta, de carácter vial).</p><p>5. Inicio de operaciones en la fecha que determine la orden de servicio del Inspector Fiscal.</p><p>6. Primera visita de supervisión a los 15 días de iniciado el contrato, con acta de conformidad.</p><p><b>Contingencias.</b> RA Import mantiene personal de reemplazo disponible en la comuna de Arica para cubrir licencias médicas o ausencias sin interrupción del servicio, condición crítica dado que las bases no permiten subcontratación.</p>"}, {"t": "Oferta económica", "c": "<p>Precio ofertado — escenario recomendado (margen 20% sobre costo real):</p><p>| Concepto | Monto |</p><p>|---|---|</p><p>| <b>Precio mensual neto</b> | <b>$9.844.786</b> |</p><p>| IVA (19%) | $1.870.509 |</p><p>| <b>Precio mensual total (con IVA)</b> | <b>$11.715.295</b> |</p><p>| <b>Precio total contrato (19 meses, neto)</b> | <b>$187.050.934</b> |</p><p>| IVA total (19 meses) | $35.539.678 |</p><p>| <b>Precio total contrato (19 meses, con IVA)</b> | <b>$222.590.612</b> |</p><p><b>Desglose del costo mensual base (fuente de cada línea):</b></p><p>| Línea de costo | Monto mensual | Fuente |</p><p>|---|---|---|</p><p>| Mano de obra: 8 trabajadores jornada completa × $553.553 líquido × 1,30 leyes sociales | $5.758.552 | [IMM oficial DT — Ley 21.830] |</p><p>| Mano de obra: 1 trabajador Telemop, jornada parcial ~60% | $431.772 | [IMM oficial DT — Ley 21.830, prorrateado según Bases del proceso] |</p><p>| Mano de obra: 1 trabajador Quiane, jornada parcial ~40% | $287.847 | [IMM oficial DT — Ley 21.830, prorrateado según Bases del proceso] |</p><p>| Jardinero (2 sitios, 1 visita/mes c/u) | $80.000 | [Estimación editable — ajústela a su realidad] |</p><p>| Insumos/EPP/maquinaria (uniformes, EPP, productos biodegradables, aspiradoras, enceradoras, hidrolavadoras, insecticida, dispensadores) | $500.000 | [Estimación editable — ajústela a su realidad] |</p><p>| Supervisión (visitas cada 15 días, 5 dependencias, sin sobrecosto interregional) | $250.000 | [Estimación editable — ajústela a su realidad] |</p><p>| Transporte y disposición de residuos (contenedor 1.100 lts, lunes-miércoles-viernes) | $150.000 | [Estimación editable — ajústela a su realidad] |</p><p>| Subtotal | $7.458.171 | |</p><p>| Gastos generales 10% | $745.817 | [Bases del proceso: cotizador RA Import — gastos generales 10%] |</p><p>| <b>Costo total mensual (neto)</b> | <b>$8.203.988</b> | |</p><p>| Margen recomendado 20% | $1.640.798 | [Cotizador RA Import — margen recomendado] |</p><p>| <b>Precio mensual neto ofertado</b> | <b>$9.844.786</b> | |</p><p>*Nota de fuentes: valores de mano de obra según IMM oficial de la Dirección del Trabajo vigente (Ley 21.830, $553.553 líquido) más leyes sociales 30%; jornadas parciales prorrateadas según dotación exigida en bases técnicas; insumos, supervisión y transporte son estimaciones editables de RA Import sujetas a ajuste; gastos generales y</p>"}, {"t": "Condiciones comerciales", "c": "<ul><li><b>Vigencia de la oferta:</b> conforme plazo de cierre de la licitación, 28-07-2026 10:00 hrs.</li><li><b>Duración del contrato:</b> 19 meses, con opción de renovación de 15 meses adicionales a criterio del Inspector Fiscal.</li><li><b>Forma de pago:</b> mensual, contra estado de pago aprobado por el Inspector Fiscal. <b><span style=\"background:#fdf3dd;border-radius:3px;padding:0 4px\">[COMPLETAR: plazo de pago exigido por Tesorería/DGOP según bases administrativas]</span></b>.</li><li><b>Garantía de fiel cumplimiento:</b> RA Import constituirá garantía por el 5% del valor total adjudicado, con vigencia hasta el 29-12-2028, a favor del Director Regional de Vialidad, conforme lo exigido en las bases.</li><li><b>Subcontratación:</b> no aplica — el servicio se ejecuta íntegramente con personal propio de RA Import, conforme prohibición expresa de las bases.</li><li><b>Reajustabilidad:</b> <b><span style=\"background:#fdf3dd;border-radius:3px;padding:0 4px\">[COMPLETAR: mecanismo de reajuste de precio durante los 19 meses, si las bases lo contemplan]</span></b>.</li><li><b>Contraparte técnica:</b> Marco Ramírez Espinoza, Coordinador Logístico RA Import, como interlocutor directo del Inspector Fiscal del contrato.</li><li><b>Documentación de respaldo:</b> Declaración Jurada Online, Anexo N°1 (sin deudas de remuneraciones/cotizaciones + Certificado F-30), Anexo N°3 (técnico), Anexo N°5 (programa de integridad) y Anexo N°2 (económico) se adjuntan en el portal conforme checklist administrativo del proceso.</li></ul><ul><li></li></ul><p>*RA Import Ltda. — RUT 77.401.618-K — Documento de uso interno para preparación de oferta. La presentación final en el portal Mercado Público debe completar los campos marcados <b><span style=\"background:#fdf3dd;border-radius:3px;padding:0 4px\">[COMPLETAR]</span></b> con la información verificada en la visita técnica del 20-07-2026 y en las bases administrativas.*</p>"}]}, "909863-1-LE26": {"tipo": "Licitación", "nombre": "E9 Servicios de Aseo TP de Illapel", "org": "Tesorería General de la República (Tesorería Provincial de Illapel)", "cierre": "29-07-2026 13:00", "monto": "$45.564.948", "margen": "20%", "precio": "", "resumen": "Margen 20% NO verificado: depende de dotacion sin confirmar (falta anexo bases tecnicas; con 2+ trabajadores no alcanza). Revisar antes del 22-07-2026.", "detalle": ["Entidad: Tesorería Provincial de Illapel (Tesorería General de la República)", "ID: 909863-1-LE26 — \"E9 Servicios de Aseo TP de Illapel\"", "Tipo: Licitación Pública LE (100-1.000 UTM), convocatoria abierta, 1 etapa", "Plazo de cierre: 29-07-2026 13:00:00 (13 días)", "Duración: 36 meses, con renovación posible (carácter esencial del servicio, prórroga por una sola vez)", "Lugar: Buin 104, Illapel, Región de Coquimbo — fuera de las comunas base de RA Import (La Serena, Arica), ~230 km desde La Serena", "Monto Total Estimado: $45.564.948 (36 meses; el oferente ingresa precio neto sin IVA según observaciones de bases) → $1.265.693/mes neto", "Justificación de monto: \"La oferta total que sea superior al valor del presupuesto de esta licitación será rechazada de plano y no se procederá a su evaluación, siendo declarada inadmisible\""], "prop": []}, "1159-62-COT26": {"tipo": "Compra Ágil", "nombre": "Limpieza y sanitización de cubrepiso salón Centro de Operaciones EMF La Serena (incluye movimiento de mobiliario)", "org": "Servicio Agrícola y Ganadero (SAG)", "cierre": "2026-07-17 14:00", "monto": "Tope $450.000", "margen": "", "precio": "$205.737", "resumen": "Costo real $171.447 (IVA incl.) muy por debajo del tope de $450.000; margen 20% holgado y precio competitivo.", "detalle": ["Servicio: Limpieza y sanitización del cubrepiso del salón del Centro de Operaciones EMF La Serena (SAG), incluye movimiento de mobiliario. El salón debe quedar listo para uso al día siguiente del término.", "Magnitud: 104 m².", "Organismo: Servicio Agrícola y Ganadero (SAG) — Región de Coquimbo.", "Dirección: Calle Las Higueras N° 995, La Serena.", "Tope disponible: $450.000 CLP, IVA incluido — la cotización debe cubrir insumos, impuestos, flete, movimiento de mobiliario y servicios extras. Ofertas sobre el tope son declaradas inadmisibles.", "Plazo de entrega: máximo 2 días hábiles desde la aceptación de la OC (aceptar OC dentro de 48 h de emitida).", "Horario de trabajo: lunes a viernes, 09:00–16:00 (fin de semana solo con coordinación previa).", "Pago: 30 días corridos desde recepción de la factura, previa Acta de Recepción Conforme firmada."], "prop": []}};
 const EMP = {"empresa": "RA Import", "razon": "Sociedad Importadora, Exportadora y Distribuidora RA Ltda.", "rut": "77.401.618-K", "mostrar": false};
 function abrirCot(ev, cod) {
   ev.stopPropagation();
@@ -848,16 +849,25 @@ function abrirCot(ev, cod) {
   document.getElementById('cot-fecha').textContent = new Date().toLocaleDateString('es-CL');
   const logoBox = document.getElementById('cot-logo');
   if (emp.logo) logoBox.innerHTML = '<img src="' + emp.logo + '" style="max-height:52px;max-width:170px">';
-  // Especificaciones técnicas desde los anexos oficiales (las extrae el evaluador)
+  // PROPUESTA COMERCIAL construida por el agente (secciones redactadas, no copiadas
+  // del anexo). Si aún no existe (no es GO), se muestran los antecedentes como respaldo.
+  const prop = document.getElementById('cot-prop');
   const det = document.getElementById('cot-detalle');
   const bloque = document.getElementById('cot-det-bloque');
+  prop.innerHTML = '';
   det.innerHTML = '';
-  if (d.detalle && d.detalle.length) {
+  if (d.prop && d.prop.length) {
+    d.prop.forEach(s => {
+      prop.innerHTML += '<p class="cot-sub" style="margin:14px 0 6px">' + s.t + '</p>' + s.c;
+    });
+    bloque.style.display = 'none';
+  } else if (d.detalle && d.detalle.length) {
     d.detalle.forEach(l => { const li = document.createElement('li'); li.textContent = l; det.appendChild(li); });
     bloque.style.display = 'block';
   } else {
     bloque.style.display = 'none';
   }
+  _cotActual = d;
   document.getElementById('cot-tipo').textContent = d.tipo + ' · Mercado Público';
   document.getElementById('cot-org').textContent = d.org;
   document.getElementById('cot-cod').textContent = cod;
@@ -871,43 +881,95 @@ function abrirCot(ev, cod) {
 }
 function cerrarCot() { document.getElementById('cot-overlay').classList.remove('abierto'); }
 
-// Descarga REAL en un clic: PDF (encuadrado A4, paginado) o Word
+// Descarga REAL: el documento se CONSTRUYE desde los datos (no captura pantalla),
+// encuadrado en A4 y con las secciones de la propuesta comercial.
 let _cotCod = '';
+let _cotActual = null;
+function _empActual() {
+  let emp = EMP.mostrar ? { nombre: EMP.razon || EMP.empresa, rut: EMP.rut, logo: '' } : { nombre: '[COMPLETAR: su empresa]', rut: '[COMPLETAR: su RUT]', logo: '' };
+  try {
+    const c = JSON.parse(localStorage.getItem('radar_demo_config') || 'null');
+    if (c && c.empresa) emp = { nombre: c.empresa, rut: c.rut || '[COMPLETAR: su RUT]', logo: c.logo || '' };
+  } catch(e) {}
+  return emp;
+}
+function construirCotHTML() {
+  const d = _cotActual;
+  const emp = _empActual();
+  if (!d) return '';
+  let secciones = '';
+  if (d.prop && d.prop.length) {
+    d.prop.forEach(s => {
+      secciones += '<h3 style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#5d6b82;margin:16px 0 6px">' + s.t + '</h3>'
+                 + '<div style="font-size:12.5px;color:#2c3a50;line-height:1.65">' + s.c + '</div>';
+    });
+  } else if (d.detalle && d.detalle.length) {
+    secciones += '<h3 style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#5d6b82;margin:16px 0 6px">Antecedentes del requerimiento</h3><ul style="font-size:12.5px;color:#2c3a50;line-height:1.7">';
+    d.detalle.forEach(l => { secciones += '<li>' + l + '</li>'; });
+    secciones += '</ul>';
+  }
+  const logoImg = emp.logo ? '<img src="' + emp.logo + '" style="max-height:56px;max-width:180px">' : '<b style="font-size:18px;color:#0F1F3D">📍 ' + emp.nombre + '</b>';
+  return '<div style="font-family:Calibri,Arial,sans-serif;color:#17233b;max-width:720px">'
+    + '<table style="width:100%;border-bottom:2.5px solid #0F1F3D;margin-bottom:14px"><tr>'
+    + '<td style="padding-bottom:10px">' + logoImg + '</td>'
+    + '<td style="text-align:right;font-size:12px;color:#5d6b82;padding-bottom:10px">'
+    + '<b style="font-size:15px;color:#0F1F3D">' + emp.nombre + '</b><br>RUT ' + emp.rut + '<br>' + new Date().toLocaleDateString('es-CL') + '</td></tr></table>'
+    + '<h1 style="font-size:24px;color:#0F1F3D;margin:0 0 2px;font-weight:600">Cotización</h1>'
+    + '<p style="font-size:11px;text-transform:uppercase;letter-spacing:1.4px;color:#5d6b82;margin:0 0 16px">' + d.tipo + ' · Mercado Público · proceso ' + _cotCod + '</p>'
+    + '<table style="width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:6px">'
+    + '<tr><td style="padding:6px 8px;color:#5d6b82;width:160px;border-bottom:1px solid #eef1f5"><b>PREPARADA PARA</b></td><td style="padding:6px 8px;border-bottom:1px solid #eef1f5">' + d.org + '</td></tr>'
+    + '<tr><td style="padding:6px 8px;color:#5d6b82;border-bottom:1px solid #eef1f5"><b>OBJETO</b></td><td style="padding:6px 8px;border-bottom:1px solid #eef1f5">' + d.nombre + '</td></tr>'
+    + '<tr><td style="padding:6px 8px;color:#5d6b82;border-bottom:1px solid #eef1f5"><b>CIERRE DE RECEPCIÓN</b></td><td style="padding:6px 8px;border-bottom:1px solid #eef1f5">' + d.cierre + '</td></tr>'
+    + '<tr><td style="padding:6px 8px;color:#5d6b82;border-bottom:1px solid #eef1f5"><b>VALIDEZ DE LA OFERTA</b></td><td style="padding:6px 8px;border-bottom:1px solid #eef1f5">60 días corridos desde la emisión</td></tr>'
+    + '</table>'
+    + secciones
+    + '<table style="width:100%;background:#f4f7fa;border:1px solid #e2e7ee;margin:16px 0 10px"><tr>'
+    + '<td style="padding:12px 16px"><span style="font-size:10.5px;color:#5d6b82;text-transform:uppercase;letter-spacing:.6px"><b>' + (d.precio ? 'Precio ofertado (IVA incl.)' : 'Margen recomendado') + '</b></span><br>'
+    + '<span style="font-size:24px;font-weight:800;color:#0e7a4e">' + (d.precio || d.margen || '[COMPLETAR]') + '</span></td>'
+    + '<td style="padding:12px 16px;text-align:right;font-size:12px;color:#5d6b82"><b>Referencia</b><br>' + d.monto + '</td></tr></table>'
+    + '<p style="font-size:9.5px;color:#8a97ab;line-height:1.6;border-top:1px solid #eef1f5;padding-top:10px">Costeo con fuentes: IMM oficial (Dirección del Trabajo) · adjudicaciones reales de Mercado Público citadas por código · los valores marcados como estimación son editables. Documento preparado con <b>Radar de Licitaciones Chile</b>.</p>'
+    + '</div>';
+}
 function _conLibPDF(cb) {
   if (window.html2pdf) return cb();
   const s = document.createElement('script');
   s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
   s.onload = cb;
-  s.onerror = () => window.print();   // respaldo: diálogo de impresión
+  s.onerror = () => alert('No se pudo cargar el generador de PDF. Revise su conexión e intente de nuevo.');
   document.head.appendChild(s);
 }
 function descargarCotPDF() {
-  const m = document.getElementById('cot-modal');
-  m.classList.add('exportando');
+  const html = construirCotHTML();
+  if (!html) return;
+  // Contenedor fuera de pantalla con el documento construido (evita el PDF en blanco)
+  const cont = document.createElement('div');
+  cont.style.cssText = 'position:absolute;left:-10000px;top:0;width:740px;background:#fff;padding:28px;z-index:-1';
+  cont.innerHTML = html;
+  document.body.appendChild(cont);
   _conLibPDF(() => {
     html2pdf().set({
       margin: [12, 12, 14, 12],
       filename: 'Cotizacion_' + _cotCod + '.pdf',
       image: { type: 'jpeg', quality: 0.96 },
-      html2canvas: { scale: 2, useCORS: true },
+      html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-    }).from(m).save().then(() => m.classList.remove('exportando'))
-      .catch(() => { m.classList.remove('exportando'); window.print(); });
+      pagebreak: { mode: ['css', 'legacy'] }
+    }).from(cont).save()
+      .then(() => cont.remove())
+      .catch(() => { cont.remove(); alert('No se pudo generar el PDF. Use "Descargar Word".'); });
   });
 }
 function descargarCotWord() {
-  const m = document.getElementById('cot-modal').cloneNode(true);
-  const acc = m.querySelector('.cot-acciones');
-  if (acc) acc.remove();
-  const html = '<html xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8">'
-    + '<style>body{font-family:Calibri,Arial,sans-serif;color:#17233b}td{padding:6px 8px}</style></head><body>'
-    + m.innerHTML + '</body></html>';
-  const blob = new Blob(['\ufeff', html], { type: 'application/msword' });
+  const html = construirCotHTML();
+  if (!html) return;
+  const doc = '<html xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"></head><body>' + html + '</body></html>';
+  const blob = new Blob(['\ufeff', doc], { type: 'application/msword' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'Cotizacion_' + _cotCod + '.doc';
+  document.body.appendChild(a);
   a.click();
+  a.remove();
   URL.revokeObjectURL(a.href);
 }
 
