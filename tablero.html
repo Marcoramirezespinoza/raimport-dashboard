@@ -202,20 +202,20 @@ a { color:var(--navy); }
     <div class="hero-side">
       
       <p class="cliente">Panel de <b>demostración</b></p>
-      <p class="fecha">Actualizado 16-07-2026 · 11:02 (hora de Chile)</p>
+      <p class="fecha">Actualizado 16-07-2026 · 11:28 (hora de Chile)</p>
     </div>
   </div>
 </div>
 <div class="wrap">
 
 <div class="accion accion-ok"><div class="a-txt"><p class="a-lbl">Acción del día</p><p class="a-tit">Sin decisiones pendientes</p><p class="a-det">El radar sigue vigilando Mercado Público por ti. Te avisaremos apenas aparezca algo de tu rubro.</p></div></div>
-<div class="kpis"><div class="kpi kpi-click" onclick="verTodas()" title="Ver el listado completo"><p>Oportunidades activas</p><p id="kpi-activas">6</p><p class="k-sub" id="kpi-activas-sub">6 licitaciones · 0 compras ágiles</p></div><div class="kpi kpi-click" onclick="verPorDecidir()" title="Ver cuáles esperan su decisión"><p>Esperan tu decisión</p><p class="k-accent" id="kpi-decision">0</p><p class="k-sub">toque para verlas →</p></div><div class="kpi kpi-click" onclick="irTab('cal')" title="Ver el calendario de cierres"><p>Cierran en ≤5 días</p><p class="">0</p><p class="k-sub">toque para ver fechas →</p></div><div class="kpi kpi-click" onclick="irTab('res')" title="Ver sus resultados"><p>Tasa de adjudicación</p><p>—</p><p class="k-sub">0 ganadas de 0 resueltas</p></div></div>
+<div class="kpis"><div class="kpi kpi-click" onclick="verTodas()" title="Ver el listado completo"><p>Oportunidades activas</p><p id="kpi-activas">7</p><p class="k-sub" id="kpi-activas-sub">6 licitaciones · 1 compras ágiles</p></div><div class="kpi kpi-click" onclick="verPorDecidir()" title="Ver cuáles esperan su decisión"><p>Esperan tu decisión</p><p class="k-accent" id="kpi-decision">0</p><p class="k-sub">toque para verlas →</p></div><div class="kpi kpi-click" onclick="irTab('cal')" title="Ver el calendario de cierres"><p>Cierran en ≤5 días</p><p class="">0</p><p class="k-sub">toque para ver fechas →</p></div><div class="kpi kpi-click" onclick="irTab('res')" title="Ver sus resultados"><p>Tasa de adjudicación</p><p>—</p><p class="k-sub">0 ganadas de 0 resueltas</p></div></div>
 
 
 <div class="tabs">
   <button class="tab active" data-tab="lic" onclick="verTab(this)">Licitaciones (6)</button>
-  <button class="tab" data-tab="ca" onclick="verTab(this)">Compras Ágiles (0)</button>
-  <button class="tab" data-tab="cal" onclick="verTab(this)">Calendario (1)</button>
+  <button class="tab" data-tab="ca" onclick="verTab(this)">Compras Ágiles (1)</button>
+  <button class="tab" data-tab="cal" onclick="verTab(this)">Calendario (2)</button>
   <button class="tab" data-tab="res" onclick="verTab(this)">Resultados</button>
 </div>
 
@@ -229,7 +229,6 @@ a { color:var(--navy); }
       <button class="filter-btn" data-filter="__decidir" onclick="filtrar(this)">Esperan decisión</button>
       <button class="filter-btn" data-filter="Coquimbo" onclick="filtrar(this)">Coquimbo</button>
       <button class="filter-btn" data-filter="Arica" onclick="filtrar(this)">Arica</button>
-      <button class="filter-btn" id="btn-restaurar" style="display:none" onclick="restaurarDescartadas()"></button>
     </div>
   </div>
   <div id="cardlist">
@@ -259,11 +258,11 @@ a { color:var(--navy); }
         <div class="detalle">
           <p class="d-lbl">Expediente trazable</p>
           <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Arica.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Bases descargadas automáticamente</p><p class="tl-det">El robot descargó la ficha y adjuntos del proceso. No necesitas buscarlas.</p></div></div><div class="tl-row"><span class="tl-ico">⏳</span><div><p class="tl-tit">En evaluación</p><p class="tl-det">El evaluador emitirá GO / REVISAR / NO con costeo real.</p></div></div><div class="tl-row tl-user" data-cod="5750-3-LP26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
-          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
+          <p class="d-lbl">Tu decisión <span class="d-hint">— la evaluación y los documentos corren SOLOS; tú decides el paso final. "No postular" la saca del tablero.</span></p>
           <div class="dec-btns" data-cod="5750-3-LP26">
-            <button class="dec dec-go" onclick="decidir(event,'5750-3-LP26','postular')">Postular</button>
-            <button class="dec dec-est" onclick="decidir(event,'5750-3-LP26','estudio')">En estudio</button>
-            <button class="dec dec-no" onclick="decidir(event,'5750-3-LP26','descartar')">No postular</button>
+            <button class="dec dec-go" onclick="decidir(event,'5750-3-LP26','postular')" title="Confirmo que postularé: subiré la oferta al portal con los documentos que el sistema preparó">Voy a postular</button>
+            <button class="dec dec-est" onclick="decidir(event,'5750-3-LP26','estudio')" title="Aún lo estoy pensando">En estudio</button>
+            <button class="dec dec-no" onclick="decidir(event,'5750-3-LP26','descartar')" title="No me interesa: desaparece del tablero y del correo">No postular</button>
           </div>
         </div>
       </div>
@@ -293,11 +292,11 @@ a { color:var(--navy); }
         <div class="detalle">
           <p class="d-lbl">Expediente trazable</p>
           <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Arica.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Bases descargadas automáticamente</p><p class="tl-det">El robot descargó la ficha y adjuntos del proceso. No necesitas buscarlas.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Evaluada: No postular</p><p class="tl-det">Visita técnica obligatoria venció (~27-06-2026) sin evidencia de asistencia; oferta sería inadmisible según bases.</p></div></div><div class="tl-row tl-user" data-cod="1696-9-LR26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
-          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
+          <p class="d-lbl">Tu decisión <span class="d-hint">— la evaluación y los documentos corren SOLOS; tú decides el paso final. "No postular" la saca del tablero.</span></p>
           <div class="dec-btns" data-cod="1696-9-LR26">
-            <button class="dec dec-go" onclick="decidir(event,'1696-9-LR26','postular')">Postular</button>
-            <button class="dec dec-est" onclick="decidir(event,'1696-9-LR26','estudio')">En estudio</button>
-            <button class="dec dec-no" onclick="decidir(event,'1696-9-LR26','descartar')">No postular</button>
+            <button class="dec dec-go" onclick="decidir(event,'1696-9-LR26','postular')" title="Confirmo que postularé: subiré la oferta al portal con los documentos que el sistema preparó">Voy a postular</button>
+            <button class="dec dec-est" onclick="decidir(event,'1696-9-LR26','estudio')" title="Aún lo estoy pensando">En estudio</button>
+            <button class="dec dec-no" onclick="decidir(event,'1696-9-LR26','descartar')" title="No me interesa: desaparece del tablero y del correo">No postular</button>
           </div>
         </div>
       </div>
@@ -327,11 +326,11 @@ a { color:var(--navy); }
         <div class="detalle">
           <p class="d-lbl">Expediente trazable</p>
           <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Coquimbo.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Bases descargadas automáticamente</p><p class="tl-det">El robot descargó la ficha y adjuntos del proceso. No necesitas buscarlas.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Evaluada: No postular</p><p class="tl-det">RA Import no asistió a la visita técnica obligatoria en ninguna de las 8 dependencias; oferta sería inadmisible.</p></div></div><div class="tl-row tl-user" data-cod="4619-2-LP26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
-          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
+          <p class="d-lbl">Tu decisión <span class="d-hint">— la evaluación y los documentos corren SOLOS; tú decides el paso final. "No postular" la saca del tablero.</span></p>
           <div class="dec-btns" data-cod="4619-2-LP26">
-            <button class="dec dec-go" onclick="decidir(event,'4619-2-LP26','postular')">Postular</button>
-            <button class="dec dec-est" onclick="decidir(event,'4619-2-LP26','estudio')">En estudio</button>
-            <button class="dec dec-no" onclick="decidir(event,'4619-2-LP26','descartar')">No postular</button>
+            <button class="dec dec-go" onclick="decidir(event,'4619-2-LP26','postular')" title="Confirmo que postularé: subiré la oferta al portal con los documentos que el sistema preparó">Voy a postular</button>
+            <button class="dec dec-est" onclick="decidir(event,'4619-2-LP26','estudio')" title="Aún lo estoy pensando">En estudio</button>
+            <button class="dec dec-no" onclick="decidir(event,'4619-2-LP26','descartar')" title="No me interesa: desaparece del tablero y del correo">No postular</button>
           </div>
         </div>
       </div>
@@ -361,11 +360,11 @@ a { color:var(--navy); }
         <div class="detalle">
           <p class="d-lbl">Expediente trazable</p>
           <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Arica.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Bases descargadas automáticamente</p><p class="tl-det">El robot descargó la ficha y adjuntos del proceso. No necesitas buscarlas.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Evaluada: No postular</p><p class="tl-det">Acta de visita del 10-07-2026 no registra asistencia de RA Import; requisito bloqueante incumplido. Verificar manualmente si hay comprobante alternativo.</p></div></div><div class="tl-row tl-user" data-cod="1084148-11-LE26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
-          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
+          <p class="d-lbl">Tu decisión <span class="d-hint">— la evaluación y los documentos corren SOLOS; tú decides el paso final. "No postular" la saca del tablero.</span></p>
           <div class="dec-btns" data-cod="1084148-11-LE26">
-            <button class="dec dec-go" onclick="decidir(event,'1084148-11-LE26','postular')">Postular</button>
-            <button class="dec dec-est" onclick="decidir(event,'1084148-11-LE26','estudio')">En estudio</button>
-            <button class="dec dec-no" onclick="decidir(event,'1084148-11-LE26','descartar')">No postular</button>
+            <button class="dec dec-go" onclick="decidir(event,'1084148-11-LE26','postular')" title="Confirmo que postularé: subiré la oferta al portal con los documentos que el sistema preparó">Voy a postular</button>
+            <button class="dec dec-est" onclick="decidir(event,'1084148-11-LE26','estudio')" title="Aún lo estoy pensando">En estudio</button>
+            <button class="dec dec-no" onclick="decidir(event,'1084148-11-LE26','descartar')" title="No me interesa: desaparece del tablero y del correo">No postular</button>
           </div>
         </div>
       </div>
@@ -395,11 +394,11 @@ a { color:var(--navy); }
         <div class="detalle">
           <p class="d-lbl">Expediente trazable</p>
           <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Región Metropolitana de Santiago.</p></div></div><div class="tl-row"><span class="tl-ico">⏳</span><div><p class="tl-tit">Bases en cola de descarga</p><p class="tl-det">El robot las descargará en la próxima corrida.</p></div></div><div class="tl-row"><span class="tl-ico">⏳</span><div><p class="tl-tit">En evaluación</p><p class="tl-det">El evaluador emitirá GO / REVISAR / NO con costeo real.</p></div></div><div class="tl-row tl-user" data-cod="837-69-LE26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
-          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
+          <p class="d-lbl">Tu decisión <span class="d-hint">— la evaluación y los documentos corren SOLOS; tú decides el paso final. "No postular" la saca del tablero.</span></p>
           <div class="dec-btns" data-cod="837-69-LE26">
-            <button class="dec dec-go" onclick="decidir(event,'837-69-LE26','postular')">Postular</button>
-            <button class="dec dec-est" onclick="decidir(event,'837-69-LE26','estudio')">En estudio</button>
-            <button class="dec dec-no" onclick="decidir(event,'837-69-LE26','descartar')">No postular</button>
+            <button class="dec dec-go" onclick="decidir(event,'837-69-LE26','postular')" title="Confirmo que postularé: subiré la oferta al portal con los documentos que el sistema preparó">Voy a postular</button>
+            <button class="dec dec-est" onclick="decidir(event,'837-69-LE26','estudio')" title="Aún lo estoy pensando">En estudio</button>
+            <button class="dec dec-no" onclick="decidir(event,'837-69-LE26','descartar')" title="No me interesa: desaparece del tablero y del correo">No postular</button>
           </div>
         </div>
       </div>
@@ -429,11 +428,11 @@ a { color:var(--navy); }
         <div class="detalle">
           <p class="d-lbl">Expediente trazable</p>
           <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Coquimbo.</p></div></div><div class="tl-row"><span class="tl-ico">⏳</span><div><p class="tl-tit">Bases en cola de descarga</p><p class="tl-det">El robot las descargará en la próxima corrida.</p></div></div><div class="tl-row"><span class="tl-ico">⏳</span><div><p class="tl-tit">En evaluación</p><p class="tl-det">El evaluador emitirá GO / REVISAR / NO con costeo real.</p></div></div><div class="tl-row tl-user" data-cod="909863-1-LE26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
-          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
+          <p class="d-lbl">Tu decisión <span class="d-hint">— la evaluación y los documentos corren SOLOS; tú decides el paso final. "No postular" la saca del tablero.</span></p>
           <div class="dec-btns" data-cod="909863-1-LE26">
-            <button class="dec dec-go" onclick="decidir(event,'909863-1-LE26','postular')">Postular</button>
-            <button class="dec dec-est" onclick="decidir(event,'909863-1-LE26','estudio')">En estudio</button>
-            <button class="dec dec-no" onclick="decidir(event,'909863-1-LE26','descartar')">No postular</button>
+            <button class="dec dec-go" onclick="decidir(event,'909863-1-LE26','postular')" title="Confirmo que postularé: subiré la oferta al portal con los documentos que el sistema preparó">Voy a postular</button>
+            <button class="dec dec-est" onclick="decidir(event,'909863-1-LE26','estudio')" title="Aún lo estoy pensando">En estudio</button>
+            <button class="dec dec-no" onclick="decidir(event,'909863-1-LE26','descartar')" title="No me interesa: desaparece del tablero y del correo">No postular</button>
           </div>
         </div>
       </div>
@@ -443,16 +442,16 @@ a { color:var(--navy); }
 
 <div id="sec-ca" style="display:none">
   <div class="kpis" style="grid-template-columns:repeat(3,1fr)">
-    <div class="kpi"><p>En tu región</p><p>0</p><p class="k-sub">compras ágiles del rubro</p></div>
-    <div class="kpi"><p>Monto total disponible</p><p>—</p><p class="k-sub">suma de topes</p></div>
+    <div class="kpi"><p>En tu región</p><p>1</p><p class="k-sub">compras ágiles del rubro</p></div>
+    <div class="kpi"><p>Monto total disponible</p><p>$450.000</p><p class="k-sub">suma de topes</p></div>
     <div class="kpi"><p>Modalidad</p><p style="font-size:20px;padding-top:6px">Cotización</p><p class="k-sub">adjudicación rápida</p></div>
   </div>
-  <div class="vacio">Sin compras ágiles de tu rubro en tu región hoy. El robot revisa el portal varias veces al día y las mostrará aquí apenas aparezcan.</div>
+  <div class="ca-card"><div class="ca-info"><p class="ca-title">Limpieza y sanitización de cubrepiso salón Centro de Operaciones EMF La Serena (incluye mo</p><p class="ca-sub">Servicio Agrícola y Ganadero (SAG) · SAG Región de Coquimbo - La Serena</p><p class="ca-sub2">cierra 2026-07-17 14:00 · tope $450.000 · 👥 sin cotizaciones aún · <span class="cod">1159-62-COT26</span></p><p class="ca-dec"><span class="badge" style="background:#e7f5ee;color:#0e7a4e">GO</span> · oferta sugerida <b>$205.737</b></p><p class="ca-motivo">Costo real $171.447 (IVA incl.) muy por debajo del tope de $450.000; margen 20% holgado y precio competitivo.</p></div><div class="ca-right"><span class="ca-reg">Tu región</span><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=1159-62-COT26" target="_blank" rel="noopener">Ver ficha ↗</a></div></div>
 </div>
 
 <div id="sec-cal" style="display:none">
   <div class="cal-nota">📬 Los recordatorios de estos hitos llegan solos a su correo: nueva oportunidad, cierre próximo y cambios de estado. No necesita anotar nada.</div>
-  <div class="hito" data-cod="5750-3-LP26"><span class="h-dias h-gris">8d</span><div class="h-info"><p class="h-tit">Contrato Servicio de Aseo Comuna de Arica</p><p class="h-det">Cierre licitación · 28-07-2026 10:00 · <span class="cod">5750-3-LP26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20licitaci%C3%B3n%3A%20Contrato%20Servicio%20de%20Aseo%20Comuna%20de%20Arica&dates=20260728T100000/20260728T110000&details=Cierre%20licitaci%C3%B3n%20del%20proceso%205750-3-LP26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('5750-3-LP26')">Ver</button></div>
+  <div class="hito" data-cod="1159-62-COT26"><span class="h-dias h-roja">1d</span><div class="h-info"><p class="h-tit">Limpieza y sanitización de cubrepiso salón Centro de Operaciones EMF La Ser…</p><p class="h-det">Cierre compra ágil · 2026-07-17 14:00 · <span class="cod">1159-62-COT26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20compra%20%C3%A1gil%3A%20Limpieza%20y%20sanitizaci%C3%B3n%20de%20cubrepiso%20sal%C3%B3n%20Centro%20de%20Operaci&dates=20260717T140000/20260717T150000&details=Cierre%20compra%20%C3%A1gil%20del%20proceso%201159-62-COT26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=1159-62-COT26" target="_blank" rel="noopener">Ver ↗</a></div><div class="hito" data-cod="5750-3-LP26"><span class="h-dias h-gris">8d</span><div class="h-info"><p class="h-tit">Contrato Servicio de Aseo Comuna de Arica</p><p class="h-det">Cierre licitación · 28-07-2026 10:00 · <span class="cod">5750-3-LP26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20licitaci%C3%B3n%3A%20Contrato%20Servicio%20de%20Aseo%20Comuna%20de%20Arica&dates=20260728T100000/20260728T110000&details=Cierre%20licitaci%C3%B3n%20del%20proceso%205750-3-LP26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('5750-3-LP26')">Ver</button></div>
 </div>
 
 <div id="sec-res" style="display:none">
@@ -569,7 +568,7 @@ function irTab(nombre) {
 }
 // Las descartadas (No postular) se BORRAN del tablero y los contadores se
 // rebajan al instante. "Restaurar descartadas (N)" deshace si fue un error.
-const N_CA = 0;
+const N_CA = 1;
 function filtrar(btn) {
   document.querySelectorAll('.filters .filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -604,18 +603,6 @@ function borrarDescartadas() {
     if (d && d.estado === 'descartar') h.remove();
   });
   actualizarContadores();
-  const total = Object.values(e).filter(d => d.estado === 'descartar').length;
-  const btn = document.getElementById('btn-restaurar');
-  if (btn) {
-    btn.textContent = 'Restaurar descartadas (' + total + ')';
-    btn.style.display = total ? '' : 'none';
-  }
-}
-function restaurarDescartadas() {
-  const e = getDec();
-  for (const k in e) { if (e[k].estado === 'descartar') delete e[k]; }
-  localStorage.setItem(LSKEY, JSON.stringify(e));
-  location.reload();
 }
 function actualizarContadores() {
   const nLic = document.querySelectorAll('.card').length;
