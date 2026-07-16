@@ -15,6 +15,8 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; background:var(--bg);
 .nav { display:flex; align-items:center; justify-content:space-between; padding:12px 2rem; background:var(--surface); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; flex-wrap:wrap; gap:8px; }
 .nav .brand { font-family:'Instrument Serif',serif; font-size:20px; color:var(--navy); text-decoration:none; }
 .nav .brand .pt { color:var(--go); }
+.nav .brand .cl { font-family:'Inter',sans-serif; font-size:10px; color:var(--muted); letter-spacing:2.5px; text-transform:uppercase; font-weight:700; margin-left:4px; vertical-align:2px; }
+
 .nav .links { display:flex; gap:4px; flex-wrap:wrap; }
 .nav .links a { color:var(--muted); text-decoration:none; font-size:13.5px; font-weight:500; padding:7px 13px; border-radius:8px; }
 .nav .links a:hover { background:var(--bg); color:var(--text); }
@@ -57,7 +59,7 @@ label.mini { font-size:12px; color:var(--muted); font-weight:600; }
 </style></head>
 <body>
 <nav class="nav">
-  <a class="brand" href="./index.html"><svg width="22" height="22" viewBox="0 0 24 24" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg> Radar <span class="pt">de Licitaciones</span></a>
+  <a class="brand" href="./index.html"><svg width="22" height="22" viewBox="0 0 24 24" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg> Radar <span class="pt">de Licitaciones</span><span class="cl">Chile</span></a>
   <div class="links">
     <a href="./index.html">Inicio</a>
     <a href="./tablero.html">Tablero</a>

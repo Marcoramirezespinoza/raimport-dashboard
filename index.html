@@ -20,6 +20,8 @@ body { font-family:'Inter',-apple-system,Arial,sans-serif; margin:0; color:var(-
 .nav { display:flex; align-items:center; justify-content:space-between; padding:12px 2rem; background:var(--surface); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; flex-wrap:wrap; gap:8px; }
 .nav .brand { font-family:'Instrument Serif',serif; font-size:20px; color:var(--navy); text-decoration:none; }
 .nav .brand .pt { color:var(--go); }
+.nav .brand .cl { font-family:'Inter',sans-serif; font-size:10px; color:var(--muted); letter-spacing:2.5px; text-transform:uppercase; font-weight:700; margin-left:4px; vertical-align:2px; }
+
 .nav .links { display:flex; gap:4px; flex-wrap:wrap; align-items:center; }
 .nav .links a { color:var(--muted); text-decoration:none; font-size:13.5px; font-weight:500; padding:7px 13px; border-radius:8px; }
 .nav .links a:hover { background:var(--bg); color:var(--text); }
@@ -102,10 +104,13 @@ h2 { font-family:'Instrument Serif',serif; font-weight:400; font-size:32px; colo
 .wsp:hover { transform:scale(1.07); }
 .wsp svg { width:29px; height:29px; fill:#fff; }
 @media (max-width:720px) { h1 { font-size:34px; } .hero { padding:3rem 1.4rem; } }
+.instalar { position:fixed; left:50%; transform:translateX(-50%); bottom:22px; z-index:199; display:none; background:var(--navy); color:#fff; border:none; border-radius:24px; padding:11px 22px; font-size:13.5px; font-weight:700; font-family:inherit; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.25); }
+.ios-tip { position:fixed; left:50%; transform:translateX(-50%); bottom:22px; z-index:199; display:none; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:10px 14px; font-size:12px; color:var(--text); box-shadow:0 4px 14px rgba(0,0,0,.18); max-width:320px; }
+.ios-tip button { background:none; border:none; color:var(--muted); font-size:14px; cursor:pointer; float:right; margin-left:6px; }
 </style></head>
 <body>
 <nav class="nav">
-  <a class="brand" href="./index.html"><svg width="22" height="22" viewBox="0 0 24 24" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg> Radar <span class="pt">de Licitaciones</span></a>
+  <a class="brand" href="./index.html"><svg width="22" height="22" viewBox="0 0 24 24" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg> Radar <span class="pt">de Licitaciones</span><span class="cl">Chile</span></a>
   <div class="links">
     <a href="./index.html" class="on">Inicio</a>
     <a href="./tablero.html">Tablero</a>
@@ -226,4 +231,35 @@ h2 { font-family:'Instrument Serif',serif; font-weight:400; font-size:32px; colo
   <svg viewBox="0 0 32 32"><path d="M16 2.9C8.8 2.9 2.9 8.7 2.9 16c0 2.3.6 4.6 1.8 6.5L2.8 29l6.7-1.8c1.9 1 4.2 1.6 6.5 1.6 7.2 0 13.1-5.9 13.1-13.1S23.2 2.9 16 2.9zm0 23.7c-2 0-4-.5-5.7-1.5l-.4-.2-4 1.1 1.1-3.9-.3-.4a10.6 10.6 0 0 1-1.6-5.7C5.1 10 10 5.1 16 5.1S26.9 10 26.9 16 22 26.6 16 26.6zm6-8c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.1 1.3 3.4c.2.2 2.3 3.5 5.5 4.9.8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
 </a>
 <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});}</script>
+<button class="instalar" id="btn-instalar" onclick="instalarApp()">📲 Instalar la app en este equipo</button>
+<div class="ios-tip" id="ios-tip"><button onclick="cerrarTipIOS()">✕</button>📲 Para instalar la app en su iPhone: toque <b>Compartir</b> y luego <b>"Agregar a pantalla de inicio"</b>.</div>
+<script>
+let _promptInstalar = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  _promptInstalar = e;
+  const b = document.getElementById('btn-instalar');
+  if (b && !localStorage.getItem('radar_instalado')) b.style.display = 'block';
+});
+function instalarApp() {
+  if (!_promptInstalar) return;
+  _promptInstalar.prompt();
+  _promptInstalar.userChoice.then(() => {
+    document.getElementById('btn-instalar').style.display = 'none';
+    localStorage.setItem('radar_instalado', '1');
+  });
+}
+(function tipIOS() {
+  const esIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const yaApp = window.navigator.standalone === true;
+  if (esIOS && !yaApp && !localStorage.getItem('radar_tip_ios')) {
+    const t = document.getElementById('ios-tip');
+    if (t) t.style.display = 'block';
+  }
+})();
+function cerrarTipIOS() {
+  document.getElementById('ios-tip').style.display = 'none';
+  localStorage.setItem('radar_tip_ios', '1');
+}
+</script>
 </body></html>

@@ -20,6 +20,7 @@ a { color:var(--navy); }
 .nav { display:flex; align-items:center; justify-content:space-between; padding:12px 2rem; background:var(--surface); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; flex-wrap:wrap; gap:8px; }
 .nav .brand { font-family:'Instrument Serif',serif; font-size:20px; color:var(--navy); text-decoration:none; letter-spacing:.2px; }
 .nav .brand .pt { color:var(--go); }
+.nav .brand .cl { font-family:'Inter',sans-serif; font-size:10px; color:var(--muted); letter-spacing:2.5px; text-transform:uppercase; font-weight:700; margin-left:4px; vertical-align:2px; }
 .nav .links { display:flex; gap:4px; flex-wrap:wrap; }
 .nav .links a { color:var(--muted); text-decoration:none; font-size:13.5px; font-weight:500; padding:7px 13px; border-radius:8px; }
 .nav .links a:hover { background:var(--bg); color:var(--text); }
@@ -52,6 +53,11 @@ a { color:var(--navy); }
 .btn-sec { font-size:12.5px; padding:7px 13px; }
 .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:1.4rem; }
 .kpi { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.2rem; }
+.kpi-click { cursor:pointer; transition:border-color .15s; }
+.kpi-click:hover { border-color:var(--navy); }
+.instalar { position:fixed; left:50%; transform:translateX(-50%); bottom:22px; z-index:199; display:none; background:var(--navy); color:#fff; border:none; border-radius:24px; padding:11px 22px; font-size:13.5px; font-weight:700; font-family:inherit; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.25); }
+.ios-tip { position:fixed; left:50%; transform:translateX(-50%); bottom:22px; z-index:199; display:none; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:10px 14px; font-size:12px; color:var(--text); box-shadow:0 4px 14px rgba(0,0,0,.18); max-width:320px; }
+.ios-tip button { background:none; border:none; color:var(--muted); font-size:14px; cursor:pointer; float:right; margin-left:6px; }
 .kpi p:first-child { font-size:11px; color:var(--muted); margin:0 0 6px; text-transform:uppercase; letter-spacing:.8px; font-weight:600; }
 .kpi p:nth-child(2) { font-size:30px; font-weight:800; margin:0; line-height:1; color:var(--navy); }
 .kpi .k-accent { color:var(--go); }
@@ -176,7 +182,7 @@ a { color:var(--navy); }
 </style></head>
 <body>
 <nav class="nav">
-  <a class="brand" href="./index.html"><svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg> Radar <span class="pt">de Licitaciones</span></a>
+  <a class="brand" href="./index.html"><svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg> Radar <span class="pt">de Licitaciones</span><span class="cl">Chile</span></a>
   <div class="links">
     <a href="./index.html">Inicio</a>
     <a href="./tablero.html" class="on">Tablero</a>
@@ -196,15 +202,15 @@ a { color:var(--navy); }
     <div class="hero-side">
       
       <p class="cliente">Panel de <b>demostración</b></p>
-      <p class="fecha">Actualizado 15-07-2026 · 19:39</p>
+      <p class="fecha">Actualizado 15-07-2026 · 20:02</p>
     </div>
   </div>
 </div>
 <div class="wrap">
 
 <div class="accion"><div class="a-txt"><p class="a-lbl">Acción del día</p><p class="a-tit">Servicio de Aseo Dependencias Vialidad Provincia de Limarí</p><p class="a-det"><b style="color:#996c0f">Revisar</b> · cierra en 5 días · MOP - Dirección de Vialidad IV Región</p></div><a class="btn btn-pri" href="#lic-996-21-LE26" onclick="abrirCard('996-21-LE26')">Revisar y decidir</a></div>
-<div class="kpis"><div class="kpi"><p>Oportunidades activas</p><p>8</p><p class="k-sub">8 licitaciones · 0 compras ágiles</p></div><div class="kpi"><p>Esperan tu decisión</p><p class="k-accent" id="kpi-decision">2</p><p class="k-sub">GO y REVISAR sin decidir</p></div><div class="kpi"><p>Cierran en ≤5 días</p><p class="k-warn">1</p><p class="k-sub">de las que esperan decisión</p></div><div class="kpi"><p>Tasa de adjudicación</p><p>—</p><p class="k-sub">0 ganadas de 0 resueltas</p></div></div>
-<p class="section-label">Cola de decisión (2)</p><div class="cola"><div class="cola-item" onclick="abrirCard('996-21-LE26')"><span class="badge" style="background:#fdf3dd;color:#996c0f">Revisar</span><p class="ci-tit">Servicio de Aseo Dependencias Vialidad Provincia de Lim…</p><p class="ci-det">cierra 5d · La Serena</p></div><div class="cola-item" onclick="abrirCard('996-22-LE26')"><span class="badge" style="background:#fdf3dd;color:#996c0f">Revisar</span><p class="ci-tit">Servicio de Aseo Dependencias Vialidad Provincia de Cho…</p><p class="ci-det">cierra 12d · La Serena</p></div></div>
+<div class="kpis"><div class="kpi kpi-click" onclick="verTodas()" title="Ver el listado completo"><p>Oportunidades activas</p><p id="kpi-activas">8</p><p class="k-sub" id="kpi-activas-sub">8 licitaciones · 0 compras ágiles</p></div><div class="kpi kpi-click" onclick="verPorDecidir()" title="Ver cuáles esperan su decisión"><p>Esperan tu decisión</p><p class="k-accent" id="kpi-decision">2</p><p class="k-sub">toque para verlas →</p></div><div class="kpi kpi-click" onclick="irTab('cal')" title="Ver el calendario de cierres"><p>Cierran en ≤5 días</p><p class="k-warn">1</p><p class="k-sub">toque para ver fechas →</p></div><div class="kpi kpi-click" onclick="irTab('res')" title="Ver sus resultados"><p>Tasa de adjudicación</p><p>—</p><p class="k-sub">0 ganadas de 0 resueltas</p></div></div>
+<p class="section-label">Cola de decisión (2)</p><div class="cola"><div class="cola-item" data-cod="996-21-LE26" onclick="abrirCard('996-21-LE26')"><span class="badge" style="background:#fdf3dd;color:#996c0f">Revisar</span><p class="ci-tit">Servicio de Aseo Dependencias Vialidad Provincia de Lim…</p><p class="ci-det">cierra 5d · La Serena</p></div><div class="cola-item" data-cod="996-22-LE26" onclick="abrirCard('996-22-LE26')"><span class="badge" style="background:#fdf3dd;color:#996c0f">Revisar</span><p class="ci-tit">Servicio de Aseo Dependencias Vialidad Provincia de Cho…</p><p class="ci-det">cierra 12d · La Serena</p></div></div>
 
 <div class="tabs">
   <button class="tab active" data-tab="lic" onclick="verTab(this)">Licitaciones (8)</button>
@@ -223,7 +229,7 @@ a { color:var(--navy); }
       <button class="filter-btn" data-filter="__decidir" onclick="filtrar(this)">Esperan decisión</button>
       <button class="filter-btn" data-filter="Coquimbo" onclick="filtrar(this)">Coquimbo</button>
       <button class="filter-btn" data-filter="Arica" onclick="filtrar(this)">Arica</button>
-      <button class="filter-btn" data-filter="__descartadas" onclick="filtrar(this)">Descartadas</button>
+      <button class="filter-btn" id="btn-restaurar" style="display:none" onclick="restaurarDescartadas()"></button>
     </div>
     <div class="sorters">
       <button class="filter-btn active" data-sort="prioridad" onclick="ordenar(this)">Prioridad</button>
@@ -257,7 +263,7 @@ a { color:var(--navy); }
         </div>
         <div class="detalle">
           <p class="d-lbl">Expediente trazable</p>
-          <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Coquimbo.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Bases descargadas automáticamente</p><p class="tl-det">El robot descargó la ficha y adjuntos del proceso. No necesitas buscarlas.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Evaluada: Revisar</p><p class="tl-det">Presupuesto de la entidad no cubre costo real; se requiere ofertar ~20% sobre referencia para margen positivo; visita técnica pendiente el 14-07-2026. Margen estimado: 15%.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Precio de mercado verificado</p><p class="tl-det">El Estado ya pagó $1.600.000/mes por "Aseo y limpieza de edificios/oficinas" (Servicio Agrícola y Ganadero (SAG) - Dirección Regional Puerto Montt). Fuente: adjudicación 1161-5-LE26 de Mercado Público.</p></div></div><div class="tl-row tl-user" data-cod="996-21-LE26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
+          <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Coquimbo.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Bases descargadas automáticamente</p><p class="tl-det">El robot descargó la ficha y adjuntos del proceso. No necesitas buscarlas.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Evaluada: Revisar</p><p class="tl-det">Presupuesto de la entidad no cubre costo real; se requiere ofertar ~20% sobre referencia para margen positivo; visita técnica pendiente el 14-07-2026. Margen estimado: 15%.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Precio de mercado verificado</p><p class="tl-det">El Estado ya pagó $1.600.000/mes por "Aseo y limpieza de edificios/oficinas" (Servicio Agrícola y Ganadero (SAG) - Dirección Regional Puerto Montt). Compitieron 10 oferentes por ese contrato. Fuente: adjudicación 1161-5-LE26 de Mercado Público.</p></div></div><div class="tl-row tl-user" data-cod="996-21-LE26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
           <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
           <div class="dec-btns" data-cod="996-21-LE26">
             <button class="dec dec-go" onclick="decidir(event,'996-21-LE26','postular')">Postular</button>
@@ -291,7 +297,7 @@ a { color:var(--navy); }
         </div>
         <div class="detalle">
           <p class="d-lbl">Expediente trazable</p>
-          <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Coquimbo.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Bases descargadas automáticamente</p><p class="tl-det">El robot descargó la ficha y adjuntos del proceso. No necesitas buscarlas.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Evaluada: Revisar</p><p class="tl-det">Sin bases tecnicas/administrativas descargadas para costear con firmeza; monto estimado no informado por el organismo. Precedente de la hermana 996-21-LE26 (Provincia de Limari, mismo organismo): presupuesto de la entidad no cubrio el costo real (margen 15%, oferta ~20% sobre referencia). Visita tecnica no confirmada en ficha API. Accion sugerida: descargar bases cuanto antes (cierre 27-07-2026).</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Precio de mercado verificado</p><p class="tl-det">El Estado ya pagó $1.600.000/mes por "Aseo y limpieza de edificios/oficinas" (Servicio Agrícola y Ganadero (SAG) - Dirección Regional Puerto Montt). Fuente: adjudicación 1161-5-LE26 de Mercado Público.</p></div></div><div class="tl-row tl-user" data-cod="996-22-LE26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
+          <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Coquimbo.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Bases descargadas automáticamente</p><p class="tl-det">El robot descargó la ficha y adjuntos del proceso. No necesitas buscarlas.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Evaluada: Revisar</p><p class="tl-det">Sin bases tecnicas/administrativas descargadas para costear con firmeza; monto estimado no informado por el organismo. Precedente de la hermana 996-21-LE26 (Provincia de Limari, mismo organismo): presupuesto de la entidad no cubrio el costo real (margen 15%, oferta ~20% sobre referencia). Visita tecnica no confirmada en ficha API. Accion sugerida: descargar bases cuanto antes (cierre 27-07-2026).</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Precio de mercado verificado</p><p class="tl-det">El Estado ya pagó $1.600.000/mes por "Aseo y limpieza de edificios/oficinas" (Servicio Agrícola y Ganadero (SAG) - Dirección Regional Puerto Montt). Compitieron 10 oferentes por ese contrato. Fuente: adjudicación 1161-5-LE26 de Mercado Público.</p></div></div><div class="tl-row tl-user" data-cod="996-22-LE26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
           <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
           <div class="dec-btns" data-cod="996-22-LE26">
             <button class="dec dec-go" onclick="decidir(event,'996-22-LE26','postular')">Postular</button>
@@ -539,6 +545,9 @@ a { color:var(--navy); }
   Las recomendaciones del sistema son referenciales y quedan registradas. La decisión final de postular es siempre del usuario.
 </div>
 
+<button class="instalar" id="btn-instalar" onclick="instalarApp()">📲 Instalar la app en este equipo</button>
+<div class="ios-tip" id="ios-tip"><button onclick="cerrarTipIOS()">✕</button>📲 Para instalar la app en su iPhone: toque <b>Compartir</b> y luego <b>"Agregar a pantalla de inicio"</b>.</div>
+
 <!-- Asistente orientador -->
 <button class="ayuda-btn" onclick="toggleAyuda()" title="¿Necesita orientación?">?</button>
 <div class="ayuda-panel" id="ayuda">
@@ -608,6 +617,7 @@ function decidir(ev, cod, tipo) {
   setDec(cod, e[cod] && e[cod].estado === tipo ? null : tipo);
   aplicarDecisiones();
   aplicarFiltro();
+  borrarDescartadas();   // "No postular" borra la card y rebaja los contadores al instante
 }
 
 function toggleDetalle(el) { el.closest('.card').classList.toggle('abierta'); }
@@ -630,8 +640,9 @@ function irTab(nombre) {
   if (b) { b.click(); b.scrollIntoView({ behavior:'smooth', block:'center' }); }
   cerrarAyuda();
 }
-// Las descartadas (No postular) se OCULTAN del listado para no acumular ruido;
-// siguen disponibles en el filtro "Descartadas" y la decisión es reversible.
+// Las descartadas (No postular) se BORRAN del tablero y los contadores se
+// rebajan al instante. "Restaurar descartadas (N)" deshace si fue un error.
+const N_CA = 0;
 function filtrar(btn) {
   document.querySelectorAll('.filters .filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -642,19 +653,56 @@ function aplicarFiltro() {
   const f = act ? act.dataset.filter : 'Todas';
   const e = getDec();
   document.querySelectorAll('.card').forEach(c => {
-    const d = e[c.dataset.codigo];
-    const descartada = d && d.estado === 'descartar';
     let show;
-    if (f === '__descartadas') {
-      show = descartada;
-    } else {
-      if (f === '__decidir') show = ['GO','REVISAR'].includes(c.dataset.semaforo) && !d;
-      else if (f !== 'Todas') show = c.dataset.region === f;
-      else show = true;
-      show = show && !descartada;
-    }
+    if (f === '__decidir') show = ['GO','REVISAR'].includes(c.dataset.semaforo) && !e[c.dataset.codigo];
+    else if (f !== 'Todas') show = c.dataset.region === f;
+    else show = true;
     c.classList.toggle('hidden', !show);
   });
+}
+function borrarDescartadas() {
+  const e = getDec();
+  let n = 0;
+  document.querySelectorAll('.card').forEach(c => {
+    const d = e[c.dataset.codigo];
+    if (d && d.estado === 'descartar') { c.remove(); n++; }
+  });
+  document.querySelectorAll('.cola-item').forEach(ci => {
+    const d = e[ci.dataset.cod];
+    if (d && d.estado === 'descartar') ci.remove();
+  });
+  actualizarContadores();
+  const total = Object.values(e).filter(d => d.estado === 'descartar').length;
+  const btn = document.getElementById('btn-restaurar');
+  if (btn) {
+    btn.textContent = 'Restaurar descartadas (' + total + ')';
+    btn.style.display = total ? '' : 'none';
+  }
+}
+function restaurarDescartadas() {
+  const e = getDec();
+  for (const k in e) { if (e[k].estado === 'descartar') delete e[k]; }
+  localStorage.setItem(LSKEY, JSON.stringify(e));
+  location.reload();
+}
+function actualizarContadores() {
+  const nLic = document.querySelectorAll('.card').length;
+  const ka = document.getElementById('kpi-activas');
+  if (ka) ka.textContent = nLic + N_CA;
+  const ks = document.getElementById('kpi-activas-sub');
+  if (ks) ks.textContent = nLic + ' licitaciones · ' + N_CA + ' compras ágiles';
+  const tl = document.querySelector('[data-tab="lic"]');
+  if (tl) tl.textContent = 'Licitaciones (' + nLic + ')';
+}
+function verTodas() {
+  irTab('lic');
+  const b = document.querySelector('[data-filter="Todas"]');
+  if (b) filtrar(b);
+}
+function verPorDecidir() {
+  irTab('lic');
+  const b = document.querySelector('[data-filter="__decidir"]');
+  if (b) filtrar(b);
 }
 function buscar(txt) {
   txt = txt.toLowerCase().trim();
@@ -688,7 +736,38 @@ function abrirPrimerExpediente() {
   if (c) { irTab('lic'); c.classList.add('abierta'); c.scrollIntoView({ behavior:'smooth', block:'center' }); }
 }
 aplicarDecisiones();
+borrarDescartadas();
 aplicarFiltro();
+
+// ---------- Instalación como app (PWA) ----------
 if ('serviceWorker' in navigator) { navigator.serviceWorker.register('./sw.js').catch(()=>{}); }
+let _promptInstalar = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  _promptInstalar = e;
+  const b = document.getElementById('btn-instalar');
+  if (b && !localStorage.getItem('radar_instalado')) b.style.display = 'block';
+});
+function instalarApp() {
+  if (!_promptInstalar) return;
+  _promptInstalar.prompt();
+  _promptInstalar.userChoice.then(() => {
+    document.getElementById('btn-instalar').style.display = 'none';
+    localStorage.setItem('radar_instalado', '1');
+  });
+}
+// iPhone/iPad no dispara beforeinstallprompt: se muestra la instrucción una vez.
+(function tipIOS() {
+  const esIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const yaApp = window.navigator.standalone === true;
+  if (esIOS && !yaApp && !localStorage.getItem('radar_tip_ios')) {
+    const t = document.getElementById('ios-tip');
+    if (t) t.style.display = 'block';
+  }
+})();
+function cerrarTipIOS() {
+  document.getElementById('ios-tip').style.display = 'none';
+  localStorage.setItem('radar_tip_ios', '1');
+}
 </script>
 </body></html>
