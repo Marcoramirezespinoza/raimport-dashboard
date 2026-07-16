@@ -56,6 +56,18 @@ label.mini { font-size:12px; color:var(--muted); font-weight:600; }
 .resumen { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:1rem 1.2rem; text-align:left; font-size:13.5px; color:var(--text); line-height:1.7; margin:1rem 0; }
 .resumen b { color:var(--navy); }
 .demo-tag { display:inline-block; background:#e9f0fb; color:#2d5fa8; font-size:10.5px; font-weight:700; padding:5px 12px; border-radius:6px; letter-spacing:1px; text-transform:uppercase; margin-top:1rem; }
+
+/* --- Modo oscuro --- */
+html[data-theme="dark"] { --bg:#0d131e; --surface:#161e2c; --border:#28324a; --text:#e8edf6; --muted:#93a2bb; }
+html[data-theme="dark"] h1, html[data-theme="dark"] h2, html[data-theme="dark"] .nav .brand,
+html[data-theme="dark"] .nav .brand .cl, html[data-theme="dark"] .step h2, html[data-theme="dark"] .top h1,
+html[data-theme="dark"] .pname, html[data-theme="dark"] .price, html[data-theme="dark"] .plan h3,
+html[data-theme="dark"] .paso h3, html[data-theme="dark"] .dif h3, html[data-theme="dark"] .ok .big,
+html[data-theme="dark"] .garantia b { color:var(--text); }
+html[data-theme="dark"] .hero, html[data-theme="dark"] .cta-fin { background:var(--surface); }
+html[data-theme="dark"] .chip { background:#101827; }
+html[data-theme="dark"] .radar-big { background:radial-gradient(circle, #14202f, #161e2c 72%); }
+.tema-btn { background:none; border:1px solid var(--border); border-radius:8px; font-size:14px; padding:5px 10px; cursor:pointer; }
 </style></head>
 <body>
 <nav class="nav">
@@ -63,7 +75,8 @@ label.mini { font-size:12px; color:var(--muted); font-weight:600; }
   <div class="links">
     <a href="./index.html">Inicio</a>
     <a href="./onboarding.html" class="on">Registrarse</a>
-    <a href="./tablero.html">Tablero</a>
+    <a href="./tablero.html">Radar</a>
+    <button class="tema-btn" id="tema-btn" onclick="toggleTema()" title="Tema claro/oscuro">🌙</button>
   </div>
 </nav>
 <div class="top">
@@ -131,15 +144,9 @@ label.mini { font-size:12px; color:var(--muted); font-weight:600; }
     </div>
 
     <div class="card" style="padding:1.1rem 1.3rem">
-      <div class="step" style="margin-bottom:.6rem"><span class="num">5</span><h2>Su color y su logo</h2></div>
+      <div class="step" style="margin-bottom:.6rem"><span class="num">5</span><h2>Su logo (opcional)</h2></div>
       <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
-        <div class="chips" id="colores" style="gap:6px">
-          <span class="chip chip-color on" data-color="#0F1F3D" onclick="elegirColor(this)" style="padding:6px 10px;font-size:11.5px"><span class="sw" style="background:#0F1F3D"></span>Azul</span>
-          <span class="chip chip-color" data-color="#0e5a3c" onclick="elegirColor(this)" style="padding:6px 10px;font-size:11.5px"><span class="sw" style="background:#0e5a3c"></span>Verde</span>
-          <span class="chip chip-color" data-color="#1a3a6b" onclick="elegirColor(this)" style="padding:6px 10px;font-size:11.5px"><span class="sw" style="background:#1a3a6b"></span>Marino</span>
-          <span class="chip chip-color" data-color="#6b1f2a" onclick="elegirColor(this)" style="padding:6px 10px;font-size:11.5px"><span class="sw" style="background:#6b1f2a"></span>Burdeo</span>
-          <span class="chip chip-color" data-color="#2b3440" onclick="elegirColor(this)" style="padding:6px 10px;font-size:11.5px"><span class="sw" style="background:#2b3440"></span>Grafito</span>
-        </div>
+        
         <div style="display:flex;align-items:center;gap:10px">
           <input type="file" id="logo" accept="image/*" onchange="previewLogo(this)" style="font-size:11.5px;max-width:180px">
           <img id="logo-prev" alt="" style="display:none;max-height:38px;max-width:130px;border:1px solid var(--border);border-radius:8px;padding:4px;background:#fff">
@@ -169,12 +176,6 @@ label.mini { font-size:12px; color:var(--muted); font-weight:600; }
 <script>
 function tog(el){el.classList.toggle('on');}
 function sel(id){return [...document.querySelectorAll('#'+id+' .chip.on')].map(c=>c.textContent.trim());}
-function elegirColor(el){
-  document.querySelectorAll('#colores .chip').forEach(c=>c.classList.remove('on'));
-  el.classList.add('on');
-  document.documentElement.style.setProperty('--navy', el.dataset.color);
-  document.documentElement.style.setProperty('--navy-2', el.dataset.color);
-}
 function previewLogo(inp){
   const f = inp.files && inp.files[0];
   if(!f) return;
@@ -192,7 +193,6 @@ function activar(){
   const fb = (document.getElementById('reg-feedback')||{}).value || '';
   if(!rubros.length || !regiones.length){ alert('Elija al menos un rubro y una region.'); return; }
   if(!empresa || !correo){ alert('Indique el nombre de su empresa (o persona natural) y su correo para registrarse.'); return; }
-  const colorEl = document.querySelector('#colores .chip.on');
   const logoImg = document.getElementById('logo-prev');
 
   // 1) Guardar la personalizacion: el TABLERO la muestra al instante (demo en vivo)
@@ -203,7 +203,6 @@ function activar(){
     rubro: rubros[0],
     regiones: regiones.join(', '),
     comunas: comunas,
-    color: colorEl ? colorEl.dataset.color : '#0F1F3D',
     logo: (logoImg && logoImg.style.display !== 'none') ? logoImg.src : ''
   };
   try { localStorage.setItem('radar_demo_config', JSON.stringify(cfg)); } catch(e) {}
@@ -213,7 +212,7 @@ function activar(){
     _subject: 'Nuevo registro Radar - ' + empresa,
     empresa: empresa, rut: rut || '-', correo: correo, whatsapp: fono || '-',
     rubros: rubros.join(', '), regiones: regiones.join(', '), comunas: comunas,
-    color: cfg.color, comentario: fb || '-'
+    comentario: fb || '-'
   };
   fetch('https://formsubmit.co/ajax/marcoramirezes.1286@gmail.com', {
     method: 'POST',
@@ -236,5 +235,10 @@ function activar(){
   document.getElementById('ok').style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});
 }
+</script>
+<script>
+function aplicarTema(t){document.documentElement.setAttribute('data-theme',t);var b=document.getElementById('tema-btn');if(b)b.textContent=(t==='dark')?'☀️':'🌙';}
+function toggleTema(){var t=(document.documentElement.getAttribute('data-theme')==='dark')?'claro':'dark';localStorage.setItem('radar_tema',t);aplicarTema(t);}
+aplicarTema(localStorage.getItem('radar_tema')||'claro');
 </script>
 </body></html>

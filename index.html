@@ -108,6 +108,26 @@ h2 { font-family:'Instrument Serif',serif; font-weight:400; font-size:32px; colo
 .instalar { position:fixed; left:50%; transform:translateX(-50%); bottom:22px; z-index:199; display:none; background:var(--navy); color:#fff; border:none; border-radius:24px; padding:11px 22px; font-size:13.5px; font-weight:700; font-family:inherit; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.25); }
 .ios-tip { position:fixed; left:50%; transform:translateX(-50%); bottom:22px; z-index:199; display:none; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:10px 14px; font-size:12px; color:var(--text); box-shadow:0 4px 14px rgba(0,0,0,.18); max-width:320px; }
 .ios-tip button { background:none; border:none; color:var(--muted); font-size:14px; cursor:pointer; float:right; margin-left:6px; }
+
+/* --- Modo oscuro --- */
+html[data-theme="dark"] { --bg:#0d131e; --surface:#161e2c; --border:#28324a; --text:#e8edf6; --muted:#93a2bb; }
+html[data-theme="dark"] h1, html[data-theme="dark"] h2, html[data-theme="dark"] .nav .brand,
+html[data-theme="dark"] .nav .brand .cl, html[data-theme="dark"] .step h2, html[data-theme="dark"] .top h1,
+html[data-theme="dark"] .pname, html[data-theme="dark"] .price, html[data-theme="dark"] .plan h3,
+html[data-theme="dark"] .paso h3, html[data-theme="dark"] .dif h3, html[data-theme="dark"] .ok .big,
+html[data-theme="dark"] .garantia b { color:var(--text); }
+html[data-theme="dark"] .hero, html[data-theme="dark"] .cta-fin { background:var(--surface); }
+html[data-theme="dark"] .chip { background:#101827; }
+html[data-theme="dark"] .radar-big { background:radial-gradient(circle, #14202f, #161e2c 72%); }
+.tema-btn { background:none; border:1px solid var(--border); border-radius:8px; font-size:14px; padding:5px 10px; cursor:pointer; }
+
+/* --- Animaciones de entrada --- */
+@keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+.hero-txt { animation:fadeUp .7s ease both; }
+.hero-visual { animation:fadeUp .7s ease .15s both; }
+.trust p { animation:fadeUp .6s ease .35s both; }
+.paso, .dif, .plan { transition:transform .2s ease, box-shadow .2s ease; }
+.paso:hover, .dif:hover, .plan:hover { transform:translateY(-4px); box-shadow:0 10px 28px rgba(23,35,59,.10); }
 </style></head>
 <body>
 <nav class="nav">
@@ -115,7 +135,7 @@ h2 { font-family:'Instrument Serif',serif; font-weight:400; font-size:32px; colo
   <div class="links">
     <a href="./index.html" class="on">Inicio</a>
     <a href="./onboarding.html">Registrarse</a>
-    <a href="./tablero.html">Tablero</a>
+    <a href="./tablero.html">Radar</a>
     <a href="./tablero.html" class="cta-nav">Ver demo</a>
   </div>
 </nav>
@@ -272,5 +292,10 @@ function cerrarTipIOS() {
   document.getElementById('ios-tip').style.display = 'none';
   localStorage.setItem('radar_tip_ios', '1');
 }
+</script>
+<script>
+function aplicarTema(t){document.documentElement.setAttribute('data-theme',t);var b=document.getElementById('tema-btn');if(b)b.textContent=(t==='dark')?'☀️':'🌙';}
+function toggleTema(){var t=(document.documentElement.getAttribute('data-theme')==='dark')?'claro':'dark';localStorage.setItem('radar_tema',t);aplicarTema(t);}
+aplicarTema(localStorage.getItem('radar_tema')||'claro');
 </script>
 </body></html>

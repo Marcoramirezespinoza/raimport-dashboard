@@ -46,6 +46,18 @@ h1 { font-family:'Instrument Serif',serif; font-weight:400; font-size:36px; colo
 .garantia { max-width:640px; margin:2.6rem auto 0; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:1.4rem 1.6rem; text-align:center; }
 .garantia b { color:var(--navy); }
 .garantia p { font-size:13.5px; color:var(--muted); margin:6px 0 0; line-height:1.6; }
+
+/* --- Modo oscuro --- */
+html[data-theme="dark"] { --bg:#0d131e; --surface:#161e2c; --border:#28324a; --text:#e8edf6; --muted:#93a2bb; }
+html[data-theme="dark"] h1, html[data-theme="dark"] h2, html[data-theme="dark"] .nav .brand,
+html[data-theme="dark"] .nav .brand .cl, html[data-theme="dark"] .step h2, html[data-theme="dark"] .top h1,
+html[data-theme="dark"] .pname, html[data-theme="dark"] .price, html[data-theme="dark"] .plan h3,
+html[data-theme="dark"] .paso h3, html[data-theme="dark"] .dif h3, html[data-theme="dark"] .ok .big,
+html[data-theme="dark"] .garantia b { color:var(--text); }
+html[data-theme="dark"] .hero, html[data-theme="dark"] .cta-fin { background:var(--surface); }
+html[data-theme="dark"] .chip { background:#101827; }
+html[data-theme="dark"] .radar-big { background:radial-gradient(circle, #14202f, #161e2c 72%); }
+.tema-btn { background:none; border:1px solid var(--border); border-radius:8px; font-size:14px; padding:5px 10px; cursor:pointer; }
 </style></head>
 <body>
 <nav class="nav">
@@ -53,7 +65,8 @@ h1 { font-family:'Instrument Serif',serif; font-weight:400; font-size:36px; colo
   <div class="links">
     <a href="./index.html">Inicio</a>
     <a href="./onboarding.html">Registrarse</a>
-    <a href="./tablero.html">Tablero</a>
+    <a href="./tablero.html">Radar</a>
+    <button class="tema-btn" id="tema-btn" onclick="toggleTema()" title="Tema claro/oscuro">🌙</button>
   </div>
 </nav>
 <div class="wrap">
@@ -123,4 +136,9 @@ h1 { font-family:'Instrument Serif',serif; font-weight:400; font-size:36px; colo
   <p class="nota">Fuentes de datos: Dirección ChileCompra (Mercado Público) · Dirección del Trabajo (IMM oficial) · Adjudicaciones reales citadas por código.<br>
   Las recomendaciones del sistema son referenciales; la decisión de postular es siempre del usuario.</p>
 </div>
+<script>
+function aplicarTema(t){document.documentElement.setAttribute('data-theme',t);var b=document.getElementById('tema-btn');if(b)b.textContent=(t==='dark')?'☀️':'🌙';}
+function toggleTema(){var t=(document.documentElement.getAttribute('data-theme')==='dark')?'claro':'dark';localStorage.setItem('radar_tema',t);aplicarTema(t);}
+aplicarTema(localStorage.getItem('radar_tema')||'claro');
+</script>
 </body></html>

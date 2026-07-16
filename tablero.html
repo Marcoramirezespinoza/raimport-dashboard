@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Radar de Licitaciones Chile — Tablero</title>
+<title>Radar de Licitaciones Chile — Radar</title>
 <meta name="theme-color" content="#0F1F3D">
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="./icon-192.png">
@@ -129,8 +129,7 @@ a { color:var(--navy); }
 #cot-overlay { display:none; position:fixed; inset:0; z-index:300; background:rgba(10,16,28,.55); padding:20px; overflow-y:auto; }
 #cot-overlay.abierto { display:flex; align-items:flex-start; justify-content:center; }
 #cot-modal { background:#fff; color:#17233b; border-radius:16px; max-width:640px; width:100%; padding:2.2rem 2.4rem; position:relative; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.35); margin:2vh auto; }
-#cot-marca { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:.05; pointer-events:none; }
-#cot-marca img, #cot-marca svg { width:340px; height:auto; }
+#cot-modal.exportando .cot-acciones { display:none !important; }
 .cot-head { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; border-bottom:2px solid var(--navy); padding-bottom:14px; margin-bottom:18px; }
 .cot-head .ce { text-align:right; }
 .cot-head .ce p { margin:0; font-size:12px; color:#5d6b82; }
@@ -147,11 +146,12 @@ a { color:var(--navy); }
 .cot-res { font-size:12.5px; color:#3d4a60; line-height:1.6; margin:0 0 14px; }
 .cot-fuentes { font-size:10.5px; color:#8a97ab; line-height:1.6; border-top:1px solid #eef1f5; padding-top:12px; margin:0; }
 .cot-acciones { display:flex; gap:10px; justify-content:flex-end; margin-top:18px; }
+@page { size:A4; margin:14mm; }
 @media print {
   body * { visibility:hidden; }
-  #cot-overlay { display:block !important; position:static; background:none; padding:0; }
+  #cot-overlay { display:block !important; position:static; background:none; padding:0; overflow:visible; }
   #cot-modal, #cot-modal * { visibility:visible; }
-  #cot-modal { box-shadow:none; border-radius:0; max-width:100%; margin:0; }
+  #cot-modal { box-shadow:none; border-radius:0; max-width:100%; margin:0; padding:0; }
   .cot-acciones { display:none !important; }
 }
 
@@ -234,7 +234,7 @@ html[data-theme="dark"] .btn-pri { background:#e8edf6; color:#0d131e; }
   <div class="links">
     <a href="./index.html">Inicio</a>
     <a href="./onboarding.html">Registrarse</a>
-    <a href="./tablero.html" class="on">Tablero</a>
+    <a href="./tablero.html" class="on">Radar</a>
     <button class="tema-btn" id="tema-btn" onclick="toggleTema()" title="Cambiar entre tema claro y oscuro">🌙</button>
   </div>
 </nav>
@@ -250,7 +250,7 @@ html[data-theme="dark"] .btn-pri { background:#e8edf6; color:#0d131e; }
     <div class="hero-side">
       
       <p class="cliente">Panel de <b>demostración</b></p>
-      <p class="fecha">Actualizado 16-07-2026 · 17:51 (hora de Chile)</p>
+      <p class="fecha">Actualizado 16-07-2026 · 18:27 (hora de Chile)</p>
     </div>
   </div>
 </div>
@@ -544,19 +544,23 @@ html[data-theme="dark"] .btn-pri { background:#e8edf6; color:#0d131e; }
 <!-- Cotización visual -->
 <div id="cot-overlay" onclick="if(event.target===this)cerrarCot()">
   <div id="cot-modal">
-    <div id="cot-marca"><svg width="340" height="340" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg></div>
     <div class="cot-head">
       <div id="cot-logo"><svg width="26" height="26" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg></div>
       <div class="ce"><p class="cn" id="cot-emp"></p><p id="cot-rut"></p><p id="cot-fecha"></p></div>
     </div>
-    <h2>Propuesta económica</h2>
+    <h2>Cotización</h2>
     <p class="cot-sub" id="cot-tipo"></p>
     <table class="cot-tabla">
       <tr><td>Preparada para</td><td id="cot-org"></td></tr>
       <tr><td>Proceso</td><td id="cot-cod"></td></tr>
       <tr><td>Objeto</td><td id="cot-nom"></td></tr>
       <tr><td>Cierre de recepción</td><td id="cot-cierre"></td></tr>
+      <tr><td>Validez de la oferta</td><td>60 días corridos desde la fecha de emisión</td></tr>
     </table>
+    <div id="cot-det-bloque" style="display:none">
+      <p class="cot-sub" style="margin-bottom:8px">Especificaciones técnicas del servicio (según anexos oficiales)</p>
+      <ul id="cot-detalle" style="font-size:12.5px;color:#3d4a60;line-height:1.7;margin:0 0 16px;padding-left:18px"></ul>
+    </div>
     <div class="cot-precio">
       <div><p class="pl" id="cot-precio-lbl"></p><p class="pv" id="cot-precio"></p></div>
       <div style="text-align:right"><p class="pl">Referencia</p><p style="font-weight:700;font-size:14px" id="cot-monto"></p></div>
@@ -565,7 +569,8 @@ html[data-theme="dark"] .btn-pri { background:#e8edf6; color:#0d131e; }
     <p class="cot-fuentes">Costeo con fuentes: IMM oficial (Dirección del Trabajo) · adjudicaciones reales de Mercado Público citadas por código · valores marcados como estimación son editables. El detalle completo está en el informe Word enviado a su correo. Documento generado por <b>Radar de Licitaciones Chile</b> — la decisión final es siempre suya.</p>
     <div class="cot-acciones">
       <button class="btn btn-sec" onclick="cerrarCot()">Cerrar</button>
-      <button class="btn" style="background:var(--navy);color:#fff;border:none" onclick="window.print()">Descargar PDF ⬇</button>
+      <button class="btn btn-sec" onclick="descargarCotWord()">Descargar Word ⬇</button>
+      <button class="btn" style="background:var(--navy);color:#fff;border:none" onclick="descargarCotPDF()">Descargar PDF ⬇</button>
     </div>
   </div>
 </div>
@@ -825,7 +830,7 @@ function enviarFeedback() {
 }
 
 // ---------- Cotización visual ----------
-const COT = {"5750-3-LP26": {"tipo": "Licitación", "nombre": "Contrato Servicio de Aseo Comuna de Arica", "org": "MOP - Direccion de Vialidad XV Region - Direccion Regional (Comuna de Arica)", "cierre": "28-07-2026 10:00", "monto": "No informado", "margen": "20%", "precio": "", "resumen": "GO con margen 20% ($9.844.786/mes, 10 trabajadores, 5 dependencias en Arica). visita técnica el 20-07-2026 09:00 OBLIGATORIA (numeral 3.6)."}, "909863-1-LE26": {"tipo": "Licitación", "nombre": "E9 Servicios de Aseo TP de Illapel", "org": "Tesorería General de la República (Tesorería Provincial de Illapel)", "cierre": "29-07-2026 13:00", "monto": "$45.564.948", "margen": "20%", "precio": "", "resumen": "Margen 20% NO verificado: depende de dotacion sin confirmar (falta anexo bases tecnicas; con 2+ trabajadores no alcanza). Revisar antes del 22-07-2026."}, "1159-62-COT26": {"tipo": "Compra Ágil", "nombre": "Limpieza y sanitización de cubrepiso salón Centro de Operaciones EMF La Serena (incluye movimiento de mobiliario)", "org": "Servicio Agrícola y Ganadero (SAG)", "cierre": "2026-07-17 14:00", "monto": "Tope $450.000", "margen": "", "precio": "$205.737", "resumen": "Costo real $171.447 (IVA incl.) muy por debajo del tope de $450.000; margen 20% holgado y precio competitivo."}};
+const COT = {"5750-3-LP26": {"tipo": "Licitación", "nombre": "Contrato Servicio de Aseo Comuna de Arica", "org": "MOP - Direccion de Vialidad XV Region - Direccion Regional (Comuna de Arica)", "cierre": "28-07-2026 10:00", "monto": "No informado", "margen": "20%", "precio": "", "resumen": "GO con margen 20% ($9.844.786/mes, 10 trabajadores, 5 dependencias en Arica). visita técnica el 20-07-2026 09:00 OBLIGATORIA (numeral 3.6).", "detalle": ["Entidad: Ministerio de Obras Públicas — Dirección de Vialidad, XV Región (Comuna de Arica)", "ID: 5750-3-LP26 — \"Contrato Servicio de Aseo Comuna de Arica\"", "Tipo: Licitación Pública LP (1.000-5.000 UTM), convocatoria abierta, 1 etapa", "Plazo de cierre: 28-07-2026 10:00:00 (12 días). Extensión automática de 2 días hábiles si a la fecha de cierre hay ≤2 propuestas recibidas.", "Duración: 19 meses, con posible renovación de 15 meses adicionales (a criterio del inspector fiscal)", "Lugares: 5 dependencias — Oficina Regional (ubicación por definir, reubicación en curso), Oficina Telemop/Arquitectura (Arturo Prat 305, piso 3), Oficina Provincial de Arica (Av. Alejandro Azolas N°2831), Campamento Quiane (Km 4,5 Ruta A…", "Monto de referencia: No informado por el organismo (Estimación en base a \"Precio Referencial\", fuente \"Subt. 22 normal-22 CAD\", sin monto numérico visible en la ficha ni bases técnicas revisadas)", "Garantía fiel cumplimiento: 5% del valor adjudicado, vigencia hasta 29-12-2028, beneficiario Director Regional de Vialidad. No permite subcontratación."]}, "909863-1-LE26": {"tipo": "Licitación", "nombre": "E9 Servicios de Aseo TP de Illapel", "org": "Tesorería General de la República (Tesorería Provincial de Illapel)", "cierre": "29-07-2026 13:00", "monto": "$45.564.948", "margen": "20%", "precio": "", "resumen": "Margen 20% NO verificado: depende de dotacion sin confirmar (falta anexo bases tecnicas; con 2+ trabajadores no alcanza). Revisar antes del 22-07-2026.", "detalle": ["Entidad: Tesorería Provincial de Illapel (Tesorería General de la República)", "ID: 909863-1-LE26 — \"E9 Servicios de Aseo TP de Illapel\"", "Tipo: Licitación Pública LE (100-1.000 UTM), convocatoria abierta, 1 etapa", "Plazo de cierre: 29-07-2026 13:00:00 (13 días)", "Duración: 36 meses, con renovación posible (carácter esencial del servicio, prórroga por una sola vez)", "Lugar: Buin 104, Illapel, Región de Coquimbo — fuera de las comunas base de RA Import (La Serena, Arica), ~230 km desde La Serena", "Monto Total Estimado: $45.564.948 (36 meses; el oferente ingresa precio neto sin IVA según observaciones de bases) → $1.265.693/mes neto", "Justificación de monto: \"La oferta total que sea superior al valor del presupuesto de esta licitación será rechazada de plano y no se procederá a su evaluación, siendo declarada inadmisible\""]}, "1159-62-COT26": {"tipo": "Compra Ágil", "nombre": "Limpieza y sanitización de cubrepiso salón Centro de Operaciones EMF La Serena (incluye movimiento de mobiliario)", "org": "Servicio Agrícola y Ganadero (SAG)", "cierre": "2026-07-17 14:00", "monto": "Tope $450.000", "margen": "", "precio": "$205.737", "resumen": "Costo real $171.447 (IVA incl.) muy por debajo del tope de $450.000; margen 20% holgado y precio competitivo.", "detalle": ["Servicio: Limpieza y sanitización del cubrepiso del salón del Centro de Operaciones EMF La Serena (SAG), incluye movimiento de mobiliario. El salón debe quedar listo para uso al día siguiente del término.", "Magnitud: 104 m².", "Organismo: Servicio Agrícola y Ganadero (SAG) — Región de Coquimbo.", "Dirección: Calle Las Higueras N° 995, La Serena.", "Tope disponible: $450.000 CLP, IVA incluido — la cotización debe cubrir insumos, impuestos, flete, movimiento de mobiliario y servicios extras. Ofertas sobre el tope son declaradas inadmisibles.", "Plazo de entrega: máximo 2 días hábiles desde la aceptación de la OC (aceptar OC dentro de 48 h de emitida).", "Horario de trabajo: lunes a viernes, 09:00–16:00 (fin de semana solo con coordinación previa).", "Pago: 30 días corridos desde recepción de la factura, previa Acta de Recepción Conforme firmada."]}};
 const EMP = {"empresa": "RA Import", "razon": "Sociedad Importadora, Exportadora y Distribuidora RA Ltda.", "rut": "77.401.618-K", "mostrar": false};
 function abrirCot(ev, cod) {
   ev.stopPropagation();
@@ -837,13 +842,22 @@ function abrirCot(ev, cod) {
     const c = JSON.parse(localStorage.getItem('radar_demo_config') || 'null');
     if (c && c.empresa) emp = { nombre: c.empresa, rut: c.rut || '[COMPLETAR: su RUT]', logo: c.logo || '' };
   } catch(e) {}
+  _cotCod = cod;
   document.getElementById('cot-emp').textContent = emp.nombre;
   document.getElementById('cot-rut').textContent = 'RUT ' + emp.rut;
   document.getElementById('cot-fecha').textContent = new Date().toLocaleDateString('es-CL');
   const logoBox = document.getElementById('cot-logo');
   if (emp.logo) logoBox.innerHTML = '<img src="' + emp.logo + '" style="max-height:52px;max-width:170px">';
-  const marca = document.getElementById('cot-marca');
-  if (emp.logo) marca.innerHTML = '<img src="' + emp.logo + '">';
+  // Especificaciones técnicas desde los anexos oficiales (las extrae el evaluador)
+  const det = document.getElementById('cot-detalle');
+  const bloque = document.getElementById('cot-det-bloque');
+  det.innerHTML = '';
+  if (d.detalle && d.detalle.length) {
+    d.detalle.forEach(l => { const li = document.createElement('li'); li.textContent = l; det.appendChild(li); });
+    bloque.style.display = 'block';
+  } else {
+    bloque.style.display = 'none';
+  }
   document.getElementById('cot-tipo').textContent = d.tipo + ' · Mercado Público';
   document.getElementById('cot-org').textContent = d.org;
   document.getElementById('cot-cod').textContent = cod;
@@ -856,6 +870,46 @@ function abrirCot(ev, cod) {
   document.getElementById('cot-overlay').classList.add('abierto');
 }
 function cerrarCot() { document.getElementById('cot-overlay').classList.remove('abierto'); }
+
+// Descarga REAL en un clic: PDF (encuadrado A4, paginado) o Word
+let _cotCod = '';
+function _conLibPDF(cb) {
+  if (window.html2pdf) return cb();
+  const s = document.createElement('script');
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+  s.onload = cb;
+  s.onerror = () => window.print();   // respaldo: diálogo de impresión
+  document.head.appendChild(s);
+}
+function descargarCotPDF() {
+  const m = document.getElementById('cot-modal');
+  m.classList.add('exportando');
+  _conLibPDF(() => {
+    html2pdf().set({
+      margin: [12, 12, 14, 12],
+      filename: 'Cotizacion_' + _cotCod + '.pdf',
+      image: { type: 'jpeg', quality: 0.96 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    }).from(m).save().then(() => m.classList.remove('exportando'))
+      .catch(() => { m.classList.remove('exportando'); window.print(); });
+  });
+}
+function descargarCotWord() {
+  const m = document.getElementById('cot-modal').cloneNode(true);
+  const acc = m.querySelector('.cot-acciones');
+  if (acc) acc.remove();
+  const html = '<html xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8">'
+    + '<style>body{font-family:Calibri,Arial,sans-serif;color:#17233b}td{padding:6px 8px}</style></head><body>'
+    + m.innerHTML + '</body></html>';
+  const blob = new Blob(['\ufeff', html], { type: 'application/msword' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'Cotizacion_' + _cotCod + '.doc';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
 
 // ---------- Tema claro / oscuro ----------
 function aplicarTema(t) {
