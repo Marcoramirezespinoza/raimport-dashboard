@@ -20,7 +20,7 @@ a { color:var(--navy); }
 .nav { display:flex; align-items:center; justify-content:space-between; padding:12px 2rem; background:var(--surface); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; flex-wrap:wrap; gap:8px; }
 .nav .brand { font-family:'Instrument Serif',serif; font-size:20px; color:var(--navy); text-decoration:none; letter-spacing:.2px; }
 .nav .brand .pt { color:var(--go); }
-.nav .brand .cl { font-family:'Inter',sans-serif; font-size:10px; color:var(--muted); letter-spacing:2.5px; text-transform:uppercase; font-weight:700; margin-left:4px; vertical-align:2px; }
+.nav .brand .cl { font-family:'Instrument Serif',serif; color:var(--navy); margin-left:5px; }
 .nav .links { display:flex; gap:4px; flex-wrap:wrap; }
 .nav .links a { color:var(--muted); text-decoration:none; font-size:13.5px; font-weight:500; padding:7px 13px; border-radius:8px; }
 .nav .links a:hover { background:var(--bg); color:var(--text); }
@@ -182,7 +182,7 @@ a { color:var(--navy); }
 </style></head>
 <body>
 <nav class="nav">
-  <a class="brand" href="./index.html"><svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg> Radar <span class="pt">de Licitaciones</span><span class="cl">Chile</span></a>
+  <a class="brand" href="./index.html"><svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg> Radar <span class="pt">de Licitaciones</span><span class="cl">Chile</span><svg width="17" height="12" viewBox="0 0 24 16" style="vertical-align:-1px;margin-left:6px;border-radius:2px;box-shadow:0 0 0 1px #e2e7ee"><rect width="24" height="8" fill="#fff"/><rect y="8" width="24" height="8" fill="#D52B1E"/><rect width="8" height="8" fill="#0039A6"/><polygon points="4,1.4 4.76,3.48 6.98,3.48 5.19,4.82 5.85,6.9 4,5.66 2.15,6.9 2.81,4.82 1.02,3.48 3.24,3.48" fill="#fff"/></svg></a>
   <div class="links">
     <a href="./index.html">Inicio</a>
     <a href="./tablero.html" class="on">Tablero</a>
@@ -196,26 +196,26 @@ a { color:var(--navy); }
       <div class="radar"><div class="sweep"></div><div class="pin"><svg width="26" height="26" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg></div></div>
       <div>
         <h1>Radar de Licitaciones</h1>
-        <p class="sub">Oportunidades de aseo en Mercado Público, filtradas y evaluadas cada día</p>
+        <p class="sub">Oportunidades de aseo en Mercado Público — Arica y Parinacota, Coquimbo — detectadas y evaluadas cada día</p>
       </div>
     </div>
     <div class="hero-side">
       
       <p class="cliente">Panel de <b>demostración</b></p>
-      <p class="fecha">Actualizado 15-07-2026 · 20:07</p>
+      <p class="fecha">Actualizado 15-07-2026 · 20:30</p>
     </div>
   </div>
 </div>
 <div class="wrap">
 
 <div class="accion"><div class="a-txt"><p class="a-lbl">Acción del día</p><p class="a-tit">Servicio de Aseo Dependencias Vialidad Provincia de Limarí</p><p class="a-det"><b style="color:#996c0f">Revisar</b> · cierra en 5 días · MOP - Dirección de Vialidad IV Región</p></div><a class="btn btn-pri" href="#lic-996-21-LE26" onclick="abrirCard('996-21-LE26')">Revisar y decidir</a></div>
-<div class="kpis"><div class="kpi kpi-click" onclick="verTodas()" title="Ver el listado completo"><p>Oportunidades activas</p><p id="kpi-activas">11</p><p class="k-sub" id="kpi-activas-sub">8 licitaciones · 3 compras ágiles</p></div><div class="kpi kpi-click" onclick="verPorDecidir()" title="Ver cuáles esperan su decisión"><p>Esperan tu decisión</p><p class="k-accent" id="kpi-decision">2</p><p class="k-sub">toque para verlas →</p></div><div class="kpi kpi-click" onclick="irTab('cal')" title="Ver el calendario de cierres"><p>Cierran en ≤5 días</p><p class="k-warn">1</p><p class="k-sub">toque para ver fechas →</p></div><div class="kpi kpi-click" onclick="irTab('res')" title="Ver sus resultados"><p>Tasa de adjudicación</p><p>—</p><p class="k-sub">0 ganadas de 0 resueltas</p></div></div>
+<div class="kpis"><div class="kpi kpi-click" onclick="verTodas()" title="Ver el listado completo"><p>Oportunidades activas</p><p id="kpi-activas">8</p><p class="k-sub" id="kpi-activas-sub">8 licitaciones · 0 compras ágiles</p></div><div class="kpi kpi-click" onclick="verPorDecidir()" title="Ver cuáles esperan su decisión"><p>Esperan tu decisión</p><p class="k-accent" id="kpi-decision">2</p><p class="k-sub">toque para verlas →</p></div><div class="kpi kpi-click" onclick="irTab('cal')" title="Ver el calendario de cierres"><p>Cierran en ≤5 días</p><p class="k-warn">1</p><p class="k-sub">toque para ver fechas →</p></div><div class="kpi kpi-click" onclick="irTab('res')" title="Ver sus resultados"><p>Tasa de adjudicación</p><p>—</p><p class="k-sub">0 ganadas de 0 resueltas</p></div></div>
 <p class="section-label">Cola de decisión (2)</p><div class="cola"><div class="cola-item" data-cod="996-21-LE26" onclick="abrirCard('996-21-LE26')"><span class="badge" style="background:#fdf3dd;color:#996c0f">Revisar</span><p class="ci-tit">Servicio de Aseo Dependencias Vialidad Provincia de Lim…</p><p class="ci-det">cierra 5d · La Serena</p></div><div class="cola-item" data-cod="996-22-LE26" onclick="abrirCard('996-22-LE26')"><span class="badge" style="background:#fdf3dd;color:#996c0f">Revisar</span><p class="ci-tit">Servicio de Aseo Dependencias Vialidad Provincia de Cho…</p><p class="ci-det">cierra 12d · La Serena</p></div></div>
 
 <div class="tabs">
   <button class="tab active" data-tab="lic" onclick="verTab(this)">Licitaciones (8)</button>
-  <button class="tab" data-tab="ca" onclick="verTab(this)">Compras Ágiles (3)</button>
-  <button class="tab" data-tab="cal" onclick="verTab(this)">Calendario (5)</button>
+  <button class="tab" data-tab="ca" onclick="verTab(this)">Compras Ágiles (0)</button>
+  <button class="tab" data-tab="cal" onclick="verTab(this)">Calendario (2)</button>
   <button class="tab" data-tab="res" onclick="verTab(this)">Resultados</button>
 </div>
 
@@ -516,16 +516,16 @@ a { color:var(--navy); }
 
 <div id="sec-ca" style="display:none">
   <div class="kpis" style="grid-template-columns:repeat(3,1fr)">
-    <div class="kpi"><p>En tu región</p><p>3</p><p class="k-sub">compras ágiles del rubro</p></div>
-    <div class="kpi"><p>Monto total disponible</p><p>$3.210.000</p><p class="k-sub">suma de topes</p></div>
+    <div class="kpi"><p>En tu región</p><p>0</p><p class="k-sub">compras ágiles del rubro</p></div>
+    <div class="kpi"><p>Monto total disponible</p><p>—</p><p class="k-sub">suma de topes</p></div>
     <div class="kpi"><p>Modalidad</p><p style="font-size:20px;padding-top:6px">Cotización</p><p class="k-sub">adjudicación rápida</p></div>
   </div>
-  <div class="ca-card"><div class="ca-info"><p class="ca-title">ADQ. MATERIALES DE ASEO P/DIDECO, SEGUN DETALLE</p><p class="ca-sub">ILUSTRE MUNICIPALIDAD DE PUTRE · Adquisiciones</p><p class="ca-sub2">cierra 2026-07-17 10:00 · tope $2.000.000 · <b>👥 7 cotizando</b> · <span class="cod">4022-491-COT26</span></p><p class="ca-dec"><span class="badge" style="background:#e9f0fb;color:#2d5fa8">PENDIENTE</span></p><p class="ca-motivo">Sin anexos descargados aun (carpeta CompraAgil/4022-491-COT26 no existe). No se puede costear sin bases.</p></div><div class="ca-right"><span class="ca-reg">Tu región</span><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=4022-491-COT26" target="_blank" rel="noopener">Ver ficha ↗</a></div></div><div class="ca-card"><div class="ca-info"><p class="ca-title">CPF ARICA, COMPRA DE UTILES DE ASEO; AREA INVENTARIO.</p><p class="ca-sub">Direc.Reg.Arica y Parinacota · Región de Arica y Parinacota</p><p class="ca-sub2">cierra 2026-07-17 11:00 · tope $700.000 · <b>👥 1 cotizando</b> · <span class="cod">5702-222-COT26</span></p><p class="ca-dec"><span class="badge" style="background:#e9f0fb;color:#2d5fa8">PENDIENTE</span></p><p class="ca-motivo">Anexo incompleto: solo se descargo el Formulario N01 de Sustentabilidad, falta la ficha tecnica con el detalle de items y cantidades.</p></div><div class="ca-right"><span class="ca-reg">Tu región</span><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=5702-222-COT26" target="_blank" rel="noopener">Ver ficha ↗</a></div></div><div class="ca-card"><div class="ca-info"><p class="ca-title">Adquisición de resmas papel recicladas, pilas y paños Limpieza</p><p class="ca-sub">DIRECCION GENERAL DE AERONAUTICA CIVIL · UNIDAD DE COMPRA LA SERENA</p><p class="ca-sub2">cierra 2026-07-24 10:00 · tope $510.000 · 👥 sin cotizaciones aún · <span class="cod">1471-41-COT26</span></p><p class="ca-dec"><span class="badge" style="background:#e7f5ee;color:#0e7a4e">GO</span> · oferta sugerida <b>$505.750</b></p><p class="ca-motivo">Costo total con IVA (428.436) bajo el tope (510.000); precio ofertado 505.750 IVA incluido, margen ~18.1%.</p></div><div class="ca-right"><span class="ca-reg">Tu región</span><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=1471-41-COT26" target="_blank" rel="noopener">Ver ficha ↗</a></div></div>
+  <div class="vacio">Sin compras ágiles de tu rubro en tu región hoy. El robot revisa el portal varias veces al día y las mostrará aquí apenas aparezcan.</div>
 </div>
 
 <div id="sec-cal" style="display:none">
   <div class="cal-nota">📬 Los recordatorios de estos hitos llegan solos a su correo: nueva oportunidad, cierre próximo y cambios de estado. No necesita anotar nada.</div>
-  <div class="hito"><span class="h-dias h-roja">2d</span><div class="h-info"><p class="h-tit">ADQ. MATERIALES DE ASEO P/DIDECO, SEGUN DETALLE</p><p class="h-det">Cierre compra ágil · 2026-07-17 10:00 · <span class="cod">4022-491-COT26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20compra%20%C3%A1gil%3A%20ADQ.%20MATERIALES%20DE%20ASEO%20P/DIDECO%2C%20SEGUN%20DETALLE&dates=20260717T100000/20260717T110000&details=Cierre%20compra%20%C3%A1gil%20del%20proceso%204022-491-COT26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=4022-491-COT26" target="_blank" rel="noopener">Ver ↗</a></div><div class="hito"><span class="h-dias h-roja">2d</span><div class="h-info"><p class="h-tit">CPF ARICA, COMPRA DE UTILES DE ASEO; AREA INVENTARIO.</p><p class="h-det">Cierre compra ágil · 2026-07-17 11:00 · <span class="cod">5702-222-COT26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20compra%20%C3%A1gil%3A%20CPF%20ARICA%2C%20COMPRA%20DE%20UTILES%20DE%20ASEO%3B%20AREA%20INVENTARIO.&dates=20260717T110000/20260717T120000&details=Cierre%20compra%20%C3%A1gil%20del%20proceso%205702-222-COT26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=5702-222-COT26" target="_blank" rel="noopener">Ver ↗</a></div><div class="hito"><span class="h-dias h-ambar">5d</span><div class="h-info"><p class="h-tit">Servicio de Aseo Dependencias Vialidad Provincia de Limarí</p><p class="h-det">Cierre licitación · 20-07-2026 15:30 · <span class="cod">996-21-LE26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20licitaci%C3%B3n%3A%20Servicio%20de%20Aseo%20Dependencias%20Vialidad%20Provincia%20de%20Limar%C3%AD&dates=20260720T153000/20260720T163000&details=Cierre%20licitaci%C3%B3n%20del%20proceso%20996-21-LE26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('996-21-LE26')">Ver</button></div><div class="hito"><span class="h-dias h-gris">9d</span><div class="h-info"><p class="h-tit">Adquisición de resmas papel recicladas, pilas y paños Limpieza</p><p class="h-det">Cierre compra ágil · 2026-07-24 10:00 · <span class="cod">1471-41-COT26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20compra%20%C3%A1gil%3A%20Adquisici%C3%B3n%20de%20resmas%20papel%20recicladas%2C%20pilas%20y%20pa%C3%B1os%20Limpie&dates=20260724T100000/20260724T110000&details=Cierre%20compra%20%C3%A1gil%20del%20proceso%201471-41-COT26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=1471-41-COT26" target="_blank" rel="noopener">Ver ↗</a></div><div class="hito"><span class="h-dias h-gris">12d</span><div class="h-info"><p class="h-tit">Servicio de Aseo Dependencias Vialidad Provincia de Choapa</p><p class="h-det">Cierre licitación · 27-07-2026 15:00 · <span class="cod">996-22-LE26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20licitaci%C3%B3n%3A%20Servicio%20de%20Aseo%20Dependencias%20Vialidad%20Provincia%20de%20Choapa&dates=20260727T150000/20260727T160000&details=Cierre%20licitaci%C3%B3n%20del%20proceso%20996-22-LE26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('996-22-LE26')">Ver</button></div>
+  <div class="hito" data-cod="996-21-LE26"><span class="h-dias h-ambar">5d</span><div class="h-info"><p class="h-tit">Servicio de Aseo Dependencias Vialidad Provincia de Limarí</p><p class="h-det">Cierre licitación · 20-07-2026 15:30 · <span class="cod">996-21-LE26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20licitaci%C3%B3n%3A%20Servicio%20de%20Aseo%20Dependencias%20Vialidad%20Provincia%20de%20Limar%C3%AD&dates=20260720T153000/20260720T163000&details=Cierre%20licitaci%C3%B3n%20del%20proceso%20996-21-LE26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('996-21-LE26')">Ver</button></div><div class="hito" data-cod="996-22-LE26"><span class="h-dias h-gris">12d</span><div class="h-info"><p class="h-tit">Servicio de Aseo Dependencias Vialidad Provincia de Choapa</p><p class="h-det">Cierre licitación · 27-07-2026 15:00 · <span class="cod">996-22-LE26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20licitaci%C3%B3n%3A%20Servicio%20de%20Aseo%20Dependencias%20Vialidad%20Provincia%20de%20Choapa&dates=20260727T150000/20260727T160000&details=Cierre%20licitaci%C3%B3n%20del%20proceso%20996-22-LE26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('996-22-LE26')">Ver</button></div>
 </div>
 
 <div id="sec-res" style="display:none">
@@ -545,8 +545,8 @@ a { color:var(--navy); }
   Las recomendaciones del sistema son referenciales y quedan registradas. La decisión final de postular es siempre del usuario.
 </div>
 
-<button class="instalar" id="btn-instalar" onclick="instalarApp()">📲 Instalar la app en este equipo</button>
-<div class="ios-tip" id="ios-tip"><button onclick="cerrarTipIOS()">✕</button>📲 Para instalar la app en su iPhone: toque <b>Compartir</b> y luego <b>"Agregar a pantalla de inicio"</b>.</div>
+<button class="instalar" id="btn-instalar" onclick="instalarApp()">📲 Descargar la app</button>
+<div class="ios-tip" id="ios-tip"><button onclick="cerrarTipIOS()">✕</button><span id="ios-tip-txt">📲 Para instalar la app en su iPhone: toque <b>Compartir</b> y luego <b>"Agregar a pantalla de inicio"</b>.</span></div>
 
 <!-- Asistente orientador -->
 <button class="ayuda-btn" onclick="toggleAyuda()" title="¿Necesita orientación?">?</button>
@@ -642,7 +642,7 @@ function irTab(nombre) {
 }
 // Las descartadas (No postular) se BORRAN del tablero y los contadores se
 // rebajan al instante. "Restaurar descartadas (N)" deshace si fue un error.
-const N_CA = 3;
+const N_CA = 0;
 function filtrar(btn) {
   document.querySelectorAll('.filters .filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -671,6 +671,11 @@ function borrarDescartadas() {
     const d = e[ci.dataset.cod];
     if (d && d.estado === 'descartar') ci.remove();
   });
+  // El calendario se sincroniza: los hitos de procesos descartados también se borran
+  document.querySelectorAll('.hito').forEach(h => {
+    const d = e[h.dataset.cod];
+    if (d && d.estado === 'descartar') h.remove();
+  });
   actualizarContadores();
   const total = Object.values(e).filter(d => d.estado === 'descartar').length;
   const btn = document.getElementById('btn-restaurar');
@@ -693,6 +698,9 @@ function actualizarContadores() {
   if (ks) ks.textContent = nLic + ' licitaciones · ' + N_CA + ' compras ágiles';
   const tl = document.querySelector('[data-tab="lic"]');
   if (tl) tl.textContent = 'Licitaciones (' + nLic + ')';
+  const nHitos = document.querySelectorAll('.hito').length;
+  const tc = document.querySelector('[data-tab="cal"]');
+  if (tc) tc.textContent = 'Calendario (' + nHitos + ')';
 }
 function verTodas() {
   irTab('lic');
@@ -740,34 +748,38 @@ borrarDescartadas();
 aplicarFiltro();
 
 // ---------- Instalación como app (PWA) ----------
+// El botón "Descargar la app" queda FIJO: siempre visible (salvo ya instalada).
 if ('serviceWorker' in navigator) { navigator.serviceWorker.register('./sw.js').catch(()=>{}); }
 let _promptInstalar = null;
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   _promptInstalar = e;
-  const b = document.getElementById('btn-instalar');
-  if (b && !localStorage.getItem('radar_instalado')) b.style.display = 'block';
 });
-function instalarApp() {
-  if (!_promptInstalar) return;
-  _promptInstalar.prompt();
-  _promptInstalar.userChoice.then(() => {
-    document.getElementById('btn-instalar').style.display = 'none';
-    localStorage.setItem('radar_instalado', '1');
-  });
-}
-// iPhone/iPad no dispara beforeinstallprompt: se muestra la instrucción una vez.
-(function tipIOS() {
-  const esIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  const yaApp = window.navigator.standalone === true;
-  if (esIOS && !yaApp && !localStorage.getItem('radar_tip_ios')) {
-    const t = document.getElementById('ios-tip');
-    if (t) t.style.display = 'block';
-  }
+(function mostrarBotonApp() {
+  const yaApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  const b = document.getElementById('btn-instalar');
+  if (b && !yaApp) b.style.display = 'block';
 })();
+function instalarApp() {
+  if (_promptInstalar) {
+    _promptInstalar.prompt();
+    _promptInstalar.userChoice.then(() => {
+      document.getElementById('btn-instalar').style.display = 'none';
+    });
+    return;
+  }
+  // Sin prompt disponible: instrucciones según el equipo
+  const esIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const txt = document.getElementById('ios-tip-txt');
+  if (txt) {
+    txt.innerHTML = esIOS
+      ? '📲 En su iPhone: toque <b>Compartir</b> y luego <b>"Agregar a pantalla de inicio"</b>.'
+      : '📲 En Chrome: abra el menú <b>⋮</b> (arriba a la derecha) y toque <b>"Instalar app"</b> o <b>"Agregar a pantalla principal"</b>.';
+  }
+  document.getElementById('ios-tip').style.display = 'block';
+}
 function cerrarTipIOS() {
   document.getElementById('ios-tip').style.display = 'none';
-  localStorage.setItem('radar_tip_ios', '1');
 }
 </script>
 </body></html>

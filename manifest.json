@@ -1,6 +1,6 @@
 {
  "name": "Radar de Licitaciones Chile",
- "short_name": "Radar",
+ "short_name": "Radar Licitaciones Chile",
  "description": "Oportunidades de Mercado Público detectadas, evaluadas y trazables.",
  "start_url": "./tablero.html",
  "display": "standalone",
