@@ -1,10 +1,10 @@
 {
   "cliente_id": "ra-import",
-  "generado": "16-07-2026 10:03",
+  "generado": "16-07-2026 11:02",
   "resumen": {
     "counts": {
       "GO": 0,
-      "REVISAR": 2,
+      "REVISAR": 0,
       "PENDIENTE": 1,
       "NO": 3,
       "": 2
@@ -12,34 +12,6 @@
     "monto_total_go": 0
   },
   "licitaciones": [
-    {
-      "codigo": "996-21-LE26",
-      "nombre": "Servicio de Aseo Dependencias Vialidad Provincia de Limarí",
-      "org": "MOP - Dirección de Vialidad IV Región",
-      "region": "Coquimbo",
-      "comuna": "La Serena",
-      "cierre": "20-07-2026 15:30",
-      "dias": 2,
-      "monto": 0,
-      "estado_gng": "",
-      "margen": 15,
-      "semaforo": "REVISAR",
-      "notas": "Presupuesto de la entidad no cubre costo real; se requiere ofertar ~20% sobre referencia para margen positivo; visita técnica pendiente el 14-07-2026."
-    },
-    {
-      "codigo": "996-22-LE26",
-      "nombre": "Servicio de Aseo Dependencias Vialidad Provincia de Choapa",
-      "org": "MOP - Direccion de Vialidad IV Region",
-      "region": "Coquimbo",
-      "comuna": "La Serena",
-      "cierre": "27-07-2026 15:00",
-      "dias": 7,
-      "monto": 0,
-      "estado_gng": "PENDIENTE",
-      "margen": null,
-      "semaforo": "REVISAR",
-      "notas": "Sin bases tecnicas/administrativas descargadas para costear con firmeza; monto estimado no informado por el organismo. Precedente de la hermana 996-21-LE26 (Provincia de Limari, mismo organismo): presupuesto de la entidad no cubrio el costo real (margen 15%, oferta ~20% sobre referencia). Visita tecnica no confirmada en ficha API. Accion sugerida: descargar bases cuanto antes (cierre 27-07-2026)."
-    },
     {
       "codigo": "5750-3-LP26",
       "nombre": "Contrato Servicio de Aseo Comuna de Arica",

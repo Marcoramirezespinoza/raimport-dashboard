@@ -202,20 +202,20 @@ a { color:var(--navy); }
     <div class="hero-side">
       
       <p class="cliente">Panel de <b>demostración</b></p>
-      <p class="fecha">Actualizado 16-07-2026 · 10:03</p>
+      <p class="fecha">Actualizado 16-07-2026 · 11:02 (hora de Chile)</p>
     </div>
   </div>
 </div>
 <div class="wrap">
 
-<div class="accion"><div class="a-txt"><p class="a-lbl">Acción del día</p><p class="a-tit">Servicio de Aseo Dependencias Vialidad Provincia de Limarí</p><p class="a-det"><b style="color:#996c0f">Revisar</b> · cierra en 2 días · MOP - Dirección de Vialidad IV Región</p></div><a class="btn btn-pri" href="#lic-996-21-LE26" onclick="abrirCard('996-21-LE26')">Revisar y decidir</a></div>
-<div class="kpis"><div class="kpi kpi-click" onclick="verTodas()" title="Ver el listado completo"><p>Oportunidades activas</p><p id="kpi-activas">8</p><p class="k-sub" id="kpi-activas-sub">8 licitaciones · 0 compras ágiles</p></div><div class="kpi kpi-click" onclick="verPorDecidir()" title="Ver cuáles esperan su decisión"><p>Esperan tu decisión</p><p class="k-accent" id="kpi-decision">2</p><p class="k-sub">toque para verlas →</p></div><div class="kpi kpi-click" onclick="irTab('cal')" title="Ver el calendario de cierres"><p>Cierran en ≤5 días</p><p class="k-warn">1</p><p class="k-sub">toque para ver fechas →</p></div><div class="kpi kpi-click" onclick="irTab('res')" title="Ver sus resultados"><p>Tasa de adjudicación</p><p>—</p><p class="k-sub">0 ganadas de 0 resueltas</p></div></div>
-<p class="section-label">Cola de decisión (2)</p><div class="cola"><div class="cola-item" data-cod="996-21-LE26" onclick="abrirCard('996-21-LE26')"><span class="badge" style="background:#fdf3dd;color:#996c0f">Revisar</span><p class="ci-tit">Servicio de Aseo Dependencias Vialidad Provincia de Lim…</p><p class="ci-det">cierra 2d · La Serena</p></div><div class="cola-item" data-cod="996-22-LE26" onclick="abrirCard('996-22-LE26')"><span class="badge" style="background:#fdf3dd;color:#996c0f">Revisar</span><p class="ci-tit">Servicio de Aseo Dependencias Vialidad Provincia de Cho…</p><p class="ci-det">cierra 7d · La Serena</p></div></div>
+<div class="accion accion-ok"><div class="a-txt"><p class="a-lbl">Acción del día</p><p class="a-tit">Sin decisiones pendientes</p><p class="a-det">El radar sigue vigilando Mercado Público por ti. Te avisaremos apenas aparezca algo de tu rubro.</p></div></div>
+<div class="kpis"><div class="kpi kpi-click" onclick="verTodas()" title="Ver el listado completo"><p>Oportunidades activas</p><p id="kpi-activas">6</p><p class="k-sub" id="kpi-activas-sub">6 licitaciones · 0 compras ágiles</p></div><div class="kpi kpi-click" onclick="verPorDecidir()" title="Ver cuáles esperan su decisión"><p>Esperan tu decisión</p><p class="k-accent" id="kpi-decision">0</p><p class="k-sub">toque para verlas →</p></div><div class="kpi kpi-click" onclick="irTab('cal')" title="Ver el calendario de cierres"><p>Cierran en ≤5 días</p><p class="">0</p><p class="k-sub">toque para ver fechas →</p></div><div class="kpi kpi-click" onclick="irTab('res')" title="Ver sus resultados"><p>Tasa de adjudicación</p><p>—</p><p class="k-sub">0 ganadas de 0 resueltas</p></div></div>
+
 
 <div class="tabs">
-  <button class="tab active" data-tab="lic" onclick="verTab(this)">Licitaciones (8)</button>
+  <button class="tab active" data-tab="lic" onclick="verTab(this)">Licitaciones (6)</button>
   <button class="tab" data-tab="ca" onclick="verTab(this)">Compras Ágiles (0)</button>
-  <button class="tab" data-tab="cal" onclick="verTab(this)">Calendario (3)</button>
+  <button class="tab" data-tab="cal" onclick="verTab(this)">Calendario (1)</button>
   <button class="tab" data-tab="res" onclick="verTab(this)">Resultados</button>
 </div>
 
@@ -231,82 +231,9 @@ a { color:var(--navy); }
       <button class="filter-btn" data-filter="Arica" onclick="filtrar(this)">Arica</button>
       <button class="filter-btn" id="btn-restaurar" style="display:none" onclick="restaurarDescartadas()"></button>
     </div>
-    <div class="sorters">
-      <button class="filter-btn active" data-sort="prioridad" onclick="ordenar(this)">Prioridad</button>
-      <button class="filter-btn" data-sort="dias" onclick="ordenar(this)">Cierra antes</button>
-      <button class="filter-btn" data-sort="margen" onclick="ordenar(this)">Mayor margen</button>
-    </div>
   </div>
   <div id="cardlist">
   
-    <div class="card" id="lic-996-21-LE26" data-codigo="996-21-LE26" data-region="Coquimbo" data-semaforo="REVISAR" data-dias="2" data-margen="15" data-texto="servicio de aseo dependencias vialidad provincia de limarí mop - dirección de vialidad iv región la serena">
-      <div class="stripe" style="background:#996c0f"></div>
-      <div class="body">
-        <div class="c-head" onclick="toggleDetalle(this)">
-          <div class="c-tit">
-            <p class="title">Servicio de Aseo Dependencias Vialidad Provincia de Limarí</p>
-            <p class="why"><span class="badge" style="background:#fdf3dd;color:#996c0f">Revisar</span> Presupuesto de la entidad no cubre costo real; se requiere ofertar ~20% sobre referencia para margen positivo; visita técnica pendiente el 14-07-2026.</p>
-            <p class="meta">MOP - Dirección de Vialidad IV Región · La Serena (Coquimbo) · <span class="cod">996-21-LE26</span></p>
-          </div>
-          <div class="c-datos">
-            <div class="dato"><p>Monto</p><p>No informado</p></div>
-            <div class="dato"><p>Margen</p><p style="color:#996c0f">15%</p></div>
-            <div class="dato urgente"><p>Cierra en</p><p>2 días</p></div>
-          </div>
-        </div>
-        <div class="c-foot">
-          <div class="avance" title="Avance del proceso: 4 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-done" title="Bases descargadas"></span><span class="paso p-done" title="Evaluada"></span><span class="paso p-done" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
-          <div class="c-acts">
-            <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
-            <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=996-21-LE26" target="_blank" rel="noopener">Ficha oficial ↗</a>
-          </div>
-        </div>
-        <div class="detalle">
-          <p class="d-lbl">Expediente trazable</p>
-          <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Coquimbo.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Bases descargadas automáticamente</p><p class="tl-det">El robot descargó la ficha y adjuntos del proceso. No necesitas buscarlas.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Evaluada: Revisar</p><p class="tl-det">Presupuesto de la entidad no cubre costo real; se requiere ofertar ~20% sobre referencia para margen positivo; visita técnica pendiente el 14-07-2026. Margen estimado: 15%.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Precio de mercado verificado</p><p class="tl-det">El Estado ya pagó $1.600.000/mes por "Aseo y limpieza de edificios/oficinas" (Servicio Agrícola y Ganadero (SAG) - Dirección Regional Puerto Montt). Compitieron 10 oferentes por ese contrato. Fuente: adjudicación 1161-5-LE26 de Mercado Público.</p></div></div><div class="tl-row tl-user" data-cod="996-21-LE26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
-          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
-          <div class="dec-btns" data-cod="996-21-LE26">
-            <button class="dec dec-go" onclick="decidir(event,'996-21-LE26','postular')">Postular</button>
-            <button class="dec dec-est" onclick="decidir(event,'996-21-LE26','estudio')">En estudio</button>
-            <button class="dec dec-no" onclick="decidir(event,'996-21-LE26','descartar')">No postular</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card" id="lic-996-22-LE26" data-codigo="996-22-LE26" data-region="Coquimbo" data-semaforo="REVISAR" data-dias="7" data-margen="-1" data-texto="servicio de aseo dependencias vialidad provincia de choapa mop - direccion de vialidad iv region la serena">
-      <div class="stripe" style="background:#996c0f"></div>
-      <div class="body">
-        <div class="c-head" onclick="toggleDetalle(this)">
-          <div class="c-tit">
-            <p class="title">Servicio de Aseo Dependencias Vialidad Provincia de Choapa</p>
-            <p class="why"><span class="badge" style="background:#fdf3dd;color:#996c0f">Revisar</span> Sin bases tecnicas/administrativas descargadas para costear con firmeza; monto estimado no informado por el organismo. Precedente de la hermana 996-21…</p>
-            <p class="meta">MOP - Direccion de Vialidad IV Region · La Serena (Coquimbo) · <span class="cod">996-22-LE26</span></p>
-          </div>
-          <div class="c-datos">
-            <div class="dato"><p>Monto</p><p>No informado</p></div>
-            <div class="dato"><p>Margen</p><p style="color:#996c0f">—</p></div>
-            <div class="dato"><p>Cierra en</p><p>7 días</p></div>
-          </div>
-        </div>
-        <div class="c-foot">
-          <div class="avance" title="Avance del proceso: 4 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-done" title="Bases descargadas"></span><span class="paso p-done" title="Evaluada"></span><span class="paso p-done" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
-          <div class="c-acts">
-            <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
-            <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=996-22-LE26" target="_blank" rel="noopener">Ficha oficial ↗</a>
-          </div>
-        </div>
-        <div class="detalle">
-          <p class="d-lbl">Expediente trazable</p>
-          <div class="timeline"><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Detectada por el radar</p><p class="tl-det">Oportunidad capturada de Mercado Público. Región validada: Coquimbo.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Bases descargadas automáticamente</p><p class="tl-det">El robot descargó la ficha y adjuntos del proceso. No necesitas buscarlas.</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Evaluada: Revisar</p><p class="tl-det">Sin bases tecnicas/administrativas descargadas para costear con firmeza; monto estimado no informado por el organismo. Precedente de la hermana 996-21-LE26 (Provincia de Limari, mismo organismo): presupuesto de la entidad no cubrio el costo real (margen 15%, oferta ~20% sobre referencia). Visita tecnica no confirmada en ficha API. Accion sugerida: descargar bases cuanto antes (cierre 27-07-2026).</p></div></div><div class="tl-row"><span class="tl-ico">🤖</span><div><p class="tl-tit">Precio de mercado verificado</p><p class="tl-det">El Estado ya pagó $1.600.000/mes por "Aseo y limpieza de edificios/oficinas" (Servicio Agrícola y Ganadero (SAG) - Dirección Regional Puerto Montt). Compitieron 10 oferentes por ese contrato. Fuente: adjudicación 1161-5-LE26 de Mercado Público.</p></div></div><div class="tl-row tl-user" data-cod="996-22-LE26"><span class="tl-ico">👤</span><div><p class="tl-tit">Tu decisión</p><p class="tl-det tl-dec-txt">Pendiente — la decisión final es tuya.</p></div></div></div>
-          <p class="d-lbl">Tu decisión final <span class="d-hint">— siempre editable, queda registrada en este navegador</span></p>
-          <div class="dec-btns" data-cod="996-22-LE26">
-            <button class="dec dec-go" onclick="decidir(event,'996-22-LE26','postular')">Postular</button>
-            <button class="dec dec-est" onclick="decidir(event,'996-22-LE26','estudio')">En estudio</button>
-            <button class="dec dec-no" onclick="decidir(event,'996-22-LE26','descartar')">No postular</button>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="card" id="lic-5750-3-LP26" data-codigo="5750-3-LP26" data-region="Arica" data-semaforo="PENDIENTE" data-dias="8" data-margen="-1" data-texto="contrato servicio de aseo comuna de arica mop - direccion de vialidad xv region - direccion regional (comuna de arica) arica">
       <div class="stripe" style="background:#2d5fa8"></div>
       <div class="body">
@@ -525,7 +452,7 @@ a { color:var(--navy); }
 
 <div id="sec-cal" style="display:none">
   <div class="cal-nota">📬 Los recordatorios de estos hitos llegan solos a su correo: nueva oportunidad, cierre próximo y cambios de estado. No necesita anotar nada.</div>
-  <div class="hito" data-cod="996-21-LE26"><span class="h-dias h-roja">2d</span><div class="h-info"><p class="h-tit">Servicio de Aseo Dependencias Vialidad Provincia de Limarí</p><p class="h-det">Cierre licitación · 20-07-2026 15:30 · <span class="cod">996-21-LE26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20licitaci%C3%B3n%3A%20Servicio%20de%20Aseo%20Dependencias%20Vialidad%20Provincia%20de%20Limar%C3%AD&dates=20260720T153000/20260720T163000&details=Cierre%20licitaci%C3%B3n%20del%20proceso%20996-21-LE26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('996-21-LE26')">Ver</button></div><div class="hito" data-cod="996-22-LE26"><span class="h-dias h-gris">7d</span><div class="h-info"><p class="h-tit">Servicio de Aseo Dependencias Vialidad Provincia de Choapa</p><p class="h-det">Cierre licitación · 27-07-2026 15:00 · <span class="cod">996-22-LE26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20licitaci%C3%B3n%3A%20Servicio%20de%20Aseo%20Dependencias%20Vialidad%20Provincia%20de%20Choapa&dates=20260727T150000/20260727T160000&details=Cierre%20licitaci%C3%B3n%20del%20proceso%20996-22-LE26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('996-22-LE26')">Ver</button></div><div class="hito" data-cod="5750-3-LP26"><span class="h-dias h-gris">8d</span><div class="h-info"><p class="h-tit">Contrato Servicio de Aseo Comuna de Arica</p><p class="h-det">Cierre licitación · 28-07-2026 10:00 · <span class="cod">5750-3-LP26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20licitaci%C3%B3n%3A%20Contrato%20Servicio%20de%20Aseo%20Comuna%20de%20Arica&dates=20260728T100000/20260728T110000&details=Cierre%20licitaci%C3%B3n%20del%20proceso%205750-3-LP26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('5750-3-LP26')">Ver</button></div>
+  <div class="hito" data-cod="5750-3-LP26"><span class="h-dias h-gris">8d</span><div class="h-info"><p class="h-tit">Contrato Servicio de Aseo Comuna de Arica</p><p class="h-det">Cierre licitación · 28-07-2026 10:00 · <span class="cod">5750-3-LP26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20licitaci%C3%B3n%3A%20Contrato%20Servicio%20de%20Aseo%20Comuna%20de%20Arica&dates=20260728T100000/20260728T110000&details=Cierre%20licitaci%C3%B3n%20del%20proceso%205750-3-LP26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('5750-3-LP26')">Ver</button></div>
 </div>
 
 <div id="sec-res" style="display:none">
@@ -717,19 +644,6 @@ function buscar(txt) {
   document.querySelectorAll('.card').forEach(c => {
     c.classList.toggle('hidden-search', txt && !(c.dataset.texto || '').includes(txt));
   });
-}
-function ordenar(btn) {
-  document.querySelectorAll('.sorters .filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const s = btn.dataset.sort;
-  const list = document.getElementById('cardlist');
-  const cards = Array.from(list.children);
-  cards.sort((a,b) => {
-    if (s === 'dias') return parseFloat(a.dataset.dias) - parseFloat(b.dataset.dias);
-    if (s === 'margen') return parseFloat(b.dataset.margen) - parseFloat(a.dataset.margen);
-    return 0;
-  });
-  cards.forEach(c => list.appendChild(c));
 }
 // ---------- Asistente orientador ----------
 function toggleAyuda() { document.getElementById('ayuda').classList.toggle('abierto'); }
