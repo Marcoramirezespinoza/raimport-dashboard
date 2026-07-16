@@ -1,13 +1,13 @@
 {
   "cliente_id": "ra-import",
-  "generado": "16-07-2026 12:04",
+  "generado": "16-07-2026 12:52",
   "resumen": {
     "counts": {
-      "GO": 0,
-      "REVISAR": 0,
-      "PENDIENTE": 1,
-      "NO": 3,
-      "": 2
+      "GO": 1,
+      "REVISAR": 1,
+      "PENDIENTE": 0,
+      "NO": 4,
+      "": 0
     },
     "monto_total_go": 0
   },
@@ -22,9 +22,37 @@
       "dias": 8,
       "monto": 0,
       "estado_gng": "PENDIENTE",
+      "margen": 20,
+      "semaforo": "GO",
+      "notas": "GO con margen 20% ($9.844.786/mes, 10 trabajadores, 5 dependencias en Arica). visita técnica el 20-07-2026 09:00 OBLIGATORIA (numeral 3.6)."
+    },
+    {
+      "codigo": "909863-1-LE26",
+      "nombre": "E9 Servicios de Aseo TP de Illapel",
+      "org": "Tesorería General de la República (Tesorería Provincial de Illapel)",
+      "region": "Coquimbo",
+      "comuna": "Illapel",
+      "cierre": "29-07-2026 13:00",
+      "dias": 9,
+      "monto": 45564948,
+      "estado_gng": "Fuera de alcance - otra comuna",
+      "margen": 20,
+      "semaforo": "REVISAR",
+      "notas": "Margen 20% NO verificado: depende de dotacion sin confirmar (falta anexo bases tecnicas; con 2+ trabajadores no alcanza). Revisar antes del 22-07-2026."
+    },
+    {
+      "codigo": "837-69-LE26",
+      "nombre": "SC 365 CDP 427 Servicio Aseo SML Ovalle por 24 meses",
+      "org": "Servicio Médico Legal",
+      "region": "Región Metropolitana de Santiago",
+      "comuna": "San Felipe",
+      "cierre": "17-07-2026 15:30",
+      "dias": 1,
+      "monto": 30000000,
+      "estado_gng": "Fuera de alcance - Región incorrecta",
       "margen": null,
-      "semaforo": "PENDIENTE",
-      "notas": "Ficha API sin monto estimado ni datos operativos (m2, dotacion, frecuencia); evaluador-licitacion no pudo costear sin bases tecnicas descargadas, conforme regla de no inventar datos. Accion sugerida: descargar bases del ID 5750-3-LP26 antes del cierre (28-07-2026 10:00) y re-evaluar. Items UNSPSC 76111500 (servicio de limpieza de edificios), cubre 4 dependencias: oficina regional, Oficina Telemop, oficina provincial Arica, Campamento Quiane y plaza de pesaje Chacalluta. Contrato 19 meses."
+      "semaforo": "NO",
+      "notas": "NO GO: precio piso excede presupuesto de referencia ($1.257.955 vs $1.250.000 con IVA). Falta anexo de bases tecnicas con dotacion real."
     },
     {
       "codigo": "1696-9-LR26",
@@ -67,34 +95,6 @@
       "margen": null,
       "semaforo": "NO",
       "notas": "Acta de visita del 10-07-2026 no registra asistencia de RA Import; requisito bloqueante incumplido. Verificar manualmente si hay comprobante alternativo."
-    },
-    {
-      "codigo": "837-69-LE26",
-      "nombre": "SC 365 CDP 427 Servicio Aseo SML Ovalle por 24 meses",
-      "org": "Servicio Médico Legal",
-      "region": "Región Metropolitana de Santiago",
-      "comuna": "San Felipe",
-      "cierre": "17-07-2026 15:30",
-      "dias": 1,
-      "monto": 30000000,
-      "estado_gng": "Fuera de alcance - Región incorrecta",
-      "margen": null,
-      "semaforo": "",
-      "notas": "CORREGIDO 15-07-2026: ficha oficial indica Comprador.RegionUnidad=Región Metropolitana de Santiago y ComunaUnidad=San Felipe (sede central del Servicio Médico Legal), no Región de Coquimbo. El nombre menciona \"Ovalle\" pero la unidad compradora registrada no es la de Coquimbo. Excluido del alcance de este scanner conforme a validación de región obligatoria."
-    },
-    {
-      "codigo": "909863-1-LE26",
-      "nombre": "E9 Servicios de Aseo TP de Illapel",
-      "org": "Tesorería General de la República (Tesorería Provincial de Illapel)",
-      "region": "Coquimbo",
-      "comuna": "Illapel",
-      "cierre": "29-07-2026 13:00",
-      "dias": 9,
-      "monto": 45564948,
-      "estado_gng": "Fuera de alcance - otra comuna",
-      "margen": null,
-      "semaforo": "",
-      "notas": null
     }
   ]
 }
