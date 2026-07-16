@@ -1,13 +1,13 @@
 {
   "cliente_id": "ra-import",
-  "generado": "16-07-2026 08:02",
+  "generado": "16-07-2026 09:16",
   "resumen": {
     "counts": {
       "GO": 0,
       "REVISAR": 2,
-      "PENDIENTE": 0,
+      "PENDIENTE": 1,
       "NO": 3,
-      "": 3
+      "": 2
     },
     "monto_total_go": 0
   },
@@ -19,7 +19,7 @@
       "region": "Coquimbo",
       "comuna": "La Serena",
       "cierre": "20-07-2026 15:30",
-      "dias": 5,
+      "dias": 2,
       "monto": 0,
       "estado_gng": "",
       "margen": 15,
@@ -33,12 +33,26 @@
       "region": "Coquimbo",
       "comuna": "La Serena",
       "cierre": "27-07-2026 15:00",
-      "dias": 12,
+      "dias": 7,
       "monto": 0,
       "estado_gng": "PENDIENTE",
       "margen": null,
       "semaforo": "REVISAR",
       "notas": "Sin bases tecnicas/administrativas descargadas para costear con firmeza; monto estimado no informado por el organismo. Precedente de la hermana 996-21-LE26 (Provincia de Limari, mismo organismo): presupuesto de la entidad no cubrio el costo real (margen 15%, oferta ~20% sobre referencia). Visita tecnica no confirmada en ficha API. Accion sugerida: descargar bases cuanto antes (cierre 27-07-2026)."
+    },
+    {
+      "codigo": "5750-3-LP26",
+      "nombre": "Contrato Servicio de Aseo Comuna de Arica",
+      "org": "MOP - Direccion de Vialidad XV Region - Direccion Regional (Comuna de Arica)",
+      "region": "Arica",
+      "comuna": "Arica",
+      "cierre": "28-07-2026 10:00",
+      "dias": 8,
+      "monto": 0,
+      "estado_gng": "PENDIENTE",
+      "margen": null,
+      "semaforo": "PENDIENTE",
+      "notas": "Ficha API sin monto estimado ni datos operativos (m2, dotacion, frecuencia); evaluador-licitacion no pudo costear sin bases tecnicas descargadas, conforme regla de no inventar datos. Accion sugerida: descargar bases del ID 5750-3-LP26 antes del cierre (28-07-2026 10:00) y re-evaluar. Items UNSPSC 76111500 (servicio de limpieza de edificios), cubre 4 dependencias: oficina regional, Oficina Telemop, oficina provincial Arica, Campamento Quiane y plaza de pesaje Chacalluta. Contrato 19 meses."
     },
     {
       "codigo": "1696-9-LR26",
@@ -47,26 +61,12 @@
       "region": "Arica",
       "comuna": "Arica",
       "cierre": "17-07-2026 16:00",
-      "dias": 2,
+      "dias": 1,
       "monto": 0,
       "estado_gng": "PENDIENTE",
       "margen": null,
       "semaforo": "NO",
       "notas": "Visita técnica obligatoria venció (~27-06-2026) sin evidencia de asistencia; oferta sería inadmisible según bases."
-    },
-    {
-      "codigo": "1084148-11-LE26",
-      "nombre": "\"ADQUISICIÓN DE SERVICIOS DE LIMPIEZA Y ASEO POR DOS AÑOS DE LA OFICINA DE ADMINISTRACIÓN CENTRAL Y BODEGA DEL SLEP CHINCHORRO DE ARICA\".",
-      "org": "Servicio Local de Educación de Chinchorro (SLEP Chinchorro)",
-      "region": "Arica",
-      "comuna": "Arica",
-      "cierre": "20-07-2026 15:00",
-      "dias": 3,
-      "monto": 55200000,
-      "estado_gng": "PENDIENTE",
-      "margen": null,
-      "semaforo": "NO",
-      "notas": "Acta de visita del 10-07-2026 no registra asistencia de RA Import; requisito bloqueante incumplido. Verificar manualmente si hay comprobante alternativo."
     },
     {
       "codigo": "4619-2-LP26",
@@ -75,7 +75,7 @@
       "region": "Coquimbo",
       "comuna": "La Serena",
       "cierre": "20-07-2026 15:00",
-      "dias": 5,
+      "dias": 2,
       "monto": 160000000,
       "estado_gng": "",
       "margen": null,
@@ -83,18 +83,18 @@
       "notas": "RA Import no asistió a la visita técnica obligatoria en ninguna de las 8 dependencias; oferta sería inadmisible."
     },
     {
-      "codigo": "2446-180-LE26",
-      "nombre": "Servicio Limpieza Tensomembrana Estadio FSR",
-      "org": "I. Municipalidad de Coquimbo",
-      "region": "Coquimbo",
-      "comuna": "Coquimbo",
-      "cierre": "15-07-2026 15:00",
-      "dias": 0,
-      "monto": 25000000,
-      "estado_gng": "Fuera de alcance - otra comuna",
+      "codigo": "1084148-11-LE26",
+      "nombre": "\"ADQUISICIÓN DE SERVICIOS DE LIMPIEZA Y ASEO POR DOS AÑOS DE LA OFICINA DE ADMINISTRACIÓN CENTRAL Y BODEGA DEL SLEP CHINCHORRO DE ARICA\".",
+      "org": "Servicio Local de Educación de Chinchorro (SLEP Chinchorro)",
+      "region": "Arica",
+      "comuna": "Arica",
+      "cierre": "20-07-2026 15:00",
+      "dias": 2,
+      "monto": 55200000,
+      "estado_gng": "PENDIENTE",
       "margen": null,
-      "semaforo": "",
-      "notas": null
+      "semaforo": "NO",
+      "notas": "Acta de visita del 10-07-2026 no registra asistencia de RA Import; requisito bloqueante incumplido. Verificar manualmente si hay comprobante alternativo."
     },
     {
       "codigo": "837-69-LE26",
@@ -103,7 +103,7 @@
       "region": "Región Metropolitana de Santiago",
       "comuna": "San Felipe",
       "cierre": "17-07-2026 15:30",
-      "dias": 2,
+      "dias": 1,
       "monto": 30000000,
       "estado_gng": "Fuera de alcance - Región incorrecta",
       "margen": null,
@@ -117,7 +117,7 @@
       "region": "Coquimbo",
       "comuna": "Illapel",
       "cierre": "29-07-2026 13:00",
-      "dias": 14,
+      "dias": 9,
       "monto": 45564948,
       "estado_gng": "Fuera de alcance - otra comuna",
       "margen": null,
