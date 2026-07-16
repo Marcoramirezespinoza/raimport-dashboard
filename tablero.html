@@ -250,7 +250,7 @@ html[data-theme="dark"] .btn-pri { background:#e8edf6; color:#0d131e; }
     <div class="hero-side">
       
       <p class="cliente">Panel de <b>demostración</b></p>
-      <p class="fecha">Actualizado 16-07-2026 · 18:44 (hora de Chile)</p>
+      <p class="fecha">Actualizado 16-07-2026 · 18:47 (hora de Chile)</p>
     </div>
   </div>
 </div>
@@ -941,9 +941,11 @@ function _conLibPDF(cb) {
 function descargarCotPDF() {
   const html = construirCotHTML();
   if (!html) return;
-  // Contenedor fuera de pantalla con el documento construido (evita el PDF en blanco)
+  // El documento se renderiza EN FLUJO al pie de la página durante 1-2 segundos
+  // (los contenedores ocultos/fuera de pantalla producen un PDF en blanco).
   const cont = document.createElement('div');
-  cont.style.cssText = 'position:absolute;left:-10000px;top:0;width:740px;background:#fff;padding:28px;z-index:-1';
+  cont.style.cssText = 'width:740px;background:#fff;padding:28px;margin:0 auto';
+  cont.setAttribute('aria-hidden', 'true');
   cont.innerHTML = html;
   document.body.appendChild(cont);
   _conLibPDF(() => {
