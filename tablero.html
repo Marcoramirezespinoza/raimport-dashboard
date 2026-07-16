@@ -108,7 +108,8 @@ a { color:var(--navy); }
 .av-lbl { font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.7px; font-weight:600; margin-right:4px; }
 .paso { width:22px; height:6px; border-radius:3px; background:var(--border); }
 .paso.p-done { background:var(--go); }
-.c-acts { display:flex; gap:8px; }
+.c-acts { display:flex; gap:8px; flex-wrap:wrap; }
+.btn-cot { border-color:var(--navy); color:var(--navy); font-weight:700; }
 .detalle { display:none; margin-top:14px; padding-top:14px; border-top:1px solid var(--border); }
 .card.abierta .detalle { display:block; }
 .d-lbl { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1.2px; font-weight:700; margin:0 0 10px; }
@@ -250,7 +251,7 @@ html[data-theme="dark"] .btn-pri { background:#e8edf6; color:#0d131e; }
     <div class="hero-side">
       
       <p class="cliente">Panel de <b>demostración</b></p>
-      <p class="fecha">Actualizado 16-07-2026 · 18:47 (hora de Chile)</p>
+      <p class="fecha">Actualizado 16-07-2026 · 19:18 (hora de Chile)</p>
     </div>
   </div>
 </div>
@@ -303,6 +304,7 @@ html[data-theme="dark"] .btn-pri { background:#e8edf6; color:#0d131e; }
         <div class="c-foot">
           <div class="avance" title="Avance del proceso: 3 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-done" title="Bases descargadas"></span><span class="paso p-done" title="Evaluada"></span><span class="paso p-todo" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
           <div class="c-acts">
+            <button class="btn btn-sec btn-cot" onclick="abrirCot(event,&#39;5750-3-LP26&#39;)">📄 Cotización</button>
             <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
             <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=5750-3-LP26" target="_blank" rel="noopener">Ficha oficial ↗</a>
           </div>
@@ -337,6 +339,7 @@ html[data-theme="dark"] .btn-pri { background:#e8edf6; color:#0d131e; }
         <div class="c-foot">
           <div class="avance" title="Avance del proceso: 3 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-done" title="Bases descargadas"></span><span class="paso p-done" title="Evaluada"></span><span class="paso p-todo" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
           <div class="c-acts">
+            <button class="btn btn-sec btn-cot" onclick="abrirCot(event,&#39;909863-1-LE26&#39;)">📄 Cotización</button>
             <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
             <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=909863-1-LE26" target="_blank" rel="noopener">Ficha oficial ↗</a>
           </div>
@@ -371,6 +374,7 @@ html[data-theme="dark"] .btn-pri { background:#e8edf6; color:#0d131e; }
         <div class="c-foot">
           <div class="avance" title="Avance del proceso: 3 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-done" title="Bases descargadas"></span><span class="paso p-done" title="Evaluada"></span><span class="paso p-todo" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
           <div class="c-acts">
+            
             <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
             <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=837-69-LE26" target="_blank" rel="noopener">Ficha oficial ↗</a>
           </div>
@@ -405,6 +409,7 @@ html[data-theme="dark"] .btn-pri { background:#e8edf6; color:#0d131e; }
         <div class="c-foot">
           <div class="avance" title="Avance del proceso: 3 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-done" title="Bases descargadas"></span><span class="paso p-done" title="Evaluada"></span><span class="paso p-todo" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
           <div class="c-acts">
+            
             <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
             <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=1696-9-LR26" target="_blank" rel="noopener">Ficha oficial ↗</a>
           </div>
@@ -439,6 +444,7 @@ html[data-theme="dark"] .btn-pri { background:#e8edf6; color:#0d131e; }
         <div class="c-foot">
           <div class="avance" title="Avance del proceso: 3 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-done" title="Bases descargadas"></span><span class="paso p-done" title="Evaluada"></span><span class="paso p-todo" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
           <div class="c-acts">
+            
             <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
             <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=4619-2-LP26" target="_blank" rel="noopener">Ficha oficial ↗</a>
           </div>
@@ -473,6 +479,7 @@ html[data-theme="dark"] .btn-pri { background:#e8edf6; color:#0d131e; }
         <div class="c-foot">
           <div class="avance" title="Avance del proceso: 3 de 6 pasos"><span class="av-lbl">Avance</span><span class="paso p-done" title="Detectada"></span><span class="paso p-done" title="Bases descargadas"></span><span class="paso p-done" title="Evaluada"></span><span class="paso p-todo" title="Precio de mercado"></span><span class="paso p-js" title="Tu decisión"></span><span class="paso p-todo" title="Postulada"></span></div>
           <div class="c-acts">
+            
             <button class="btn btn-sec" onclick="toggleDetalleBtn(this)">Ver expediente</button>
             <a class="btn btn-sec" href="https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=1084148-11-LE26" target="_blank" rel="noopener">Ficha oficial ↗</a>
           </div>
