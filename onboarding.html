@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Radar de Licitaciones — Personalice su radar</title>
+<title>Radar de Licitaciones — Registrarse</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
@@ -62,15 +62,14 @@ label.mini { font-size:12px; color:var(--muted); font-weight:600; }
   <a class="brand" href="./index.html"><svg width="22" height="22" viewBox="0 0 24 24" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg> Radar <span class="pt">de Licitaciones</span><span class="cl">Chile</span><svg width="17" height="12" viewBox="0 0 24 16" style="vertical-align:-1px;margin-left:6px;border-radius:2px;box-shadow:0 0 0 1px #e2e7ee"><rect width="24" height="8" fill="#fff"/><rect y="8" width="24" height="8" fill="#D52B1E"/><rect width="8" height="8" fill="#0039A6"/><polygon points="4,1.4 4.76,3.48 6.98,3.48 5.19,4.82 5.85,6.9 4,5.66 2.15,6.9 2.81,4.82 1.02,3.48 3.24,3.48" fill="#fff"/></svg></a>
   <div class="links">
     <a href="./index.html">Inicio</a>
+    <a href="./onboarding.html" class="on">Registrarse</a>
     <a href="./tablero.html">Tablero</a>
-    <a href="./onboarding.html" class="on">Personalizar</a>
-    <a href="./planes.html">Planes</a>
   </div>
 </nav>
 <div class="top">
   <p class="eyebrow">Mercado Público · Chile</p>
-  <h1>Personalice su radar</h1>
-  <p>Elija su rubro y su región. En base a eso, el sistema busca solo para usted.</p>
+  <h1>Registre su radar</h1>
+  <p>Complete estos pasos y su tablero quedará con su empresa, su rubro y sus colores. El registro nos llega al instante.</p>
 </div>
 
 <div class="wrap">
@@ -124,28 +123,35 @@ label.mini { font-size:12px; color:var(--muted); font-weight:600; }
       <div class="step"><span class="num">4</span><h2>¿Cómo quiere que le avisemos?</h2></div>
       <div class="toggle-row"><div class="sw2 on" onclick="this.classList.toggle('on')"></div><span style="font-size:13.5px">Alertas por correo con el análisis adjunto</span></div>
       <div class="row">
-        <div><label class="mini">Su correo</label><input type="text" placeholder="sucorreo@empresa.cl"></div>
-        <div><label class="mini">Su WhatsApp (opcional)</label><input type="text" placeholder="+56 9 ...."></div>
+        <div><label class="mini">Nombre de su empresa</label><input type="text" id="reg-empresa" placeholder="Ej: Aseo del Norte SpA"></div>
+        <div><label class="mini">Su correo</label><input type="text" id="reg-correo" placeholder="sucorreo@empresa.cl"></div>
+        <div><label class="mini">Su WhatsApp (opcional)</label><input type="text" id="reg-fono" placeholder="+56 9 ...."></div>
       </div>
     </div>
 
-    <div class="card">
-      <div class="step"><span class="num">5</span><h2>El color de su tablero</h2></div>
-      <p class="hint">Su radar, con su identidad. Pruebe y vea el cambio al instante.</p>
-      <div class="chips" id="colores">
-        <span class="chip chip-color on" data-color="#0F1F3D" onclick="elegirColor(this)"><span class="sw" style="background:#0F1F3D"></span>Azul institucional</span>
-        <span class="chip chip-color" data-color="#0e5a3c" onclick="elegirColor(this)"><span class="sw" style="background:#0e5a3c"></span>Verde servicio</span>
-        <span class="chip chip-color" data-color="#1a3a6b" onclick="elegirColor(this)"><span class="sw" style="background:#1a3a6b"></span>Azul marino</span>
-        <span class="chip chip-color" data-color="#6b1f2a" onclick="elegirColor(this)"><span class="sw" style="background:#6b1f2a"></span>Burdeo</span>
-        <span class="chip chip-color" data-color="#2b3440" onclick="elegirColor(this)"><span class="sw" style="background:#2b3440"></span>Grafito</span>
-        <span class="chip chip-color" data-color="#4a3a75" onclick="elegirColor(this)"><span class="sw" style="background:#4a3a75"></span>Violeta corporativo</span>
+    <div class="card" style="padding:1.1rem 1.3rem">
+      <div class="step" style="margin-bottom:.6rem"><span class="num">5</span><h2>Su color y su logo</h2></div>
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+        <div class="chips" id="colores" style="gap:6px">
+          <span class="chip chip-color on" data-color="#0F1F3D" onclick="elegirColor(this)" style="padding:6px 10px;font-size:11.5px"><span class="sw" style="background:#0F1F3D"></span>Azul</span>
+          <span class="chip chip-color" data-color="#0e5a3c" onclick="elegirColor(this)" style="padding:6px 10px;font-size:11.5px"><span class="sw" style="background:#0e5a3c"></span>Verde</span>
+          <span class="chip chip-color" data-color="#1a3a6b" onclick="elegirColor(this)" style="padding:6px 10px;font-size:11.5px"><span class="sw" style="background:#1a3a6b"></span>Marino</span>
+          <span class="chip chip-color" data-color="#6b1f2a" onclick="elegirColor(this)" style="padding:6px 10px;font-size:11.5px"><span class="sw" style="background:#6b1f2a"></span>Burdeo</span>
+          <span class="chip chip-color" data-color="#2b3440" onclick="elegirColor(this)" style="padding:6px 10px;font-size:11.5px"><span class="sw" style="background:#2b3440"></span>Grafito</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <input type="file" id="logo" accept="image/*" onchange="previewLogo(this)" style="font-size:11.5px;max-width:180px">
+          <img id="logo-prev" alt="" style="display:none;max-height:38px;max-width:130px;border:1px solid var(--border);border-radius:8px;padding:4px;background:#fff">
+        </div>
       </div>
-      <p class="hint" style="margin:1.1rem 0 .5rem 0">¿Tiene logo? Súbalo y su tablero lo mostrará junto a su nombre (opcional).</p>
-      <input type="file" id="logo" accept="image/*" onchange="previewLogo(this)" style="font-size:12.5px">
-      <img id="logo-prev" alt="" style="display:none;max-height:46px;max-width:160px;margin-top:10px;border:1px solid var(--border);border-radius:8px;padding:6px;background:#fff">
     </div>
 
-    <button class="activar" onclick="activar()">Activar mi radar →</button>
+    <div class="card" style="padding:1.1rem 1.3rem">
+      <div class="step" style="margin-bottom:.6rem"><span class="num">6</span><h2>¿Comentarios o ideas? (opcional)</h2></div>
+      <textarea id="reg-feedback" rows="2" style="width:100%;border:1px solid var(--border);border-radius:10px;padding:9px 12px;font-family:inherit;font-size:12.5px;resize:vertical" placeholder="Qué le gustaría que Radar hiciera por su pyme…"></textarea>
+    </div>
+
+    <button class="activar" onclick="activar()">Registrarme y ver mi tablero →</button>
     <p style="text-align:center"><span class="demo-tag">Demostración — así se ve para el cliente</span></p>
   </div>
 
@@ -154,7 +160,8 @@ label.mini { font-size:12px; color:var(--muted); font-weight:600; }
     <p class="big">Su radar está activo</p>
     <p style="color:var(--muted);font-size:14px;margin:0">Desde mañana recibirá solo las oportunidades que eligió.</p>
     <div class="resumen" id="resumen"></div>
-    <p style="font-size:12.5px;color:var(--muted);margin:0">El sistema escaneará Mercado Público y Compra Ágil cada día, evaluará por usted, y le avisará. Usted solo revisa.</p>
+    <p style="font-size:12.5px;color:var(--muted);margin:0 0 16px">El sistema escaneará Mercado Público y Compra Ágil cada día, evaluará por usted, y le avisará. Usted solo revisa.</p>
+    <a href="./tablero.html" class="activar" style="display:block;text-align:center;text-decoration:none">Abrir mi tablero personalizado →</a>
   </div>
 </div>
 
@@ -177,11 +184,43 @@ function previewLogo(inp){
 function activar(){
   const rubros = sel('rubros'), regiones = sel('regiones');
   const comunas = document.getElementById('comunas').value || '(no especificadas)';
-  if(!rubros.length || !regiones.length){ alert('Elija al menos un rubro y una región.'); return; }
+  const empresa = (document.getElementById('reg-empresa')||{}).value || '';
+  const correo = (document.getElementById('reg-correo')||{}).value || '';
+  const fono = (document.getElementById('reg-fono')||{}).value || '';
+  const fb = (document.getElementById('reg-feedback')||{}).value || '';
+  if(!rubros.length || !regiones.length){ alert('Elija al menos un rubro y una region.'); return; }
+  if(!empresa || !correo){ alert('Indique el nombre de su empresa y su correo para registrarse.'); return; }
+  const colorEl = document.querySelector('#colores .chip.on');
+  const logoImg = document.getElementById('logo-prev');
+
+  // 1) Guardar la personalizacion: el TABLERO la muestra al instante (demo en vivo)
+  const cfg = {
+    empresa: empresa,
+    correo: correo,
+    rubro: rubros[0],
+    regiones: regiones.join(', '),
+    comunas: comunas,
+    color: colorEl ? colorEl.dataset.color : '#0F1F3D',
+    logo: (logoImg && logoImg.style.display !== 'none') ? logoImg.src : ''
+  };
+  try { localStorage.setItem('radar_demo_config', JSON.stringify(cfg)); } catch(e) {}
+
+  // 2) El registro llega al correo del equipo Radar
+  const cuerpo = 'NUEVO REGISTRO EN RADAR DE LICITACIONES\n\n'
+    + 'Empresa: ' + empresa + '\nCorreo: ' + correo + '\nWhatsApp: ' + (fono || '-')
+    + '\nRubros: ' + rubros.join(', ') + '\nRegiones: ' + regiones.join(', ')
+    + '\nComunas: ' + comunas + '\nColor elegido: ' + cfg.color
+    + (fb ? '\n\nComentario del cliente:\n' + fb : '');
+  window.location.href = 'mailto:marcoramirezes.1286@gmail.com'
+    + '?subject=' + encodeURIComponent('Nuevo registro Radar - ' + empresa)
+    + '&body=' + encodeURIComponent(cuerpo);
+
+  // 3) Pantalla de exito con acceso directo al tablero personalizado
   document.getElementById('resumen').innerHTML =
-    'Su radar buscará:<br>• Rubro: <b>'+rubros.join(', ')+'</b>'+
-    '<br>• Regiones: <b>'+regiones.join(', ')+'</b>'+
-    '<br>• Comunas a evaluar: <b>'+comunas+'</b>';
+    'Registro de <b>'+empresa+'</b>:<br>- Rubro: <b>'+rubros.join(', ')+'</b>'+
+    '<br>- Regiones: <b>'+regiones.join(', ')+'</b>'+
+    '<br>- Comunas a evaluar: <b>'+comunas+'</b>'+
+    '<br>- Avisos a: <b>'+correo+'</b>';
   document.getElementById('form').style.display='none';
   document.getElementById('ok').style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});

@@ -153,6 +153,9 @@ a { color:var(--navy); }
 .h-tit { font-size:13px; font-weight:700; margin:0 0 3px; line-height:1.35; }
 .h-det { font-size:11.5px; color:var(--muted); margin:0; }
 .cal-nota { font-size:12.5px; color:var(--muted); background:#e7f5ee; border:1px solid #cfe6d9; border-radius:10px; padding:.8rem 1.1rem; margin-bottom:1.1rem; }
+.hito-visita { border-left:4px solid var(--rev); background:#fffdf5; }
+.h-x { flex-shrink:0; background:none; border:none; color:#b9c2ce; font-size:15px; cursor:pointer; padding:4px 6px; border-radius:6px; }
+.h-x:hover { color:var(--no); background:#fdecea; }
 
 /* --- Asistente orientador --- */
 .ayuda-btn { position:fixed; left:22px; bottom:22px; z-index:200; width:54px; height:54px; border-radius:50%; background:var(--navy); color:#fff; border:none; font-size:22px; font-weight:700; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.22); transition:transform .15s; }
@@ -185,9 +188,8 @@ a { color:var(--navy); }
   <a class="brand" href="./index.html"><svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg> Radar <span class="pt">de Licitaciones</span><span class="cl">Chile</span><svg width="17" height="12" viewBox="0 0 24 16" style="vertical-align:-1px;margin-left:6px;border-radius:2px;box-shadow:0 0 0 1px #e2e7ee"><rect width="24" height="8" fill="#fff"/><rect y="8" width="24" height="8" fill="#D52B1E"/><rect width="8" height="8" fill="#0039A6"/><polygon points="4,1.4 4.76,3.48 6.98,3.48 5.19,4.82 5.85,6.9 4,5.66 2.15,6.9 2.81,4.82 1.02,3.48 3.24,3.48" fill="#fff"/></svg></a>
   <div class="links">
     <a href="./index.html">Inicio</a>
+    <a href="./onboarding.html">Registrarse</a>
     <a href="./tablero.html" class="on">Tablero</a>
-    <a href="./onboarding.html">Personalizar</a>
-    <a href="./planes.html">Planes</a>
   </div>
 </nav>
 <div class="header">
@@ -202,11 +204,15 @@ a { color:var(--navy); }
     <div class="hero-side">
       
       <p class="cliente">Panel de <b>demostración</b></p>
-      <p class="fecha">Actualizado 16-07-2026 · 14:05 (hora de Chile)</p>
+      <p class="fecha">Actualizado 16-07-2026 · 16:58 (hora de Chile)</p>
     </div>
   </div>
 </div>
 <div class="wrap">
+
+<div id="demo-banner" style="display:none;background:#e9f0fb;border:1px solid #c4d4ee;border-radius:10px;padding:.7rem 1.1rem;margin-bottom:1rem;font-size:12.5px;color:#2d5fa8">
+  ✨ Vista personalizada según su registro. <a href="#" onclick="restablecerDemo(event)" style="color:#2d5fa8;font-weight:700">Restablecer vista original</a>
+</div>
 
 <div class="accion"><div class="a-txt"><p class="a-lbl">Acción del día</p><p class="a-tit">Contrato Servicio de Aseo Comuna de Arica</p><p class="a-det"><b style="color:#0e7a4e">Postular</b> · cierra en 8 días · MOP - Direccion de Vialidad XV Region - Direccion Regional (Comuna de Arica)</p></div><a class="btn btn-pri" href="#lic-5750-3-LP26" onclick="abrirCard('5750-3-LP26')">Revisar y decidir</a></div>
 <div class="kpis"><div class="kpi kpi-click" onclick="verTodas()" title="Ver el listado completo"><p>Oportunidades activas</p><p id="kpi-activas">7</p><p class="k-sub" id="kpi-activas-sub">6 licitaciones · 1 compras ágiles</p></div><div class="kpi kpi-click" onclick="verPorDecidir()" title="Ver cuáles esperan su decisión"><p>Esperan tu decisión</p><p class="k-accent" id="kpi-decision">2</p><p class="k-sub">toque para verlas →</p></div><div class="kpi kpi-click" onclick="irTab('cal')" title="Ver el calendario de cierres"><p>Cierran en ≤5 días</p><p class="">0</p><p class="k-sub">toque para ver fechas →</p></div><div class="kpi kpi-click" onclick="irTab('res')" title="Ver sus resultados"><p>Tasa de adjudicación</p><p>—</p><p class="k-sub">0 ganadas de 0 resueltas</p></div></div>
@@ -215,7 +221,7 @@ a { color:var(--navy); }
 <div class="tabs">
   <button class="tab active" data-tab="lic" onclick="verTab(this)">Licitaciones (6)</button>
   <button class="tab" data-tab="ca" onclick="verTab(this)">Compras Ágiles (1)</button>
-  <button class="tab" data-tab="cal" onclick="verTab(this)">Calendario (4)</button>
+  <button class="tab" data-tab="cal" onclick="verTab(this)">Calendario (3)</button>
   <button class="tab" data-tab="res" onclick="verTab(this)">Resultados</button>
 </div>
 
@@ -442,16 +448,24 @@ a { color:var(--navy); }
 
 <div id="sec-ca" style="display:none">
   <div class="kpis" style="grid-template-columns:repeat(3,1fr)">
-    <div class="kpi"><p>En tu región</p><p>1</p><p class="k-sub">compras ágiles del rubro</p></div>
+    <div class="kpi"><p>En tu región</p><p id="kpi-ca">1</p><p class="k-sub">compras ágiles del rubro</p></div>
     <div class="kpi"><p>Monto total disponible</p><p>$450.000</p><p class="k-sub">suma de topes</p></div>
     <div class="kpi"><p>Modalidad</p><p style="font-size:20px;padding-top:6px">Cotización</p><p class="k-sub">adjudicación rápida</p></div>
   </div>
-  <div class="ca-card"><div class="ca-info"><p class="ca-title">Limpieza y sanitización de cubrepiso salón Centro de Operaciones EMF La Serena (incluye mo</p><p class="ca-sub">Servicio Agrícola y Ganadero (SAG) · SAG Región de Coquimbo - La Serena</p><p class="ca-sub2">cierra 2026-07-17 14:00 · tope $450.000 · 👥 sin cotizaciones aún · <span class="cod">1159-62-COT26</span></p><p class="ca-dec"><span class="badge" style="background:#e7f5ee;color:#0e7a4e">GO</span> · oferta sugerida <b>$205.737</b></p><p class="ca-motivo">Costo real $171.447 (IVA incl.) muy por debajo del tope de $450.000; margen 20% holgado y precio competitivo.</p></div><div class="ca-right"><span class="ca-reg">Tu región</span><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=1159-62-COT26" target="_blank" rel="noopener">Ver ficha ↗</a></div></div>
+  <div class="controls">
+    <div class="filters">
+      <button class="filter-btn active" data-cafiltro="Todas" onclick="filtrarCA(this)">Todas</button>
+      <button class="filter-btn" data-cafiltro="__decidir" onclick="filtrarCA(this)">Esperan decisión</button>
+      <button class="filter-btn" data-cafiltro="Coquimbo" onclick="filtrarCA(this)">Coquimbo</button>
+      <button class="filter-btn" data-cafiltro="Arica" onclick="filtrarCA(this)">Arica</button>
+    </div>
+  </div>
+  <div id="calist"><div class="ca-card" data-codigo="1159-62-COT26" data-region="Coquimbo" data-dec="GO"><div class="ca-info"><p class="ca-title">Limpieza y sanitización de cubrepiso salón Centro de Operaciones EMF La Serena (incluye mo</p><p class="ca-sub">Servicio Agrícola y Ganadero (SAG) · SAG Región de Coquimbo - La Serena</p><p class="ca-sub2">cierra 2026-07-17 14:00 · tope $450.000 · 👥 sin cotizaciones aún · <span class="cod">1159-62-COT26</span></p><p class="ca-dec"><span class="badge" style="background:#e7f5ee;color:#0e7a4e">GO</span> · oferta sugerida <b>$205.737</b></p><p class="ca-motivo">Costo real $171.447 (IVA incl.) muy por debajo del tope de $450.000; margen 20% holgado y precio competitivo.</p><div class="dec-btns" style="margin-top:10px"><button class="dec dec-go" onclick="decidir(event,'1159-62-COT26','postular')" title="Confirmo que cotizaré">Voy a cotizar</button><button class="dec dec-est" onclick="decidir(event,'1159-62-COT26','estudio')" title="Aún lo estoy pensando">En estudio</button><button class="dec dec-no" onclick="decidir(event,'1159-62-COT26','descartar')" title="No me interesa: desaparece del tablero">No cotizar</button></div></div><div class="ca-right"><span class="ca-reg">Coquimbo</span><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=1159-62-COT26" target="_blank" rel="noopener">Ver ficha ↗</a></div></div></div>
 </div>
 
 <div id="sec-cal" style="display:none">
   <div class="cal-nota">📬 Los recordatorios de estos hitos llegan solos a su correo: nueva oportunidad, cierre próximo y cambios de estado. No necesita anotar nada.</div>
-  <div class="hito" data-cod="1159-62-COT26"><span class="h-dias h-roja">1d</span><div class="h-info"><p class="h-tit">Limpieza y sanitización de cubrepiso salón Centro de Operaciones EMF La Ser…</p><p class="h-det">Cierre compra ágil · 2026-07-17 14:00 · <span class="cod">1159-62-COT26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20compra%20%C3%A1gil%3A%20Limpieza%20y%20sanitizaci%C3%B3n%20de%20cubrepiso%20sal%C3%B3n%20Centro%20de%20Operaci&dates=20260717T140000/20260717T150000&details=Cierre%20compra%20%C3%A1gil%20del%20proceso%201159-62-COT26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=1159-62-COT26" target="_blank" rel="noopener">Ver ↗</a></div><div class="hito" data-cod="5750-3-LP26"><span class="h-dias h-ambar">4d</span><div class="h-info"><p class="h-tit">Contrato Servicio de Aseo Comuna de Arica</p><p class="h-det">⚠ Visita técnica · 20-07-2026 09:00 hrs · <span class="cod">5750-3-LP26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%E2%9A%A0%20Visita%20t%C3%A9cnica%3A%20Contrato%20Servicio%20de%20Aseo%20Comuna%20de%20Arica&dates=20260720T090000/20260720T100000&details=%E2%9A%A0%20Visita%20t%C3%A9cnica%20del%20proceso%205750-3-LP26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('5750-3-LP26')">Ver</button></div><div class="hito" data-cod="5750-3-LP26"><span class="h-dias h-gris">8d</span><div class="h-info"><p class="h-tit">Contrato Servicio de Aseo Comuna de Arica</p><p class="h-det">Cierre licitación · 28-07-2026 10:00 · <span class="cod">5750-3-LP26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20licitaci%C3%B3n%3A%20Contrato%20Servicio%20de%20Aseo%20Comuna%20de%20Arica&dates=20260728T100000/20260728T110000&details=Cierre%20licitaci%C3%B3n%20del%20proceso%205750-3-LP26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('5750-3-LP26')">Ver</button></div><div class="hito" data-cod="909863-1-LE26"><span class="h-dias h-gris">9d</span><div class="h-info"><p class="h-tit">E9 Servicios de Aseo TP de Illapel</p><p class="h-det">Cierre licitación · 29-07-2026 13:00 · <span class="cod">909863-1-LE26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20licitaci%C3%B3n%3A%20E9%20Servicios%20de%20Aseo%20TP%20de%20Illapel&dates=20260729T130000/20260729T140000&details=Cierre%20licitaci%C3%B3n%20del%20proceso%20909863-1-LE26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('909863-1-LE26')">Ver</button></div>
+  <div class="hito hito-visita" data-cod="5750-3-LP26" data-hkey="5750-3-LP26|⚠ Visita técnica"><span class="h-dias h-ambar">4d</span><div class="h-info"><p class="h-tit">Contrato Servicio de Aseo Comuna de Arica</p><p class="h-det">⚠ Visita técnica · <b>20-07-2026 09:00 hrs</b> · <span class="cod">5750-3-LP26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%E2%9A%A0%20Visita%20t%C3%A9cnica%3A%20Contrato%20Servicio%20de%20Aseo%20Comuna%20de%20Arica&dates=20260720T090000/20260720T100000&details=%E2%9A%A0%20Visita%20t%C3%A9cnica%20del%20proceso%205750-3-LP26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('5750-3-LP26')">Ver</button><button class="h-x" title="Quitar del calendario" onclick="ocultarHito(event,'5750-3-LP26|⚠ Visita técnica')">✕</button></div><div class="hito" data-cod="5750-3-LP26" data-hkey="5750-3-LP26|Cierre licitación"><span class="h-dias h-gris">8d</span><div class="h-info"><p class="h-tit">Contrato Servicio de Aseo Comuna de Arica</p><p class="h-det">Cierre licitación · <b>28-07-2026 10:00</b> · <span class="cod">5750-3-LP26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20licitaci%C3%B3n%3A%20Contrato%20Servicio%20de%20Aseo%20Comuna%20de%20Arica&dates=20260728T100000/20260728T110000&details=Cierre%20licitaci%C3%B3n%20del%20proceso%205750-3-LP26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('5750-3-LP26')">Ver</button><button class="h-x" title="Quitar del calendario" onclick="ocultarHito(event,'5750-3-LP26|Cierre licitación')">✕</button></div><div class="hito" data-cod="909863-1-LE26" data-hkey="909863-1-LE26|Cierre licitación"><span class="h-dias h-gris">9d</span><div class="h-info"><p class="h-tit">E9 Servicios de Aseo TP de Illapel</p><p class="h-det">Cierre licitación · <b>29-07-2026 13:00</b> · <span class="cod">909863-1-LE26</span></p></div><a class="btn btn-sec" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cierre%20licitaci%C3%B3n%3A%20E9%20Servicios%20de%20Aseo%20TP%20de%20Illapel&dates=20260729T130000/20260729T140000&details=Cierre%20licitaci%C3%B3n%20del%20proceso%20909863-1-LE26%20en%20Mercado%20P%C3%BAblico.%20Registrado%20por%20Radar%20de%20Licitaciones.&ctz=America/Santiago" target="_blank" rel="noopener" title="Agregar a su propio calendario">Agendar 📅</a><button class="btn btn-sec" onclick="abrirCard('909863-1-LE26')">Ver</button><button class="h-x" title="Quitar del calendario" onclick="ocultarHito(event,'909863-1-LE26|Cierre licitación')">✕</button></div>
 </div>
 
 <div id="sec-res" style="display:none">
@@ -462,6 +476,13 @@ a { color:var(--navy); }
     <div class="kpi"><p>Tasa de éxito</p><p style="color:var(--navy)">—</p></div>
   </div>
   <p class="res-nota">1 postulación(es) en evaluación. La tasa de éxito aparecerá cuando haya adjudicaciones resueltas.</p>
+</div>
+
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.5rem;margin-top:2.2rem">
+  <p class="section-label" style="margin-bottom:.4rem">Su opinión mejora Radar</p>
+  <p style="font-size:12.5px;color:var(--muted);margin:0 0 10px">¿Qué le falta o qué cambiaría para que le sirva más a su pyme? Lo leemos personas.</p>
+  <textarea id="feedback-txt" rows="3" style="width:100%;border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13px;resize:vertical" placeholder="Escriba su comentario o idea de mejora…"></textarea>
+  <button class="btn btn-pri" style="margin-top:10px;background:var(--navy);color:#fff" onclick="enviarFeedback()">Enviar comentario →</button>
 </div>
 
 </div>
@@ -566,9 +587,8 @@ function irTab(nombre) {
   if (b) { b.click(); b.scrollIntoView({ behavior:'smooth', block:'center' }); }
   cerrarAyuda();
 }
-// Las descartadas (No postular) se BORRAN del tablero y los contadores se
-// rebajan al instante. "Restaurar descartadas (N)" deshace si fue un error.
-const N_CA = 1;
+// Las descartadas (No postular / No cotizar) se BORRAN del tablero y los
+// contadores se rebajan al instante — igual en licitaciones y compras ágiles.
 function filtrar(btn) {
   document.querySelectorAll('.filters .filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -597,6 +617,11 @@ function borrarDescartadas() {
     const d = e[ci.dataset.cod];
     if (d && d.estado === 'descartar') ci.remove();
   });
+  // Compras ágiles: mismo comportamiento que licitaciones
+  document.querySelectorAll('.ca-card').forEach(c => {
+    const d = e[c.dataset.codigo];
+    if (d && d.estado === 'descartar') c.remove();
+  });
   // El calendario se sincroniza: los hitos de procesos descartados también se borran
   document.querySelectorAll('.hito').forEach(h => {
     const d = e[h.dataset.cod];
@@ -604,14 +629,50 @@ function borrarDescartadas() {
   });
   actualizarContadores();
 }
+
+// ---------- Filtros de Compras Ágiles (igual que licitaciones) ----------
+function filtrarCA(btn) {
+  document.querySelectorAll('[data-cafiltro]').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const f = btn.dataset.cafiltro;
+  const e = getDec();
+  document.querySelectorAll('.ca-card').forEach(c => {
+    let show;
+    if (f === '__decidir') show = ['GO','REVISAR','EN ANÁLISIS','PENDIENTE',''].includes(c.dataset.dec) && !e[c.dataset.codigo];
+    else if (f !== 'Todas') show = c.dataset.region === f;
+    else show = true;
+    c.style.display = show ? '' : 'none';
+  });
+}
+
+// ---------- Ocultar hitos del calendario (la ✕) ----------
+const HKEY = 'radar_hitos_ocultos';
+function getHitosOcultos() { try { return JSON.parse(localStorage.getItem(HKEY) || '[]'); } catch(e) { return []; } }
+function ocultarHito(ev, key) {
+  ev.stopPropagation();
+  const o = getHitosOcultos();
+  if (!o.includes(key)) o.push(key);
+  localStorage.setItem(HKEY, JSON.stringify(o));
+  document.querySelectorAll('.hito').forEach(h => { if (h.dataset.hkey === key) h.remove(); });
+  actualizarContadores();
+}
+(function aplicarHitosOcultos() {
+  const o = getHitosOcultos();
+  document.querySelectorAll('.hito').forEach(h => { if (o.includes(h.dataset.hkey)) h.remove(); });
+})();
 function actualizarContadores() {
   const nLic = document.querySelectorAll('.card').length;
+  const nCA = document.querySelectorAll('.ca-card').length;
   const ka = document.getElementById('kpi-activas');
-  if (ka) ka.textContent = nLic + N_CA;
+  if (ka) ka.textContent = nLic + nCA;
   const ks = document.getElementById('kpi-activas-sub');
-  if (ks) ks.textContent = nLic + ' licitaciones · ' + N_CA + ' compras ágiles';
+  if (ks) ks.textContent = nLic + ' licitaciones · ' + nCA + ' compras ágiles';
+  const kca = document.getElementById('kpi-ca');
+  if (kca) kca.textContent = nCA;
   const tl = document.querySelector('[data-tab="lic"]');
   if (tl) tl.textContent = 'Licitaciones (' + nLic + ')';
+  const tca = document.querySelector('[data-tab="ca"]');
+  if (tca) tca.textContent = 'Compras Ágiles (' + nCA + ')';
   const nHitos = document.querySelectorAll('.hito').length;
   const tc = document.querySelector('[data-tab="cal"]');
   if (tc) tc.textContent = 'Calendario (' + nHitos + ')';
@@ -644,6 +705,51 @@ function abrirPrimerExpediente() {
   const c = document.querySelector('.card[data-semaforo="GO"], .card[data-semaforo="REVISAR"], .card');
   if (c) { irTab('lic'); c.classList.add('abierta'); c.scrollIntoView({ behavior:'smooth', block:'center' }); }
 }
+// ---------- Personalización DEMO (viene del registro en Registrarse) ----------
+const CORREO_SOPORTE = 'marcoramirezes.1286@gmail.com';
+(function aplicarDemo() {
+  let c = null;
+  try { c = JSON.parse(localStorage.getItem('radar_demo_config') || 'null'); } catch(e) {}
+  if (!c) return;
+  if (c.color) {
+    document.documentElement.style.setProperty('--navy', c.color);
+    document.documentElement.style.setProperty('--navy-2', c.color);
+  }
+  if (c.empresa) {
+    const p = document.querySelector('.hero-side .cliente');
+    if (p) p.innerHTML = 'Panel de <b>' + c.empresa + '</b>';
+  }
+  if (c.logo) {
+    const side = document.querySelector('.hero-side');
+    if (side) {
+      const img = document.createElement('img');
+      img.src = c.logo;
+      img.style.cssText = 'max-height:44px;max-width:150px;margin-bottom:6px;display:block;margin-left:auto';
+      side.insertBefore(img, side.firstChild);
+    }
+  }
+  if (c.rubro) {
+    const s = document.querySelector('.hero .sub');
+    if (s) s.textContent = 'Oportunidades de ' + c.rubro.toLowerCase() + ' en Mercado Público — ' + (c.regiones || 'sus regiones') + ' — detectadas y evaluadas cada día';
+  }
+  const b = document.getElementById('demo-banner');
+  if (b) b.style.display = 'block';
+})();
+function restablecerDemo(ev) {
+  ev.preventDefault();
+  localStorage.removeItem('radar_demo_config');
+  location.reload();
+}
+
+// ---------- Feedback del cliente (llega directo al correo) ----------
+function enviarFeedback() {
+  const t = document.getElementById('feedback-txt').value.trim();
+  if (!t) { alert('Escriba su comentario primero.'); return; }
+  window.location.href = 'mailto:' + CORREO_SOPORTE
+    + '?subject=' + encodeURIComponent('Feedback Radar de Licitaciones')
+    + '&body=' + encodeURIComponent(t + '\n\n— enviado desde el tablero');
+}
+
 aplicarDecisiones();
 borrarDescartadas();
 aplicarFiltro();
