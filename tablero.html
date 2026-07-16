@@ -122,8 +122,53 @@ a { color:var(--navy); }
 .dec-btns { display:flex; gap:8px; flex-wrap:wrap; }
 .dec { font-size:13px; font-weight:700; padding:9px 18px; border-radius:9px; cursor:pointer; font-family:inherit; border:1.5px solid var(--border); background:var(--surface); color:var(--muted); transition:all .15s; }
 .dec-go.on { background:var(--go); border-color:var(--go); color:#fff; }
-.dec-est.on { background:var(--pen); border-color:var(--pen); color:#fff; }
+.dec-cot { border-color:var(--navy); color:var(--navy); }
 .dec-no.on { background:var(--no); border-color:var(--no); color:#fff; }
+
+/* --- Modal de COTIZACIÓN (elegante, con marca de agua, imprimible a PDF) --- */
+#cot-overlay { display:none; position:fixed; inset:0; z-index:300; background:rgba(10,16,28,.55); padding:20px; overflow-y:auto; }
+#cot-overlay.abierto { display:flex; align-items:flex-start; justify-content:center; }
+#cot-modal { background:#fff; color:#17233b; border-radius:16px; max-width:640px; width:100%; padding:2.2rem 2.4rem; position:relative; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.35); margin:2vh auto; }
+#cot-marca { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:.05; pointer-events:none; }
+#cot-marca img, #cot-marca svg { width:340px; height:auto; }
+.cot-head { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; border-bottom:2px solid var(--navy); padding-bottom:14px; margin-bottom:18px; }
+.cot-head .ce { text-align:right; }
+.cot-head .ce p { margin:0; font-size:12px; color:#5d6b82; }
+.cot-head .ce .cn { font-size:16px; font-weight:800; color:var(--navy); }
+#cot-modal h2 { font-family:'Instrument Serif',serif; font-weight:400; font-size:24px; color:var(--navy); margin:0 0 4px; }
+.cot-sub { font-size:11.5px; color:#5d6b82; text-transform:uppercase; letter-spacing:1.2px; margin:0 0 18px; }
+.cot-tabla { width:100%; border-collapse:collapse; font-size:13px; margin-bottom:16px; }
+.cot-tabla td { padding:8px 10px; border-bottom:1px solid #eef1f5; vertical-align:top; }
+.cot-tabla td:first-child { color:#5d6b82; font-size:11.5px; text-transform:uppercase; letter-spacing:.5px; width:150px; font-weight:600; }
+.cot-precio { background:#f4f7fa; border:1px solid #e2e7ee; border-radius:12px; padding:1rem 1.3rem; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+.cot-precio p { margin:0; }
+.cot-precio .pl { font-size:11.5px; color:#5d6b82; text-transform:uppercase; letter-spacing:.6px; font-weight:700; }
+.cot-precio .pv { font-size:26px; font-weight:800; color:var(--go); }
+.cot-res { font-size:12.5px; color:#3d4a60; line-height:1.6; margin:0 0 14px; }
+.cot-fuentes { font-size:10.5px; color:#8a97ab; line-height:1.6; border-top:1px solid #eef1f5; padding-top:12px; margin:0; }
+.cot-acciones { display:flex; gap:10px; justify-content:flex-end; margin-top:18px; }
+@media print {
+  body * { visibility:hidden; }
+  #cot-overlay { display:block !important; position:static; background:none; padding:0; }
+  #cot-modal, #cot-modal * { visibility:visible; }
+  #cot-modal { box-shadow:none; border-radius:0; max-width:100%; margin:0; }
+  .cot-acciones { display:none !important; }
+}
+
+/* --- Modo oscuro --- */
+html[data-theme="dark"] { --bg:#0d131e; --surface:#161e2c; --border:#28324a; --text:#e8edf6; --muted:#93a2bb; }
+html[data-theme="dark"] h1, html[data-theme="dark"] .nav .brand, html[data-theme="dark"] .nav .brand .cl,
+html[data-theme="dark"] .kpi p:nth-child(2), html[data-theme="dark"] .title, html[data-theme="dark"] .ca-title,
+html[data-theme="dark"] .tl-tit, html[data-theme="dark"] .h-tit, html[data-theme="dark"] .ci-tit,
+html[data-theme="dark"] .ayuda-panel h4 { color:var(--text); }
+html[data-theme="dark"] .dato { background:#0f1725; }
+html[data-theme="dark"] .dato.urgente { background:#2e2410; }
+html[data-theme="dark"] .hito-visita { background:#20180a; }
+html[data-theme="dark"] .cal-nota { background:#12241c; border-color:#1d3a2c; }
+html[data-theme="dark"] .radar { background:radial-gradient(circle, #14202f, #161e2c 70%); border-color:#2c4a3c; }
+html[data-theme="dark"] .badge, html[data-theme="dark"] .hot { filter:brightness(.85) saturate(1.1); }
+html[data-theme="dark"] .btn-pri { background:#e8edf6; color:#0d131e; }
+.tema-btn { background:none; border:1px solid var(--border); border-radius:8px; font-size:14px; padding:5px 10px; cursor:pointer; }
 .dec:hover { border-color:var(--navy); color:var(--text); }
 .card.decidida-descartar { opacity:.55; }
 
@@ -190,6 +235,7 @@ a { color:var(--navy); }
     <a href="./index.html">Inicio</a>
     <a href="./onboarding.html">Registrarse</a>
     <a href="./tablero.html" class="on">Tablero</a>
+    <button class="tema-btn" id="tema-btn" onclick="toggleTema()" title="Cambiar entre tema claro y oscuro">🌙</button>
   </div>
 </nav>
 <div class="header">
@@ -204,7 +250,7 @@ a { color:var(--navy); }
     <div class="hero-side">
       
       <p class="cliente">Panel de <b>demostración</b></p>
-      <p class="fecha">Actualizado 16-07-2026 · 16:58 (hora de Chile)</p>
+      <p class="fecha">Actualizado 16-07-2026 · 17:51 (hora de Chile)</p>
     </div>
   </div>
 </div>
@@ -267,7 +313,7 @@ a { color:var(--navy); }
           <p class="d-lbl">Tu decisión <span class="d-hint">— la evaluación y los documentos corren SOLOS; tú decides el paso final. "No postular" la saca del tablero.</span></p>
           <div class="dec-btns" data-cod="5750-3-LP26">
             <button class="dec dec-go" onclick="decidir(event,'5750-3-LP26','postular')" title="Confirmo que postularé: subiré la oferta al portal con los documentos que el sistema preparó">Voy a postular</button>
-            <button class="dec dec-est" onclick="decidir(event,'5750-3-LP26','estudio')" title="Aún lo estoy pensando">En estudio</button>
+            <button class="dec dec-cot" onclick="abrirCot(event,'5750-3-LP26')" title="Ver la propuesta económica estructurada, con sus datos y descargable">📄 Cotización</button>
             <button class="dec dec-no" onclick="decidir(event,'5750-3-LP26','descartar')" title="No me interesa: desaparece del tablero y del correo">No postular</button>
           </div>
         </div>
@@ -301,7 +347,7 @@ a { color:var(--navy); }
           <p class="d-lbl">Tu decisión <span class="d-hint">— la evaluación y los documentos corren SOLOS; tú decides el paso final. "No postular" la saca del tablero.</span></p>
           <div class="dec-btns" data-cod="909863-1-LE26">
             <button class="dec dec-go" onclick="decidir(event,'909863-1-LE26','postular')" title="Confirmo que postularé: subiré la oferta al portal con los documentos que el sistema preparó">Voy a postular</button>
-            <button class="dec dec-est" onclick="decidir(event,'909863-1-LE26','estudio')" title="Aún lo estoy pensando">En estudio</button>
+            <button class="dec dec-cot" onclick="abrirCot(event,'909863-1-LE26')" title="Ver la propuesta económica estructurada, con sus datos y descargable">📄 Cotización</button>
             <button class="dec dec-no" onclick="decidir(event,'909863-1-LE26','descartar')" title="No me interesa: desaparece del tablero y del correo">No postular</button>
           </div>
         </div>
@@ -335,7 +381,7 @@ a { color:var(--navy); }
           <p class="d-lbl">Tu decisión <span class="d-hint">— la evaluación y los documentos corren SOLOS; tú decides el paso final. "No postular" la saca del tablero.</span></p>
           <div class="dec-btns" data-cod="837-69-LE26">
             <button class="dec dec-go" onclick="decidir(event,'837-69-LE26','postular')" title="Confirmo que postularé: subiré la oferta al portal con los documentos que el sistema preparó">Voy a postular</button>
-            <button class="dec dec-est" onclick="decidir(event,'837-69-LE26','estudio')" title="Aún lo estoy pensando">En estudio</button>
+            <button class="dec dec-cot" onclick="abrirCot(event,'837-69-LE26')" title="Ver la propuesta económica estructurada, con sus datos y descargable">📄 Cotización</button>
             <button class="dec dec-no" onclick="decidir(event,'837-69-LE26','descartar')" title="No me interesa: desaparece del tablero y del correo">No postular</button>
           </div>
         </div>
@@ -369,7 +415,7 @@ a { color:var(--navy); }
           <p class="d-lbl">Tu decisión <span class="d-hint">— la evaluación y los documentos corren SOLOS; tú decides el paso final. "No postular" la saca del tablero.</span></p>
           <div class="dec-btns" data-cod="1696-9-LR26">
             <button class="dec dec-go" onclick="decidir(event,'1696-9-LR26','postular')" title="Confirmo que postularé: subiré la oferta al portal con los documentos que el sistema preparó">Voy a postular</button>
-            <button class="dec dec-est" onclick="decidir(event,'1696-9-LR26','estudio')" title="Aún lo estoy pensando">En estudio</button>
+            <button class="dec dec-cot" onclick="abrirCot(event,'1696-9-LR26')" title="Ver la propuesta económica estructurada, con sus datos y descargable">📄 Cotización</button>
             <button class="dec dec-no" onclick="decidir(event,'1696-9-LR26','descartar')" title="No me interesa: desaparece del tablero y del correo">No postular</button>
           </div>
         </div>
@@ -403,7 +449,7 @@ a { color:var(--navy); }
           <p class="d-lbl">Tu decisión <span class="d-hint">— la evaluación y los documentos corren SOLOS; tú decides el paso final. "No postular" la saca del tablero.</span></p>
           <div class="dec-btns" data-cod="4619-2-LP26">
             <button class="dec dec-go" onclick="decidir(event,'4619-2-LP26','postular')" title="Confirmo que postularé: subiré la oferta al portal con los documentos que el sistema preparó">Voy a postular</button>
-            <button class="dec dec-est" onclick="decidir(event,'4619-2-LP26','estudio')" title="Aún lo estoy pensando">En estudio</button>
+            <button class="dec dec-cot" onclick="abrirCot(event,'4619-2-LP26')" title="Ver la propuesta económica estructurada, con sus datos y descargable">📄 Cotización</button>
             <button class="dec dec-no" onclick="decidir(event,'4619-2-LP26','descartar')" title="No me interesa: desaparece del tablero y del correo">No postular</button>
           </div>
         </div>
@@ -437,7 +483,7 @@ a { color:var(--navy); }
           <p class="d-lbl">Tu decisión <span class="d-hint">— la evaluación y los documentos corren SOLOS; tú decides el paso final. "No postular" la saca del tablero.</span></p>
           <div class="dec-btns" data-cod="1084148-11-LE26">
             <button class="dec dec-go" onclick="decidir(event,'1084148-11-LE26','postular')" title="Confirmo que postularé: subiré la oferta al portal con los documentos que el sistema preparó">Voy a postular</button>
-            <button class="dec dec-est" onclick="decidir(event,'1084148-11-LE26','estudio')" title="Aún lo estoy pensando">En estudio</button>
+            <button class="dec dec-cot" onclick="abrirCot(event,'1084148-11-LE26')" title="Ver la propuesta económica estructurada, con sus datos y descargable">📄 Cotización</button>
             <button class="dec dec-no" onclick="decidir(event,'1084148-11-LE26','descartar')" title="No me interesa: desaparece del tablero y del correo">No postular</button>
           </div>
         </div>
@@ -460,7 +506,7 @@ a { color:var(--navy); }
       <button class="filter-btn" data-cafiltro="Arica" onclick="filtrarCA(this)">Arica</button>
     </div>
   </div>
-  <div id="calist"><div class="ca-card" data-codigo="1159-62-COT26" data-region="Coquimbo" data-dec="GO"><div class="ca-info"><p class="ca-title">Limpieza y sanitización de cubrepiso salón Centro de Operaciones EMF La Serena (incluye mo</p><p class="ca-sub">Servicio Agrícola y Ganadero (SAG) · SAG Región de Coquimbo - La Serena</p><p class="ca-sub2">cierra 2026-07-17 14:00 · tope $450.000 · 👥 sin cotizaciones aún · <span class="cod">1159-62-COT26</span></p><p class="ca-dec"><span class="badge" style="background:#e7f5ee;color:#0e7a4e">GO</span> · oferta sugerida <b>$205.737</b></p><p class="ca-motivo">Costo real $171.447 (IVA incl.) muy por debajo del tope de $450.000; margen 20% holgado y precio competitivo.</p><div class="dec-btns" style="margin-top:10px"><button class="dec dec-go" onclick="decidir(event,'1159-62-COT26','postular')" title="Confirmo que cotizaré">Voy a cotizar</button><button class="dec dec-est" onclick="decidir(event,'1159-62-COT26','estudio')" title="Aún lo estoy pensando">En estudio</button><button class="dec dec-no" onclick="decidir(event,'1159-62-COT26','descartar')" title="No me interesa: desaparece del tablero">No cotizar</button></div></div><div class="ca-right"><span class="ca-reg">Coquimbo</span><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=1159-62-COT26" target="_blank" rel="noopener">Ver ficha ↗</a></div></div></div>
+  <div id="calist"><div class="ca-card" data-codigo="1159-62-COT26" data-region="Coquimbo" data-dec="GO"><div class="ca-info"><p class="ca-title">Limpieza y sanitización de cubrepiso salón Centro de Operaciones EMF La Serena (incluye mo</p><p class="ca-sub">Servicio Agrícola y Ganadero (SAG) · SAG Región de Coquimbo - La Serena</p><p class="ca-sub2">cierra 2026-07-17 14:00 · tope $450.000 · 👥 sin cotizaciones aún · <span class="cod">1159-62-COT26</span></p><p class="ca-dec"><span class="badge" style="background:#e7f5ee;color:#0e7a4e">GO</span> · oferta sugerida <b>$205.737</b></p><p class="ca-motivo">Costo real $171.447 (IVA incl.) muy por debajo del tope de $450.000; margen 20% holgado y precio competitivo.</p><div class="dec-btns" style="margin-top:10px"><button class="dec dec-go" onclick="decidir(event,'1159-62-COT26','postular')" title="Confirmo que cotizaré">Voy a cotizar</button><button class="dec dec-cot" onclick="abrirCot(event,'1159-62-COT26')" title="Ver la propuesta económica estructurada, con sus datos y descargable">📄 Cotización</button><button class="dec dec-no" onclick="decidir(event,'1159-62-COT26','descartar')" title="No me interesa: desaparece del tablero">No cotizar</button></div></div><div class="ca-right"><span class="ca-reg">Coquimbo</span><a class="btn btn-sec" href="https://buscador.mercadopublico.cl/ficha?code=1159-62-COT26" target="_blank" rel="noopener">Ver ficha ↗</a></div></div></div>
 </div>
 
 <div id="sec-cal" style="display:none">
@@ -495,6 +541,35 @@ a { color:var(--navy); }
 <button class="instalar" id="btn-instalar" onclick="instalarApp()">📲 Descargar la app</button>
 <div class="ios-tip" id="ios-tip"><button onclick="cerrarTipIOS()">✕</button><span id="ios-tip-txt">📲 Para instalar la app en su iPhone: toque <b>Compartir</b> y luego <b>"Agregar a pantalla de inicio"</b>.</span></div>
 
+<!-- Cotización visual -->
+<div id="cot-overlay" onclick="if(event.target===this)cerrarCot()">
+  <div id="cot-modal">
+    <div id="cot-marca"><svg width="340" height="340" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg></div>
+    <div class="cot-head">
+      <div id="cot-logo"><svg width="26" height="26" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="vertical-align:-4px"><path d="M12 1.6c-4.4 0-8 3.6-8 8 0 5.9 8 13 8 13s8-7.1 8-13c0-4.4-3.6-8-8-8z" fill="#0F1F3D"/><polygon points="12,5.4 15.1,7.1 12,8.8 8.9,7.1" fill="#2fbf7f"/><polygon points="8.9,7.1 12,8.8 12,12.4 8.9,10.7" fill="#0e7a4e"/><polygon points="15.1,7.1 12,8.8 12,12.4 15.1,10.7" fill="#17996a"/></svg></div>
+      <div class="ce"><p class="cn" id="cot-emp"></p><p id="cot-rut"></p><p id="cot-fecha"></p></div>
+    </div>
+    <h2>Propuesta económica</h2>
+    <p class="cot-sub" id="cot-tipo"></p>
+    <table class="cot-tabla">
+      <tr><td>Preparada para</td><td id="cot-org"></td></tr>
+      <tr><td>Proceso</td><td id="cot-cod"></td></tr>
+      <tr><td>Objeto</td><td id="cot-nom"></td></tr>
+      <tr><td>Cierre de recepción</td><td id="cot-cierre"></td></tr>
+    </table>
+    <div class="cot-precio">
+      <div><p class="pl" id="cot-precio-lbl"></p><p class="pv" id="cot-precio"></p></div>
+      <div style="text-align:right"><p class="pl">Referencia</p><p style="font-weight:700;font-size:14px" id="cot-monto"></p></div>
+    </div>
+    <p class="cot-res" id="cot-res"></p>
+    <p class="cot-fuentes">Costeo con fuentes: IMM oficial (Dirección del Trabajo) · adjudicaciones reales de Mercado Público citadas por código · valores marcados como estimación son editables. El detalle completo está en el informe Word enviado a su correo. Documento generado por <b>Radar de Licitaciones Chile</b> — la decisión final es siempre suya.</p>
+    <div class="cot-acciones">
+      <button class="btn btn-sec" onclick="cerrarCot()">Cerrar</button>
+      <button class="btn" style="background:var(--navy);color:#fff;border:none" onclick="window.print()">Descargar PDF ⬇</button>
+    </div>
+  </div>
+</div>
+
 <!-- Asistente orientador -->
 <button class="ayuda-btn" onclick="toggleAyuda()" title="¿Necesita orientación?">?</button>
 <div class="ayuda-panel" id="ayuda">
@@ -514,7 +589,8 @@ a { color:var(--navy); }
 
 <script>
 // ---------- Decisión final del usuario (persistida en el navegador) ----------
-const LSKEY = 'radar_decisiones_v2';
+// v3: estado limpio (las decisiones de prueba anteriores quedan atrás)
+const LSKEY = 'radar_decisiones_v3';
 function getDec() { try { return JSON.parse(localStorage.getItem(LSKEY) || '{}'); } catch(e) { return {}; } }
 function setDec(cod, val) {
   const e = getDec();
@@ -522,19 +598,8 @@ function setDec(cod, val) {
   else delete e[cod];
   localStorage.setItem(LSKEY, JSON.stringify(e));
 }
-// Migración desde la versión anterior (★/✕)
-(function migrar() {
-  try {
-    const old = JSON.parse(localStorage.getItem('raimport_estados') || '{}');
-    const nu = getDec();
-    for (const c in old) {
-      if (!nu[c]) nu[c] = { estado: old[c] === 'interesa' ? 'estudio' : 'descartar', ts: 'migrada' };
-    }
-    localStorage.setItem(LSKEY, JSON.stringify(nu));
-  } catch(e) {}
-})();
 
-const LBL = { postular: 'POSTULAR', estudio: 'EN ESTUDIO', descartar: 'NO POSTULAR' };
+const LBL = { postular: 'POSTULAR', descartar: 'NO POSTULAR' };
 function aplicarDecisiones() {
   const e = getDec();
   let pendientes = 0;
@@ -544,7 +609,7 @@ function aplicarDecisiones() {
     c.classList.toggle('decidida-descartar', d && d.estado === 'descartar');
     c.querySelectorAll('.dec').forEach(b => b.classList.remove('on'));
     if (d) {
-      const map = { postular: '.dec-go', estudio: '.dec-est', descartar: '.dec-no' };
+      const map = { postular: '.dec-go', descartar: '.dec-no' };
       const btn = c.querySelector(map[d.estado]);
       if (btn) btn.classList.add('on');
     }
@@ -741,14 +806,69 @@ function restablecerDemo(ev) {
   location.reload();
 }
 
-// ---------- Feedback del cliente (llega directo al correo) ----------
+// ---------- Feedback del cliente: envío DIRECTO (sin abrir la app de correo) ----------
 function enviarFeedback() {
   const t = document.getElementById('feedback-txt').value.trim();
   if (!t) { alert('Escriba su comentario primero.'); return; }
-  window.location.href = 'mailto:' + CORREO_SOPORTE
-    + '?subject=' + encodeURIComponent('Feedback Radar de Licitaciones')
-    + '&body=' + encodeURIComponent(t + '\n\n— enviado desde el tablero');
+  let quien = '';
+  try { const c = JSON.parse(localStorage.getItem('radar_demo_config') || 'null'); if (c) quien = c.empresa + ' <' + c.correo + '>'; } catch(e) {}
+  fetch('https://formsubmit.co/ajax/' + CORREO_SOPORTE, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ _subject: 'Feedback Radar de Licitaciones', comentario: t, cliente: quien || 'tablero' })
+  }).then(r => {
+    if (r.ok) { document.getElementById('feedback-txt').value = ''; alert('¡Gracias! Su comentario fue enviado.'); }
+    else throw new Error();
+  }).catch(() => {
+    window.location.href = 'mailto:' + CORREO_SOPORTE + '?subject=' + encodeURIComponent('Feedback Radar') + '&body=' + encodeURIComponent(t);
+  });
 }
+
+// ---------- Cotización visual ----------
+const COT = {"5750-3-LP26": {"tipo": "Licitación", "nombre": "Contrato Servicio de Aseo Comuna de Arica", "org": "MOP - Direccion de Vialidad XV Region - Direccion Regional (Comuna de Arica)", "cierre": "28-07-2026 10:00", "monto": "No informado", "margen": "20%", "precio": "", "resumen": "GO con margen 20% ($9.844.786/mes, 10 trabajadores, 5 dependencias en Arica). visita técnica el 20-07-2026 09:00 OBLIGATORIA (numeral 3.6)."}, "909863-1-LE26": {"tipo": "Licitación", "nombre": "E9 Servicios de Aseo TP de Illapel", "org": "Tesorería General de la República (Tesorería Provincial de Illapel)", "cierre": "29-07-2026 13:00", "monto": "$45.564.948", "margen": "20%", "precio": "", "resumen": "Margen 20% NO verificado: depende de dotacion sin confirmar (falta anexo bases tecnicas; con 2+ trabajadores no alcanza). Revisar antes del 22-07-2026."}, "1159-62-COT26": {"tipo": "Compra Ágil", "nombre": "Limpieza y sanitización de cubrepiso salón Centro de Operaciones EMF La Serena (incluye movimiento de mobiliario)", "org": "Servicio Agrícola y Ganadero (SAG)", "cierre": "2026-07-17 14:00", "monto": "Tope $450.000", "margen": "", "precio": "$205.737", "resumen": "Costo real $171.447 (IVA incl.) muy por debajo del tope de $450.000; margen 20% holgado y precio competitivo."}};
+const EMP = {"empresa": "RA Import", "razon": "Sociedad Importadora, Exportadora y Distribuidora RA Ltda.", "rut": "77.401.618-K", "mostrar": false};
+function abrirCot(ev, cod) {
+  ev.stopPropagation();
+  const d = COT[cod];
+  if (!d) { alert('Esta oportunidad aún no tiene datos de cotización (en evaluación).'); return; }
+  // Datos de la empresa: los del registro demo, o los del cliente del panel
+  let emp = EMP.mostrar ? { nombre: EMP.razon || EMP.empresa, rut: EMP.rut, logo: '' } : { nombre: '[COMPLETAR: su empresa]', rut: '[COMPLETAR: su RUT]', logo: '' };
+  try {
+    const c = JSON.parse(localStorage.getItem('radar_demo_config') || 'null');
+    if (c && c.empresa) emp = { nombre: c.empresa, rut: c.rut || '[COMPLETAR: su RUT]', logo: c.logo || '' };
+  } catch(e) {}
+  document.getElementById('cot-emp').textContent = emp.nombre;
+  document.getElementById('cot-rut').textContent = 'RUT ' + emp.rut;
+  document.getElementById('cot-fecha').textContent = new Date().toLocaleDateString('es-CL');
+  const logoBox = document.getElementById('cot-logo');
+  if (emp.logo) logoBox.innerHTML = '<img src="' + emp.logo + '" style="max-height:52px;max-width:170px">';
+  const marca = document.getElementById('cot-marca');
+  if (emp.logo) marca.innerHTML = '<img src="' + emp.logo + '">';
+  document.getElementById('cot-tipo').textContent = d.tipo + ' · Mercado Público';
+  document.getElementById('cot-org').textContent = d.org;
+  document.getElementById('cot-cod').textContent = cod;
+  document.getElementById('cot-nom').textContent = d.nombre;
+  document.getElementById('cot-cierre').textContent = d.cierre;
+  document.getElementById('cot-precio-lbl').textContent = d.precio ? 'Precio ofertado (IVA incl.)' : 'Margen recomendado';
+  document.getElementById('cot-precio').textContent = d.precio || d.margen || '[COMPLETAR]';
+  document.getElementById('cot-monto').textContent = d.monto;
+  document.getElementById('cot-res').textContent = d.resumen || '';
+  document.getElementById('cot-overlay').classList.add('abierto');
+}
+function cerrarCot() { document.getElementById('cot-overlay').classList.remove('abierto'); }
+
+// ---------- Tema claro / oscuro ----------
+function aplicarTema(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  const b = document.getElementById('tema-btn');
+  if (b) b.textContent = (t === 'dark') ? '☀️' : '🌙';
+}
+function toggleTema() {
+  const t = (document.documentElement.getAttribute('data-theme') === 'dark') ? 'claro' : 'dark';
+  localStorage.setItem('radar_tema', t);
+  aplicarTema(t);
+}
+aplicarTema(localStorage.getItem('radar_tema') || 'claro');
 
 aplicarDecisiones();
 borrarDescartadas();

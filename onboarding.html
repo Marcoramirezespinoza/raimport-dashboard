@@ -123,7 +123,8 @@ label.mini { font-size:12px; color:var(--muted); font-weight:600; }
       <div class="step"><span class="num">4</span><h2>¿Cómo quiere que le avisemos?</h2></div>
       <div class="toggle-row"><div class="sw2 on" onclick="this.classList.toggle('on')"></div><span style="font-size:13.5px">Alertas por correo con el análisis adjunto</span></div>
       <div class="row">
-        <div><label class="mini">Nombre de su empresa</label><input type="text" id="reg-empresa" placeholder="Ej: Aseo del Norte SpA"></div>
+        <div><label class="mini">Nombre de su empresa o persona natural</label><input type="text" id="reg-empresa" placeholder="Ej: Aseo del Norte SpA"></div>
+        <div><label class="mini">RUT</label><input type="text" id="reg-rut" placeholder="76.123.456-7"></div>
         <div><label class="mini">Su correo</label><input type="text" id="reg-correo" placeholder="sucorreo@empresa.cl"></div>
         <div><label class="mini">Su WhatsApp (opcional)</label><input type="text" id="reg-fono" placeholder="+56 9 ...."></div>
       </div>
@@ -185,17 +186,19 @@ function activar(){
   const rubros = sel('rubros'), regiones = sel('regiones');
   const comunas = document.getElementById('comunas').value || '(no especificadas)';
   const empresa = (document.getElementById('reg-empresa')||{}).value || '';
+  const rut = (document.getElementById('reg-rut')||{}).value || '';
   const correo = (document.getElementById('reg-correo')||{}).value || '';
   const fono = (document.getElementById('reg-fono')||{}).value || '';
   const fb = (document.getElementById('reg-feedback')||{}).value || '';
   if(!rubros.length || !regiones.length){ alert('Elija al menos un rubro y una region.'); return; }
-  if(!empresa || !correo){ alert('Indique el nombre de su empresa y su correo para registrarse.'); return; }
+  if(!empresa || !correo){ alert('Indique el nombre de su empresa (o persona natural) y su correo para registrarse.'); return; }
   const colorEl = document.querySelector('#colores .chip.on');
   const logoImg = document.getElementById('logo-prev');
 
   // 1) Guardar la personalizacion: el TABLERO la muestra al instante (demo en vivo)
   const cfg = {
     empresa: empresa,
+    rut: rut,
     correo: correo,
     rubro: rubros[0],
     regiones: regiones.join(', '),
@@ -205,19 +208,27 @@ function activar(){
   };
   try { localStorage.setItem('radar_demo_config', JSON.stringify(cfg)); } catch(e) {}
 
-  // 2) El registro llega al correo del equipo Radar
-  const cuerpo = 'NUEVO REGISTRO EN RADAR DE LICITACIONES\n\n'
-    + 'Empresa: ' + empresa + '\nCorreo: ' + correo + '\nWhatsApp: ' + (fono || '-')
-    + '\nRubros: ' + rubros.join(', ') + '\nRegiones: ' + regiones.join(', ')
-    + '\nComunas: ' + comunas + '\nColor elegido: ' + cfg.color
-    + (fb ? '\n\nComentario del cliente:\n' + fb : '');
-  window.location.href = 'mailto:marcoramirezes.1286@gmail.com'
-    + '?subject=' + encodeURIComponent('Nuevo registro Radar - ' + empresa)
-    + '&body=' + encodeURIComponent(cuerpo);
+  // 2) El registro se ENVIA DIRECTO al equipo Radar (sin abrir la app de correo)
+  const datos = {
+    _subject: 'Nuevo registro Radar - ' + empresa,
+    empresa: empresa, rut: rut || '-', correo: correo, whatsapp: fono || '-',
+    rubros: rubros.join(', '), regiones: regiones.join(', '), comunas: comunas,
+    color: cfg.color, comentario: fb || '-'
+  };
+  fetch('https://formsubmit.co/ajax/marcoramirezes.1286@gmail.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(datos)
+  }).catch(function(){
+    // Respaldo: si el envio directo falla, se abre el correo del usuario
+    window.location.href = 'mailto:marcoramirezes.1286@gmail.com'
+      + '?subject=' + encodeURIComponent(datos._subject)
+      + '&body=' + encodeURIComponent(JSON.stringify(datos, null, 1));
+  });
 
   // 3) Pantalla de exito con acceso directo al tablero personalizado
   document.getElementById('resumen').innerHTML =
-    'Registro de <b>'+empresa+'</b>:<br>- Rubro: <b>'+rubros.join(', ')+'</b>'+
+    'Registro de <b>'+empresa+'</b>'+(rut ? ' (RUT '+rut+')' : '')+':<br>- Rubro: <b>'+rubros.join(', ')+'</b>'+
     '<br>- Regiones: <b>'+regiones.join(', ')+'</b>'+
     '<br>- Comunas a evaluar: <b>'+comunas+'</b>'+
     '<br>- Avisos a: <b>'+correo+'</b>';
