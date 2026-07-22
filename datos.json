@@ -1,12 +1,12 @@
 {
   "cliente_id": "ra-import",
-  "generado": "17-07-2026 19:48",
+  "generado": "22-07-2026 09:26",
   "resumen": {
     "counts": {
       "GO": 1,
       "REVISAR": 1,
-      "PENDIENTE": 1,
-      "NO": 2,
+      "PENDIENTE": 0,
+      "NO": 1,
       "": 0
     },
     "monto_total_go": 0
@@ -19,12 +19,12 @@
       "region": "Arica",
       "comuna": "Arica",
       "cierre": "28-07-2026 10:00",
-      "dias": 7,
+      "dias": 4,
       "monto": 0,
       "estado_gng": "PENDIENTE",
       "margen": 20,
       "semaforo": "GO",
-      "notas": "GO con margen 20% ($9.844.786/mes, 10 trabajadores, 5 dependencias en Arica). visita técnica el 20-07-2026 09:00 OBLIGATORIA (numeral 3.6)."
+      "notas": "ALERTA: quedan 4 dias habiles para el cierre (28-07-2026 10:00). GO con margen 20% ($9.844.786/mes, 10 trabajadores, 5 dependencias en Arica). visita técnica el 20-07-2026 09:00 OBLIGATORIA (numeral 3.6)."
     },
     {
       "codigo": "909863-1-LE26",
@@ -33,54 +33,26 @@
       "region": "Coquimbo",
       "comuna": "Illapel",
       "cierre": "29-07-2026 13:00",
-      "dias": 8,
+      "dias": 5,
       "monto": 45564948,
       "estado_gng": "Fuera de alcance - otra comuna",
       "margen": 20,
       "semaforo": "REVISAR",
-      "notas": "Margen 20% NO verificado: depende de dotacion sin confirmar (falta anexo bases tecnicas; con 2+ trabajadores no alcanza). Revisar antes del 22-07-2026."
+      "notas": "Margen 20% NO verificado: depende de dotacion sin confirmar (falta anexo bases tecnicas; con 2+ trabajadores no alcanza). Revisar antes del 22-07-2026. ALERTA (22-07-2026): quedan 5 dias habiles para el cierre (29-07-2026 13:00)."
     },
     {
-      "codigo": "1207912-4-LE26",
-      "nombre": "SERVICIO DE ASEO PARA LA DIRECCION REGIONAL",
-      "org": "Servicio Nacional de Proteccion Especializada a la Ninez y Adolescencia - Direccion Regional Arica y Parinacota",
-      "region": "Arica",
-      "comuna": "Arica",
-      "cierre": "20-07-2026 15:01",
-      "dias": 1,
-      "monto": 64800000,
-      "estado_gng": "PENDIENTE",
-      "margen": null,
-      "semaforo": "PENDIENTE",
-      "notas": "Evaluador no pudo calcular margen: sin bases tecnicas descargadas (Resex/CDP/REQ). Cierre 20-07-2026 15:01 (menos de 3 dias habiles). Accion urgente: descargar bases hoy y re-evaluar. Detalle en Licitaciones/SERVICIO DE ASEO PARA LA DIRECCION REGIONAL 1207912-4-LE26/DECISION_1207912-4-LE26_2026-07-17.md"
-    },
-    {
-      "codigo": "4619-2-LP26",
-      "nombre": "Servicio Aseo Oficinas de la DRT Coquimbo",
-      "org": "Dirección del Trabajo",
+      "codigo": "1461054-26-LP26",
+      "nombre": "Contrato de Suministro Limpieza de Fosas Septicas",
+      "org": "Servicio Local de Educacion Publica del Elqui (SLEP Elqui)",
       "region": "Coquimbo",
       "comuna": "La Serena",
-      "cierre": "20-07-2026 15:00",
-      "dias": 1,
-      "monto": 160000000,
-      "estado_gng": "",
-      "margen": null,
-      "semaforo": "NO",
-      "notas": "RA Import no asistió a la visita técnica obligatoria en ninguna de las 8 dependencias; oferta sería inadmisible."
-    },
-    {
-      "codigo": "1084148-11-LE26",
-      "nombre": "\"ADQUISICIÓN DE SERVICIOS DE LIMPIEZA Y ASEO POR DOS AÑOS DE LA OFICINA DE ADMINISTRACIÓN CENTRAL Y BODEGA DEL SLEP CHINCHORRO DE ARICA\".",
-      "org": "Servicio Local de Educación de Chinchorro (SLEP Chinchorro)",
-      "region": "Arica",
-      "comuna": "Arica",
-      "cierre": "20-07-2026 15:00",
-      "dias": 1,
-      "monto": 55200000,
+      "cierre": "03-08-2026 15:30",
+      "dias": 8,
+      "monto": 74000000,
       "estado_gng": "PENDIENTE",
       "margen": null,
       "semaforo": "NO",
-      "notas": "Acta de visita del 10-07-2026 no registra asistencia de RA Import; requisito bloqueante incumplido. Verificar manualmente si hay comprobante alternativo."
+      "notas": "Evaluador: sin bases tecnicas/administrativas descargadas, no evaluable con firmeza. Desajuste de giro: item UNSPSC 81141800 (gasfiteria/alcantarillado), no aseo/limpieza de edificios (76111500); requiere maquinaria especializada (camion limpiafosas/vactor, varillaje) que no es core de RA Import. SubContratacion permitida (1) pero cambia el modelo de negocio a reventa de tercero especializado, con menor control y margen mas ajustado. Recomendacion evaluador: NO GO. Cobertura 4 comunas (La Serena, La Higuera, Paihuano, Vicuna) por 16 meses. Cierre 03-08-2026 15:30."
     }
   ]
 }
