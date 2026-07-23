@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Control de Tokens</title>
+<style>
+  :root{
+    --bg:#0B0E11;
+    --panel:#141920;
+    --panel-2:#1B222B;
+    --border:#262E38;
+    --text:#E8ECEF;
+    --text-dim:#8A94A0;
+    --ok:#3ECF8E;
+    --warn:#F2B705;
+    --danger:#E5484D;
+    --mono: 'Consolas', 'SF Mono', 'JetBrains Mono', ui-monospace, monospace;
+    --sans: 'Segoe UI', Inter, -apple-system, system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:var(--sans); padding:24px; min-height:100vh;
+  }
+  .wrap{max-width:1180px; margin:0 auto;}
+  header{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:20px; flex-wrap:wrap; gap:12px;}
+  h1{font-family:var(--mono); font-size:20px; letter-spacing:0.5px; margin:0; text-transform:uppercase;}
+  .subtitle{color:var(--text-dim); font-size:13px; margin-top:4px;}
+  .eyebrow{font-family:var(--mono); font-size:11px; color:var(--text-dim); letter-spacing:1.5px; text-transform:uppercase;}
+
+  .toolbar{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .btn{
+    background:var(--panel-2); border:1px solid var(--border); color:var(--text);
+    font-family:var(--sans); font-size:13px; padding:9px 14px; border-radius:4px; cursor:pointer;
+  }
+  .btn:hover{border-color:#3a4552;}
+  .btn.primary{background:var(--ok); color:#06110c; border-color:var(--ok); font-weight:600;}
+  input[type=file]{display:none;}
+  input[type=number]{
+    background:var(--panel); border:1px solid var(--border); color:var(--text);
+    font-family:var(--mono); font-size:13px; padding:8px 10px; border-radius:4px; width:110px;
+  }
+
+  .grid{display:grid; grid-template-columns: 300px 1fr; gap:16px; margin-top:20px;}
+  @media (max-width: 860px){ .grid{grid-template-columns:1fr;} }
+
+  .panel{
+    background:var(--panel); border:1px solid var(--border); border-radius:6px; padding:18px;
+  }
+  .panel h2{
+    font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:1.2px;
+    color:var(--text-dim); margin:0 0 14px 0; font-weight:600;
+  }
+
+  /* Gauge */
+  .gauge-wrap{display:flex; flex-direction:column; align-items:center; gap:10px;}
+  .gauge-value{font-family:var(--mono); font-size:34px; font-weight:700;}
+  .gauge-label{font-family:var(--mono); font-size:11px; color:var(--text-dim); text-align:center;}
+  .budget-row{display:flex; align-items:center; gap:8px; margin-top:12px; font-size:12px; color:var(--text-dim);}
+  .status-pill{
+    font-family:var(--mono); font-size:11px; padding:4px 10px; border-radius:100px;
+    text-transform:uppercase; letter-spacing:0.5px; font-weight:700;
+  }
+
+  /* Bars */
+  .bar-row{display:flex; align-items:center; gap:10px; margin-bottom:8px;}
+  .bar-label{width:96px; font-family:var(--mono); font-size:11px; color:var(--text-dim); flex-shrink:0;}
+  .bar-track{flex:1; background:var(--panel-2); border-radius:3px; height:20px; position:relative; overflow:hidden;}
+  .bar-fill{height:100%; border-radius:3px;}
+  .bar-fill.spike{outline:1px solid var(--danger);}
+  .bar-value{font-family:var(--mono); font-size:11px; width:76px; text-align:right; flex-shrink:0;}
+
+  table{width:100%; border-collapse:collapse; font-size:13px;}
+  th{
+    text-align:left; font-family:var(--mono); font-size:10px; text-transform:uppercase;
+    color:var(--text-dim); font-weight:600; padding:6px 8px; border-bottom:1px solid var(--border);
+    letter-spacing:0.5px;
+  }
+  td{padding:8px; border-bottom:1px solid #1d232b; font-family:var(--mono); font-size:12px;}
+  td.name{font-family:var(--sans); font-size:13px;}
+  .pct-chip{color:var(--text-dim); font-size:11px;}
+
+  .insight{
+    display:flex; gap:10px; padding:10px 0; border-bottom:1px solid #1d232b; font-size:13px; line-height:1.5;
+  }
+  .insight:last-child{border-bottom:none;}
+  .insight .dot{width:8px; height:8px; border-radius:50%; margin-top:6px; flex-shrink:0;}
+
+  .empty{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:80px 20px; text-align:center; color:var(--text-dim); gap:14px;
+  }
+  .empty .icon{font-family:var(--mono); font-size:28px; color:var(--text-dim); border:1px solid var(--border); width:56px; height:56px; display:flex; align-items:center; justify-content:center; border-radius:6px;}
+  .empty code{background:var(--panel-2); padding:2px 6px; border-radius:3px; font-family:var(--mono);}
+  .hidden{display:none;}
+  .err{color:var(--danger); font-size:12px; font-family:var(--mono); margin-top:6px;}
+  footer{margin-top:24px; color:var(--text-dim); font-size:11px; font-family:var(--mono);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">SGC — Control Interno</div>
+      <h1>Control de Tokens</h1>
+      <div class="subtitle">Carga el export de ccusage para ver dónde se está yendo el consumo.</div>
+    </div>
+    <div class="toolbar">
+      <label class="budget-row">Presupuesto semanal (USD)
+        <input type="number" id="budgetInput" value="100" min="1">
+      </label>
+      <button class="btn primary" onclick="document.getElementById('fileInput').click()">Cargar JSON</button>
+      <input type="file" id="fileInput" accept=".json">
+    </div>
+  </header>
+  <div id="autoStatus" class="subtitle" style="margin:-8px 0 12px 0;"></div>
+
+  <div id="emptyState" class="empty">
+    <div class="icon">⌂</div>
+    <div>
+      <strong>Sin datos cargados</strong>
+      <div class="subtitle" style="margin-top:6px;">
+        Genera el export en tu máquina y súbelo aquí:<br>
+        <code>npx ccusage@latest daily --instances --json > usage.json</code>
+      </div>
+    </div>
+    <div id="parseErr" class="err hidden"></div>
+  </div>
+
+  <div id="dashboard" class="hidden">
+    <div class="grid">
+      <div class="panel">
+        <h2>Presupuesto semanal</h2>
+        <div class="gauge-wrap">
+          <svg width="180" height="100" viewBox="0 0 180 100">
+            <path d="M 15 90 A 75 75 0 0 1 165 90" fill="none" stroke="#1B222B" stroke-width="14" stroke-linecap="round"/>
+            <path id="gaugeArc" d="M 15 90 A 75 75 0 0 1 165 90" fill="none" stroke="#3ECF8E" stroke-width="14" stroke-linecap="round"/>
+          </svg>
+          <div class="gauge-value" id="gaugePct">0%</div>
+          <div class="gauge-label" id="gaugeSub">USD 0 de USD 100 · últimos 7 días</div>
+          <div class="status-pill" id="statusPill">OK</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Consumo por día</h2>
+        <div id="dailyBars"></div>
+      </div>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top:16px;">
+      <div class="panel">
+        <h2>Por proyecto / empresa</h2>
+        <table><thead><tr><th>Proyecto</th><th>Costo</th><th>Tokens</th><th>%</th></tr></thead><tbody id="projTable"></tbody></table>
+      </div>
+      <div class="panel">
+        <h2>Por modelo</h2>
+        <table><thead><tr><th>Modelo</th><th>Costo</th><th>Tokens</th><th>%</th></tr></thead><tbody id="modelTable"></tbody></table>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:16px;">
+      <h2>Hallazgos</h2>
+      <div id="insights"></div>
+    </div>
+  </div>
+
+  <footer>Los datos se procesan localmente en tu navegador — no se envían a ningún servidor.</footer>
+</div>
+
+<script>
+let budget = 100;
+document.getElementById('budgetInput').addEventListener('input', e=>{
+  budget = parseFloat(e.target.value)||100;
+  if(window.__lastData) render(window.__lastData);
+});
+
+// Carga automatica: si este archivo esta hosteado (no abierto como file:// suelto)
+// y hay un usage.json en la misma carpeta, lo trae solo. Reintenta cada 10 min.
+function autoLoad(){
+  fetch('./usage.json', {cache:'no-store'})
+    .then(r=>{ if(!r.ok) throw new Error('sin usage.json todavia'); return r.json(); })
+    .then(json=>{
+      const normalized = normalize(json);
+      if(normalized.days.length>0){
+        window.__lastData = normalized;
+        render(normalized);
+        document.getElementById('autoStatus').textContent = 'Actualizado automaticamente: ' + new Date().toLocaleString('es-CL');
+      }
+    })
+    .catch(()=>{
+      document.getElementById('autoStatus').textContent = '';
+    });
+}
+autoLoad();
+setInterval(autoLoad, 10*60*1000);
+
+document.getElementById('fileInput').addEventListener('change', e=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev=>{
+    try{
+      const json = JSON.parse(ev.target.result);
+      const normalized = normalize(json);
+      if(normalized.days.length===0){
+        showError('El JSON se leyó pero no encontré filas reconocibles. Revisa que sea un export de ccusage (daily/session).');
+        return;
+      }
+      window.__lastData = normalized;
+      render(normalized);
+    }catch(err){
+      showError('No pude parsear el archivo: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+});
+
+function showError(msg){
+  const box = document.getElementById('parseErr');
+  box.textContent = msg;
+  box.classList.remove('hidden');
+}
+
+// Flexible normalizer: tolerates several ccusage export shapes
+function normalize(json){
+  let rows = [];
+  if(Array.isArray(json)) rows = json;
+  else if(Array.isArray(json.daily)) rows = json.daily;
+  else if(Array.isArray(json.entries)) rows = json.entries;
+  else if(Array.isArray(json.sessions)) rows = json.sessions;
+  else if(Array.isArray(json.data)) rows = json.data;
+
+  const pick = (o, keys)=>{ for(const k of keys) if(o[k]!==undefined) return o[k]; return undefined; };
+
+  const days = [];
+  const byProject = {};
+  const byModel = {};
+
+  rows.forEach(r=>{
+    const date = pick(r, ['date','day','startTime','lastActivity']) || 'sin fecha';
+    const dateKey = String(date).slice(0,10);
+    const project = pick(r, ['project','projectName','instance','instanceName']) || 'sin proyecto';
+    let cost = pick(r, ['costUSD','totalCost','cost']);
+    const inTok = pick(r, ['inputTokens','input_tokens']) || 0;
+    const outTok = pick(r, ['outputTokens','output_tokens']) || 0;
+    const cacheC = pick(r, ['cacheCreationTokens','cache_creation_tokens']) || 0;
+    const cacheR = pick(r, ['cacheReadTokens','cache_read_tokens']) || 0;
+    let tokens = pick(r, ['totalTokens','tokens']);
+    if(tokens===undefined) tokens = (inTok+outTok+cacheC+cacheR);
+    if(cost===undefined) cost = 0;
+
+    let models = pick(r, ['modelsUsed','models','model']);
+    if(models===undefined) models = ['desconocido'];
+    if(!Array.isArray(models)) models = [models];
+
+    days.push({date: dateKey, cost: Number(cost)||0, tokens: Number(tokens)||0, project});
+
+    byProject[project] = byProject[project] || {cost:0, tokens:0};
+    byProject[project].cost += Number(cost)||0;
+    byProject[project].tokens += Number(tokens)||0;
+
+    models.forEach(m=>{
+      byModel[m] = byModel[m] || {cost:0, tokens:0};
+      byModel[m].cost += (Number(cost)||0) / models.length;
+      byModel[m].tokens += (Number(tokens)||0) / models.length;
+    });
+  });
+
+  // Aggregate by date
+  const byDate = {};
+  days.forEach(d=>{
+    byDate[d.date] = byDate[d.date] || {date:d.date, cost:0, tokens:0};
+    byDate[d.date].cost += d.cost;
+    byDate[d.date].tokens += d.tokens;
+  });
+  const dailyAgg = Object.values(byDate).sort((a,b)=> a.date.localeCompare(b.date));
+
+  return {days: dailyAgg, byProject, byModel};
+}
+
+function fmtUSD(n){ return '$'+n.toFixed(2); }
+function fmtTok(n){
+  if(n>=1e6) return (n/1e6).toFixed(2)+'M';
+  if(n>=1e3) return (n/1e3).toFixed(1)+'k';
+  return Math.round(n).toString();
+}
+
+function render(data){
+  document.getElementById('emptyState').classList.add('hidden');
+  document.getElementById('dashboard').classList.remove('hidden');
+
+  const last7 = data.days.slice(-7);
+  const totalCost = last7.reduce((s,d)=>s+d.cost,0);
+  const pct = Math.min(100, (totalCost/budget)*100);
+
+  // Gauge
+  const arc = document.getElementById('gaugeArc');
+  const circumference = Math.PI * 75; // half circle length approx
+  const dash = (pct/100) * circumference;
+  arc.setAttribute('stroke-dasharray', dash + ' ' + circumference);
+  let color = '#3ECF8E', statusText='OK', statusBg='rgba(62,207,142,0.15)';
+  if(pct>=85){ color='#E5484D'; statusText='SOBRE LÍMITE'; statusBg='rgba(229,72,77,0.15)'; }
+  else if(pct>=60){ color='#F2B705'; statusText='ATENCIÓN'; statusBg='rgba(242,183,5,0.15)'; }
+  arc.setAttribute('stroke', color);
+  document.getElementById('gaugePct').textContent = pct.toFixed(0)+'%';
+  document.getElementById('gaugePct').style.color = color;
+  document.getElementById('gaugeSub').textContent = fmtUSD(totalCost)+' de '+fmtUSD(budget)+' · últimos 7 días';
+  const pill = document.getElementById('statusPill');
+  pill.textContent = statusText; pill.style.color = color; pill.style.background = statusBg;
+
+  // Daily bars
+  const maxCost = Math.max(...data.days.map(d=>d.cost), 0.01);
+  const mean = data.days.reduce((s,d)=>s+d.cost,0)/(data.days.length||1);
+  const barsEl = document.getElementById('dailyBars');
+  barsEl.innerHTML = '';
+  data.days.slice(-14).forEach(d=>{
+    const spike = d.cost > mean*1.5 && mean>0;
+    const w = (d.cost/maxCost)*100;
+    const row = document.createElement('div');
+    row.className='bar-row';
+    row.innerHTML = `<div class="bar-label">${d.date}</div>
+      <div class="bar-track"><div class="bar-fill ${spike?'spike':''}" style="width:${w}%; background:${spike?'#E5484D':'#3ECF8E'}"></div></div>
+      <div class="bar-value">${fmtUSD(d.cost)}</div>`;
+    barsEl.appendChild(row);
+  });
+
+  // Project table
+  const totalProjCost = Object.values(data.byProject).reduce((s,p)=>s+p.cost,0)||1;
+  const projRows = Object.entries(data.byProject).sort((a,b)=>b[1].cost-a[1].cost);
+  document.getElementById('projTable').innerHTML = projRows.map(([name,v])=>
+    `<tr><td class="name">${name}</td><td>${fmtUSD(v.cost)}</td><td>${fmtTok(v.tokens)}</td><td class="pct-chip">${((v.cost/totalProjCost)*100).toFixed(0)}%</td></tr>`
+  ).join('') || '<tr><td colspan="4" class="pct-chip">Sin datos de proyecto en el export</td></tr>';
+
+  // Model table
+  const totalModelCost = Object.values(data.byModel).reduce((s,p)=>s+p.cost,0)||1;
+  const modelRows = Object.entries(data.byModel).sort((a,b)=>b[1].cost-a[1].cost);
+  document.getElementById('modelTable').innerHTML = modelRows.map(([name,v])=>
+    `<tr><td class="name">${name}</td><td>${fmtUSD(v.cost)}</td><td>${fmtTok(v.tokens)}</td><td class="pct-chip">${((v.cost/totalModelCost)*100).toFixed(0)}%</td></tr>`
+  ).join('');
+
+  // Insights
+  const insights = [];
+  if(projRows.length>0){
+    const top = projRows[0];
+    insights.push({color:'#3ECF8E', text:`«${top[0]}» concentra el ${((top[1].cost/totalProjCost)*100).toFixed(0)}% del gasto — es tu principal candidato a optimizar o mover a facturación aparte.`});
+  }
+  if(modelRows.length>1){
+    const topModel = modelRows[0];
+    const topModelTokShare = (topModel[1].tokens/Object.values(data.byModel).reduce((s,p)=>s+p.tokens,0))*100;
+    const topModelCostShare = (topModel[1].cost/totalModelCost)*100;
+    if(topModelCostShare - topModelTokShare > 15){
+      insights.push({color:'#F2B705', text:`«${topModel[0]}» usa solo ${topModelTokShare.toFixed(0)}% de tus tokens pero se lleva ${topModelCostShare.toFixed(0)}% del costo — revisa si ese paso puede bajar a un modelo más económico.`});
+    }
+  }
+  const spikes = data.days.filter(d=>d.cost > mean*1.5 && mean>0);
+  if(spikes.length>0){
+    insights.push({color:'#E5484D', text:`${spikes.length} día(s) con gasto ${'>'}50% sobre tu promedio (${spikes.map(s=>s.date).join(', ')}) — cruza esas fechas con tus corridas programadas.`});
+  }
+  const half = Math.floor(data.days.length/2);
+  if(half>0){
+    const firstHalf = data.days.slice(0,half).reduce((s,d)=>s+d.cost,0)/half;
+    const secondHalf = data.days.slice(half).reduce((s,d)=>s+d.cost,0)/(data.days.length-half);
+    if(secondHalf > firstHalf*1.2){
+      insights.push({color:'#F2B705', text:`Tu gasto promedio diario subió ${(((secondHalf/firstHalf)-1)*100).toFixed(0)}% en la segunda mitad del período.`});
+    }
+  }
+  if(insights.length===0) insights.push({color:'#8A94A0', text:'Consumo estable, sin anomalías detectadas en el período cargado.'});
+
+  document.getElementById('insights').innerHTML = insights.map(i=>
+    `<div class="insight"><div class="dot" style="background:${i.color}"></div><div>${i.text}</div></div>`
+  ).join('');
+}
+</script>
+</body>
+</html>
