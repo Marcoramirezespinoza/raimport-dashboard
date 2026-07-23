@@ -1,6 +1,6 @@
 {
   "cliente_id": "ra-import",
-  "generado": "22-07-2026 09:26",
+  "generado": "23-07-2026 09:31",
   "resumen": {
     "counts": {
       "GO": 1,
@@ -19,12 +19,12 @@
       "region": "Arica",
       "comuna": "Arica",
       "cierre": "28-07-2026 10:00",
-      "dias": 4,
+      "dias": 3,
       "monto": 0,
       "estado_gng": "PENDIENTE",
       "margen": 20,
       "semaforo": "GO",
-      "notas": "ALERTA: quedan 4 dias habiles para el cierre (28-07-2026 10:00). GO con margen 20% ($9.844.786/mes, 10 trabajadores, 5 dependencias en Arica). visita técnica el 20-07-2026 09:00 OBLIGATORIA (numeral 3.6)."
+      "notas": "ALERTA (23-07-2026): quedan 3 dias habiles para el cierre (28-07-2026 10:00). GO con margen 20% ($9.844.786/mes, 10 trabajadores, 5 dependencias en Arica). Visita tecnica obligatoria fue el 20-07-2026 09:00 (numeral 3.6) - VERIFICAR si RA Import asistio y quedo registrada la asistencia; antecedentes similares en Arica (1084148-11-LE26, 1696-9-LR26) fueron descartados por inasistencia a visita obligatoria. Borrador de postulacion ya preparado (Licitaciones/CONTRATO SERVICIO DE ASEO COMUNA DE ARICA 5750-3-LP26/PROPUESTA_5750-3-LP26.md)."
     },
     {
       "codigo": "909863-1-LE26",
@@ -33,7 +33,7 @@
       "region": "Coquimbo",
       "comuna": "Illapel",
       "cierre": "29-07-2026 13:00",
-      "dias": 5,
+      "dias": 4,
       "monto": 45564948,
       "estado_gng": "Fuera de alcance - otra comuna",
       "margen": 20,
@@ -47,7 +47,7 @@
       "region": "Coquimbo",
       "comuna": "La Serena",
       "cierre": "03-08-2026 15:30",
-      "dias": 8,
+      "dias": 7,
       "monto": 74000000,
       "estado_gng": "PENDIENTE",
       "margen": null,
