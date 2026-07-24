@@ -86,6 +86,11 @@
   .insight:last-child{border-bottom:none;}
   .insight .dot{width:8px; height:8px; border-radius:50%; margin-top:6px; flex-shrink:0;}
 
+  .stat-row{display:flex; gap:24px; flex-wrap:wrap;}
+  .stat-box{flex:1; min-width:160px;}
+  .stat-box .stat-value{font-family:var(--mono); font-size:28px; font-weight:700;}
+  .stat-box .stat-label{font-family:var(--mono); font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:1px; margin-top:4px;}
+
   .empty{
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     padding:80px 20px; text-align:center; color:var(--text-dim); gap:14px;
@@ -121,7 +126,7 @@
       <strong>Sin datos cargados</strong>
       <div class="subtitle" style="margin-top:6px;">
         Genera el export en tu máquina y súbelo aquí:<br>
-        <code>npx ccusage@latest daily --instances --json > usage.json</code>
+        <code>npx ccusage@latest daily --json > usage.json</code>
       </div>
     </div>
     <div id="parseErr" class="err hidden"></div>
@@ -163,6 +168,21 @@
       <h2>Hallazgos</h2>
       <div id="insights"></div>
     </div>
+
+    <div class="panel" style="margin-top:16px;">
+      <h2>Costo del radar (Arica / Coquimbo)</h2>
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-value" id="radarLastCost">—</div>
+          <div class="stat-label" id="radarLastLabel">Última corrida</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value" id="radarAvgCost">—</div>
+          <div class="stat-label">Promedio últimos 7 días</div>
+        </div>
+      </div>
+      <div id="radarEmpty" class="subtitle" style="margin-top:8px;"></div>
+    </div>
   </div>
 
   <footer>Los datos se procesan localmente en tu navegador — no se envían a ningún servidor.</footer>
@@ -194,6 +214,34 @@ function autoLoad(){
 }
 autoLoad();
 setInterval(autoLoad, 10*60*1000);
+
+// Costo del radar diario: lee scanner_cost_log.csv (fecha,tokens,costo_usd)
+function loadRadarCost(){
+  fetch('./scanner_cost_log.csv', {cache:'no-store'})
+    .then(r=>{ if(!r.ok) throw new Error('sin scanner_cost_log.csv todavia'); return r.text(); })
+    .then(text=>{
+      const lines = text.trim().split(/\r?\n/).filter(Boolean);
+      if(lines.length<2) throw new Error('csv vacio');
+      const rows = lines.slice(1).map(line=>{
+        const [fecha,tokens,costo] = line.split(',');
+        return {fecha, tokens:Number(tokens)||0, costo:Number(costo)||0};
+      }).sort((a,b)=>a.fecha.localeCompare(b.fecha));
+      const last = rows[rows.length-1];
+      const last7 = rows.slice(-7);
+      const avg7 = last7.reduce((s,r)=>s+r.costo,0)/last7.length;
+      document.getElementById('radarLastCost').textContent = fmtUSD(last.costo);
+      document.getElementById('radarLastLabel').textContent = 'Última corrida · ' + last.fecha;
+      document.getElementById('radarAvgCost').textContent = fmtUSD(avg7);
+      document.getElementById('radarEmpty').textContent = '';
+    })
+    .catch(()=>{
+      document.getElementById('radarLastCost').textContent = '—';
+      document.getElementById('radarAvgCost').textContent = '—';
+      document.getElementById('radarEmpty').textContent = 'Aún no hay datos de scanner_cost_log.csv.';
+    });
+}
+loadRadarCost();
+setInterval(loadRadarCost, 10*60*1000);
 
 document.getElementById('fileInput').addEventListener('change', e=>{
   const file = e.target.files[0];
